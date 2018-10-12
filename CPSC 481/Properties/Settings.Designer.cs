@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CPSC481.Properties
+namespace CPSC_481.Properties
 {
 
 

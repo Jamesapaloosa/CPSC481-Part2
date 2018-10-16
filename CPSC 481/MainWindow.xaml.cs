@@ -24,5 +24,22 @@ namespace CPSC_481
         {
             InitializeComponent();
         }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StartButton_MouseEnter(object sender, RoutedEventArgs e)
+        {
+            WelcomeLabel.Content = "Click to enter";
+        }
+
+        private void StartButton_MouseLeave(object sender, RoutedEventArgs e)
+        {
+            WelcomeLabel.Content = "Welcome!";
+        }
+
+
     }
 }

@@ -1,0 +1,6 @@
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.csprojAssemblyReference.cache
+Z:\CPSC481\CPSC 481\obj\Debug\MainWindow.g.cs
+Z:\CPSC481\CPSC 481\obj\Debug\Menu.g.cs
+Z:\CPSC481\CPSC 481\obj\Debug\App.g.cs
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481_MarkupCompile.cache
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481_MarkupCompile.lref

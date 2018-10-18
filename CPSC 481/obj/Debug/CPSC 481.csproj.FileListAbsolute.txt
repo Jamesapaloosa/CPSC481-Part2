@@ -1,6 +1,15 @@
 Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.csprojAssemblyReference.cache
-Z:\CPSC481\CPSC 481\obj\Debug\MainWindow.g.cs
 Z:\CPSC481\CPSC 481\obj\Debug\Menu.g.cs
 Z:\CPSC481\CPSC 481\obj\Debug\App.g.cs
 Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481_MarkupCompile.cache
 Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481_MarkupCompile.lref
+Z:\CPSC481\CPSC 481\bin\Debug\CPSC 481.exe.config
+Z:\CPSC481\CPSC 481\bin\Debug\CPSC 481.exe
+Z:\CPSC481\CPSC 481\bin\Debug\CPSC 481.pdb
+Z:\CPSC481\CPSC 481\obj\Debug\Menu.baml
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.g.resources
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC_481.Properties.Resources.resources
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.csproj.GenerateResource.cache
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.csproj.CoreCompileInputs.cache
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.exe
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.pdb

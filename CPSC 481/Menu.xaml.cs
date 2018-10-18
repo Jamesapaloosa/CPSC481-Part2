@@ -22,6 +22,12 @@ namespace CPSC_481
         public Menu()
         {
             InitializeComponent();
+            this.listBox.Items.Add("Burger");
+        }
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

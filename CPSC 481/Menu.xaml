@@ -9,7 +9,7 @@
     <Grid>
         <Image x:Name="image" Source="Z:\CPSC481\CPSC 481\1.jpg" HorizontalAlignment="Left" Height="130" Margin="182,10,0,0" VerticalAlignment="Top" Width="251"/>
         <GroupBox x:Name="groupBox" Header="Your Order" FontSize="30" HorizontalAlignment="Left" Height="319" Margin="579,90,0,0" VerticalAlignment="Top" Width="203">
-            <ListBox x:Name="listBox1" Height="242" Margin="10,26,9,0" VerticalAlignment="Top"/>
+            <ListBox x:Name="listBox1" FontSize="15" Height="207" Margin="10,26,9,0" VerticalAlignment="Top" SelectionChanged="listBox1_SelectionChanged"/>
         </GroupBox>
         <Button x:Name="button" HorizontalAlignment="Left" Height="80" Margin="702,10,0,0" VerticalAlignment="Top" Width="80">
             <Image Source="Z:\CPSC481\CPSC 481\waiter.jpg" />
@@ -21,7 +21,7 @@
                     <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="176" Margin="10,10,0,0" VerticalAlignment="Top" Width="248" SelectionChanged="listBox_SelectionChanged"/>
                     <GroupBox x:Name="OrderItemData" Header="Item Data" HorizontalAlignment="Left" Height="176" Margin="263,10,0,0" VerticalAlignment="Top" Width="143">
                         <Image x:Name="image1" Source="Z:\CPSC481\CPSC 481\burger.jpg" HorizontalAlignment="Left" Height="59" Margin="59,0,0,0" VerticalAlignment="Top" Width="59"/>
-                        
+
                     </GroupBox>
                     <Button x:Name="button1" Content="Add" HorizontalAlignment="Left" Height="35" Margin="298,141,0,0" VerticalAlignment="Top" Width="76"/>
                     <Label x:Name="label1" FontSize="8" Content="Burger information here" HorizontalAlignment="Left" Height="33" Margin="277,103,0,0" VerticalAlignment="Top" Width="114"/>
@@ -39,7 +39,8 @@
             </TabItem>
 
         </TabControl>
-        
+        <Label x:Name="TotalPriceLabel" Content="PRICE$$$$$" HorizontalAlignment="Left" Height="28" Margin="598,368,0,0" VerticalAlignment="Top" Width="169"/>
+
 
 
     </Grid>

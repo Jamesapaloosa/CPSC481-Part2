@@ -22,20 +22,26 @@ namespace CPSC_481
         public Menu()
         {
             InitializeComponent();
-            this.listBox.Items.Add("Burger");
-            this.listBox.Items.Add("Chicken Soup");
-            this.listBox.Items.Add("Boston Beef Cake");
-            this.listBox.Items.Add("Rib eye Steak");
-            this.listBox1.Items.Add("Whisky 12X - $126.00");
-            this.TotalPriceLabel.Content = "$126.00";
+
+            MenuItem burger = new MenuItem("Burger", 16.00m);
+            MenuItem chickenSoup = new MenuItem("Chicken Soup", 6.00m);
+            MenuItem bostonBeefCake = new MenuItem("Boston Beef Cake", 12.00m);
+            MenuItem ribEyeSteak = new MenuItem("Rib eye Steak", 26.00m);
+            MenuItem whiskey = new MenuItem("Whiskey", 126.00m);
+
+            this.listBox.Items.Add(burger.name);
+            this.listBox.Items.Add(chickenSoup.name);
+            this.listBox.Items.Add(bostonBeefCake.name);
+            this.listBox.Items.Add(ribEyeSteak.name);
+
+            this.orderTableView.add(burger);
+            this.orderTableView.add(chickenSoup);
+            this.orderTableView.add(bostonBeefCake);
+            this.orderTableView.add(ribEyeSteak);
+            this.orderTableView.add(whiskey);
         }
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

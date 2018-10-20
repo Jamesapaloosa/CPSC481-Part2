@@ -8,9 +8,13 @@
         Title="Menu" Height="450" Width="800">
     <Grid>
         <Image x:Name="image" Source="Z:\CPSC481\CPSC 481\1.jpg" HorizontalAlignment="Left" Height="130" Margin="182,10,0,0" VerticalAlignment="Top" Width="251"/>
-        <GroupBox x:Name="groupBox" Header="Your Order" FontSize="30" HorizontalAlignment="Left" Height="319" Margin="579,90,0,0" VerticalAlignment="Top" Width="203">
-            <ListBox x:Name="listBox1" FontSize="15" Height="207" Margin="10,26,9,0" VerticalAlignment="Top" SelectionChanged="listBox1_SelectionChanged"/>
-        </GroupBox>
+        <local:OrderTableView x:Name = "orderTableView" 
+                              HorizontalAlignment="Left" 
+                              Height="319"
+                              Margin="579,90,0,0"
+                              VerticalAlignment="Top"
+                              Width="203">
+        </local:OrderTableView>
         <Button x:Name="button" HorizontalAlignment="Left" Height="80" Margin="702,10,0,0" VerticalAlignment="Top" Width="80">
             <Image Source="Z:\CPSC481\CPSC 481\waiter.jpg" />
         </Button>
@@ -39,7 +43,6 @@
             </TabItem>
 
         </TabControl>
-        <Label x:Name="TotalPriceLabel" Content="PRICE$$$$$" HorizontalAlignment="Left" Height="28" Margin="598,368,0,0" VerticalAlignment="Top" Width="169"/>
 
 
 

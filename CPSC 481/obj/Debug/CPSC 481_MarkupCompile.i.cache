@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-Z:\CPSC481\CPSC 481\obj\Debug\
+Z:\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\
 CPSC_481
 none
 false
 DEBUG;TRACE
-Z:\CPSC481\CPSC 481\App.xaml
-1-989810771
+Z:\Downloads\CPSC481-Part2\CPSC 481\App.xaml
+3-24697539
 
-9-15563591
+12-419647023
 13-1662647192
-Menu.xaml;
+OrderTableView.xaml;OrderCell.xaml;Menu.xaml;
 
-True
+False
 

@@ -5,41 +5,91 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPSC_481"
         mc:Ignorable="d"
-        Title="Menu" Height="450" Width="800">
+        Title="Menu" Height="641" Width="1053" ResizeMode="NoResize">
     <Grid>
-        <Image x:Name="image" Source="Z:\CPSC481\CPSC 481\1.jpg" HorizontalAlignment="Left" Height="130" Margin="182,10,0,0" VerticalAlignment="Top" Width="251"/>
-        <GroupBox x:Name="groupBox" Header="Your Order" FontSize="30" HorizontalAlignment="Left" Height="319" Margin="579,90,0,0" VerticalAlignment="Top" Width="203">
+        <GroupBox x:Name="groupBox" Header="Your Order" FontSize="30" HorizontalAlignment="Left" Height="505" Margin="767,95,0,0" VerticalAlignment="Top" Width="268">
             <ListBox x:Name="listBox1" FontSize="15" Height="207" Margin="10,26,9,0" VerticalAlignment="Top" SelectionChanged="listBox1_SelectionChanged"/>
         </GroupBox>
-        <Button x:Name="button" HorizontalAlignment="Left" Height="80" Margin="702,10,0,0" VerticalAlignment="Top" Width="80">
+        <Button x:Name="button" HorizontalAlignment="Left" Height="80" Margin="955,10,0,0" VerticalAlignment="Top" Width="80">
             <Image Source="Z:\CPSC481\CPSC 481\waiter.jpg" />
         </Button>
-        <Label x:Name="label" Content="Moonlight Diner" FontStyle="Italic" Foreground="AntiqueWhite" HorizontalAlignment="Left" Height="34" Margin="315,40,0,0" VerticalAlignment="Top" Width="134"/>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="264" Margin="82,145,0,0" VerticalAlignment="Top" Width="422">
-            <TabItem Header="Meals" Width="100" >
-                <Grid Background="#FFE5E5E5">
-                    <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="176" Margin="10,10,0,0" VerticalAlignment="Top" Width="248" SelectionChanged="listBox_SelectionChanged"/>
-                    <GroupBox x:Name="OrderItemData" Header="Item Data" HorizontalAlignment="Left" Height="176" Margin="263,10,0,0" VerticalAlignment="Top" Width="143">
-                        <Image x:Name="image1" Source="Z:\CPSC481\CPSC 481\burger.jpg" HorizontalAlignment="Left" Height="59" Margin="59,0,0,0" VerticalAlignment="Top" Width="59"/>
-
-                    </GroupBox>
-                    <Button x:Name="button1" Content="Add" HorizontalAlignment="Left" Height="35" Margin="298,141,0,0" VerticalAlignment="Top" Width="76"/>
-                    <Label x:Name="label1" FontSize="8" Content="Burger information here" HorizontalAlignment="Left" Height="33" Margin="277,103,0,0" VerticalAlignment="Top" Width="114"/>
-
-                </Grid>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="574" Margin="10,26,0,0" VerticalAlignment="Top" Width="752" TabStripPlacement="Left">
+            <TabItem Header="Meals" HorizontalAlignment="Right">
+                <ListView x:Name="MealsListView" ItemsSource="{Binding SourceCollection}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Image" DisplayMemberBinding="{Binding Image}" Width="70"/>
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="345"/>
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="90"/>
+                            <GridViewColumn Header="Add" Width="110">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button>Add to order</Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </TabItem>
-            <TabItem Header="Sides" Width="100" >
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Sides" HorizontalAlignment="Right">
+                <ListView x:Name="SidesListView" ItemsSource="{Binding SourceCollection}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Image" DisplayMemberBinding="{Binding Image}" Width="70"/>
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="345"/>
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="90"/>
+                            <GridViewColumn Header="Add" Width="110">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button>Add to order</Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </TabItem>
-            <TabItem Header="Dessert" Width="100" >
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Dessert" HorizontalAlignment="Right">
+                <ListView x:Name="DessertListView" ItemsSource="{Binding SourceCollection}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Image" DisplayMemberBinding="{Binding Image}" Width="70"/>
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="345"/>
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="90"/>
+                            <GridViewColumn Header="Add" Width="110">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button>Add to order</Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </TabItem>
-            <TabItem Header="Drinks" Width="100" >
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Drinks" HorizontalAlignment="Right">
+                <ListView x:Name="DrinksListView" ItemsSource="{Binding SourceCollection}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Image" DisplayMemberBinding="{Binding Image}" Width="70"/>
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="345"/>
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="90"/>
+                            <GridViewColumn Header="Add" Width="110">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button>Add to order</Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </TabItem>
 
         </TabControl>
-        <Label x:Name="TotalPriceLabel" Content="PRICE$$$$$" HorizontalAlignment="Left" Height="28" Margin="598,368,0,0" VerticalAlignment="Top" Width="169"/>
+        <Label x:Name="TotalPriceLabel" Content="PRICE$$$$$" HorizontalAlignment="Left" Height="28" Margin="777,560,0,0" VerticalAlignment="Top" Width="161"/>
+        <Button x:Name="SendOrPayButton" Content="Pay" HorizontalAlignment="Left" Height="28" Margin="938,560,0,0" VerticalAlignment="Top" Width="86"/>
 
 
 
@@ -61,10 +111,12 @@
                                 <Setter TargetName="Border" Property="Background" Value="LightBlue" />
                                 <Setter Property="FontSize" Value="16"/>
                                 <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="120"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="False">
                                 <Setter TargetName="Border" Property="Background" Value="LightGray" />
                                 <Setter Property="Height" Value="45"/>
+                                <Setter Property="Width" Value="100"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

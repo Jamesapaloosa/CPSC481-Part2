@@ -16,6 +16,9 @@
                HorizontalAlignment="Right"
                Margin="0,0,10,0"
                VerticalAlignment="Center"/>
+        <Button x:Name="deleteButton"
+                Opacity="0"
+                Click="deleteButton_Click"/>
     </Grid>
 
 </UserControl>

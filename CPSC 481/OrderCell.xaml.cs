@@ -4,14 +4,30 @@ using System.Windows.Controls;
 
 namespace CPSC_481
 {
+    public delegate void OrderCellEventHandler(OrderCell sender, EventArgs e);
+
+
+
+
+
     public partial class OrderCell : UserControl
     {
-        public OrderCell(MenuItem menuItem)
+        public OrderItem orderItem;
+        public event OrderCellEventHandler OnDelete;
+
+        public OrderCell(OrderItem orderItem)
         {
             InitializeComponent();
 
-            this.titleLabel.Content = menuItem.name;
-            this.priceLabel.Content =  menuItem.price;
+            this.orderItem = orderItem;
+
+            this.titleLabel.Content = orderItem.menuItem.name;
+            this.priceLabel.Content = orderItem.menuItem.price;
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.OnDelete(this, new EventArgs());
         }
     }
 }

@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MenuItem.cs" />
+    <Compile Include="OrderItem.cs" />
     <Compile Include="OrderTableView.xaml.cs">
       <DependentUpon>OrderTableView.xaml</DependentUpon>
     </Compile>

@@ -13,11 +13,12 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="8*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label Content="Orders"
+        <Label Content="Your Order"
                Grid.Row="0"
                FontSize="20"
                HorizontalAlignment="Center"
@@ -29,8 +30,14 @@
                Content="Price"
                FontSize="20" 
                Grid.Row="2"
-               HorizontalAlignment="Center" 
+               HorizontalAlignment="Right" 
                VerticalAlignment="Center" />
+        <Button x:Name="actionButton" 
+               Content="Order"
+               Margin="10,10,10,10"
+               FontSize="20" 
+               Grid.Row="3" 
+               Click="actionButton_Click"/>
     </Grid>
 
 </UserControl>

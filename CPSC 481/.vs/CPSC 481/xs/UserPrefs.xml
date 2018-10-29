@@ -1,13 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="MenuItem.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OrderTableView.xaml.cs">
     <Files>
-      <File FileName="OrderCell.xaml.cs" Line="27" Column="1" />
+      <File FileName="OrderCell.xaml.cs" Line="7" Column="49" />
       <File FileName="OrderCell.xaml" Line="1" Column="1" />
       <File FileName="Menu.xaml.cs" Line="1" Column="1" />
-      <File FileName="Menu.xaml" Line="1" Column="1" />
-      <File FileName="OrderTableView.xaml.cs" Line="25" Column="4" />
+      <File FileName="Menu.xaml" Line="22" Column="45" />
+      <File FileName="OrderTableView.xaml.cs" Line="14" Column="10" />
       <File FileName="OrderTableView.xaml" Line="1" Column="1" />
-      <File FileName="MenuItem.cs" Line="10" Column="44" />
+      <File FileName="MenuItem.cs" Line="7" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

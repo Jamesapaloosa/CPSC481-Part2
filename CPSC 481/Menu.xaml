@@ -7,8 +7,34 @@
         mc:Ignorable="d"
         Title="Menu" Height="641" Width="1053" ResizeMode="NoResize">
     <Grid>
-        <GroupBox x:Name="groupBox" Header="Your Order" FontSize="30" HorizontalAlignment="Left" Height="505" Margin="767,95,0,0" VerticalAlignment="Top" Width="268">
-            <ListBox x:Name="listBox1" FontSize="15" Height="207" Margin="10,26,9,0" VerticalAlignment="Top" SelectionChanged="listBox1_SelectionChanged"/>
+        <GroupBox x:Name="groupBox" Header="Your Order" FontSize="20" HorizontalAlignment="Left" Height="505" Margin="767,95,0,0" VerticalAlignment="Top" Width="268">
+            <ListView x:Name="OrderList" HorizontalAlignment="Left" Height="406" Margin="10,8,0,0" VerticalAlignment="Top" Width="242" FontSize="20">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Item" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Item}" FontSize="15px"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Number">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Number}" FontSize="15px"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Total">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Total}" FontSize="15px"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </GroupBox>
         <Button x:Name="button" HorizontalAlignment="Left" Height="80" Margin="955,10,0,0" VerticalAlignment="Top" Width="80">
             <Image Source="Z:\CPSC481\CPSC 481\waiter.jpg" />
@@ -18,10 +44,16 @@
                 <ListView x:Name="MealsListView" ItemsSource="{Binding SourceCollection}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Image" DisplayMemberBinding="{Binding Image}" Width="70"/>
+                            <GridViewColumn Header="path" Width="70">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Path=path}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="345"/>
                             <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="90"/>
-                            <GridViewColumn Header="Add" Width="110">
+                            <GridViewColumn Header="Add" Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button>Add to order</Button>
@@ -36,10 +68,16 @@
                 <ListView x:Name="SidesListView" ItemsSource="{Binding SourceCollection}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Image" DisplayMemberBinding="{Binding Image}" Width="70"/>
+                            <GridViewColumn Header="path" Width="70">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Path=path}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="345"/>
                             <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="90"/>
-                            <GridViewColumn Header="Add" Width="110">
+                            <GridViewColumn Header="Add" Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button>Add to order</Button>
@@ -54,10 +92,16 @@
                 <ListView x:Name="DessertListView" ItemsSource="{Binding SourceCollection}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Image" DisplayMemberBinding="{Binding Image}" Width="70"/>
+                            <GridViewColumn Header="path" Width="70">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Path=path}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="345"/>
                             <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="90"/>
-                            <GridViewColumn Header="Add" Width="110">
+                            <GridViewColumn Header="Add" Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button>Add to order</Button>
@@ -72,10 +116,16 @@
                 <ListView x:Name="DrinksListView" ItemsSource="{Binding SourceCollection}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Image" DisplayMemberBinding="{Binding Image}" Width="70"/>
+                            <GridViewColumn Header="path" Width="70">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Path=path}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="345"/>
                             <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="90"/>
-                            <GridViewColumn Header="Add" Width="110">
+                            <GridViewColumn Header="Add" Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button>Add to order</Button>
@@ -90,6 +140,7 @@
         </TabControl>
         <Label x:Name="TotalPriceLabel" Content="PRICE$$$$$" HorizontalAlignment="Left" Height="28" Margin="777,560,0,0" VerticalAlignment="Top" Width="161"/>
         <Button x:Name="SendOrPayButton" Content="Pay" HorizontalAlignment="Left" Height="28" Margin="938,560,0,0" VerticalAlignment="Top" Width="86"/>
+        <Image x:Name="image" Source="Z:\CPSC481\CPSC 481\cover_page_dark.png"  HorizontalAlignment="Left" Height="85" Margin="823,10,0,0" VerticalAlignment="Top" Width="70"/>
 
 
 

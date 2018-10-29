@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace CPSC_481
 {
+    
     /// <summary>
     /// Interaction logic for Menu.xaml
     /// </summary>
@@ -22,28 +23,28 @@ namespace CPSC_481
         public Menu()
         {
             InitializeComponent();
-            addItemsToSingleList( "$9.99", "Z/image Burger",  "Burger" , 1);
-            this.MealsListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Chicken Soup" });
-            this.MealsListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Boston Beef Cake" });
-            this.MealsListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Rib eye Steak" });
-            this.MealsListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Mom's spaghetti" });
+            addItemsToSingleList( "$9.99", @"Z:\CPSC481\CPSC 481\burger.jpg",  "Burger" , 1);
+            addItemsToSingleList("$9.99", @"Z:\CPSC481\CPSC 481\chickensoup.jpg", "Chicken Soup", 1);
+            addItemsToSingleList("$9.99", @"Z:\CPSC481\CPSC 481\momSpaghetti.jpg", "Mom's spaghetti", 1);
+            addItemsToSingleList("$9.99", @"Z:\CPSC481\CPSC 481\Ribeye.jpg", "Rib eye Steak", 1);
+            addItemsToSingleList("$9.99", @"Z:\CPSC481\CPSC 481\bostonBeefCake.jpg", "Boston Beef Cake", 1);
 
-            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Coke" });
-            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Pepsi" });
-            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Whisky" });
-            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Scotch" });
+            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Coke" });
+            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Pepsi" });
+            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Whisky" });
+            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Scotch" });
 
-            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Fries" });
-            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Onion Rings" });
-            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Chips" });
-            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Caesar Sald" });
+            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Fries" });
+            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Onion Rings" });
+            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Chips" });
+            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Caesar Sald" });
 
-            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Pie" });
-            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Chocolate Cake" });
-            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Brownie" });
-            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", Image = "Z/image Burger", Description = "Cheese Cake" });
+            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Pie" });
+            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Chocolate Cake" });
+            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Brownie" });
+            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Cheese Cake" });
 
-            this.listBox1.Items.Add("Whisky 12X - $126.00");
+            this.OrderList.Items.Add("Whisky 12X - $126.00");
             this.TotalPriceLabel.Content = "$126.00";
         }
 
@@ -67,16 +68,16 @@ namespace CPSC_481
             switch(pageNumber)
             {
                 case 1:
-                    this.MealsListView.Items.Add(new MenuObject { Price = price, Image = ImagePath, Description = description });
+                    this.MealsListView.Items.Add(new MenuObject { Price = price, path = ImagePath, Description = description });
                     break;
                 case 2:
-                    this.SidesListView.Items.Add(new MenuObject { Price = price, Image = ImagePath, Description = description });
+                    this.SidesListView.Items.Add(new MenuObject { Price = price, path = ImagePath, Description = description });
                     break;
                 case 3:
-                    this.DessertListView.Items.Add(new MenuObject { Price = price, Image = ImagePath, Description = description });
+                    this.DessertListView.Items.Add(new MenuObject { Price = price, path = ImagePath, Description = description });
                     break;
                 case 4:
-                    this.DrinksListView.Items.Add(new MenuObject { Price = price, Image = ImagePath, Description = description });
+                    this.DrinksListView.Items.Add(new MenuObject { Price = price, path = ImagePath, Description = description });
                     break;
                 default:
                     break;
@@ -85,15 +86,27 @@ namespace CPSC_481
 
         private void addItemToAllLists(string price, string ImagePath, string description)
         {
-            this.MealsListView.Items.Add(new MenuObject { Price = price, Image = ImagePath, Description = description });
-            this.SidesListView.Items.Add(new MenuObject { Price = price, Image = ImagePath, Description = description });
-            this.DessertListView.Items.Add(new MenuObject { Price = price, Image = ImagePath, Description = description });
-            this.DrinksListView.Items.Add(new MenuObject { Price = price, Image = ImagePath, Description = description });
+            this.MealsListView.Items.Add(new MenuObject { Price = price, path = ImagePath, Description = description });
+            this.SidesListView.Items.Add(new MenuObject { Price = price, path = ImagePath, Description = description });
+            this.DessertListView.Items.Add(new MenuObject { Price = price, path = ImagePath, Description = description });
+            this.DrinksListView.Items.Add(new MenuObject { Price = price, path = ImagePath, Description = description });
+        }
+
+        private void addItemToOrder(string name, string quantity, string total)
+        {
+            this.OrderList.Items.Add(new OrderObject { Item = name, Number = quantity, Total = total });
+        }
+
+        public class OrderObject
+        {
+            public string Item { get; set; }
+            public string Number { get; set; }
+            public string Total { get; set; }
         }
 
         public class MenuObject
         {
-            public string Image { get; set; }
+            public string path { get; set; }
             public string Description { get; set; }
             public string Price { get; set; }
         }

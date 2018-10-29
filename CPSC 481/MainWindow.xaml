@@ -1,0 +1,52 @@
+﻿<Window x:Class="HCImenuOptions.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCImenuOptions"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBlock Name="selection1Label" HorizontalAlignment="Left" Margin="28,37,0,0" TextWrapping="Wrap" Text="- Choose Bread:" VerticalAlignment="Top" Width="140"/>
+        <TextBlock Name="selection2Label"  HorizontalAlignment="Left" Margin="182,37,0,0" TextWrapping="Wrap" Text="- Choose Side:" VerticalAlignment="Top" Width="140"/>
+        <TextBlock Name="selection3Label"  HorizontalAlignment="Left" Margin="336,37,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
+        <TextBlock Name="selection4Label"  HorizontalAlignment="Left" Margin="490,37,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
+        <TextBlock Name="selection5Label"  HorizontalAlignment="Left" Margin="644,37,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
+        <TextBlock Name="specReqTitle" HorizontalAlignment="Left" Margin="28,194,0,0" TextWrapping="Wrap" Text="Special Requests:" VerticalAlignment="Top"/>
+        <TextBox Name="specReqEntry" HorizontalAlignment="Left" Height="85" Margin="10,215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="773"/>
+        <Button Name="addButton" Content="ADD ->" HorizontalAlignment="Left" Margin="725,375,0,0" VerticalAlignment="Top" Width="58" RenderTransformOrigin="-0.238,-0.075" Height="36"/>
+        <Button Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Width="59" RenderTransformOrigin="-0.238,-0.075" Height="36"/>
+        <TextBlock Name="totalLabel" HorizontalAlignment="Left" Margin="406,354,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top"/>
+        <TextBlock Name="totalTitle" HorizontalAlignment="Left" Margin="363,354,0,0" TextWrapping="Wrap" Text="Total: $" VerticalAlignment="Top" Width="43"/>
+        <RadioButton Name="rb0" Content="RadioButton" HorizontalAlignment="Left" Margin="28,57,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb1" Content="RadioButton" HorizontalAlignment="Left" Margin="28,77,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb2" Content="RadioButton" HorizontalAlignment="Left" Margin="28,97,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb3" Content="RadioButton" HorizontalAlignment="Left" Margin="28,117,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb4" Content="RadioButton" HorizontalAlignment="Left" Margin="28,137,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb5" Content="RadioButton" HorizontalAlignment="Left" Margin="182,57,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb6" Content="RadioButton" HorizontalAlignment="Left" Margin="182,77,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb7" Content="RadioButton" HorizontalAlignment="Left" Margin="182,97,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb8" Content="RadioButton" HorizontalAlignment="Left" Margin="182,117,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb9" Content="RadioButton" HorizontalAlignment="Left" Margin="182,137,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb10" Content="RadioButton" HorizontalAlignment="Left" Margin="336,57,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb11" Content="RadioButton" HorizontalAlignment="Left" Margin="336,77,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb12" Content="RadioButton" HorizontalAlignment="Left" Margin="336,97,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb13" Content="RadioButton" HorizontalAlignment="Left" Margin="336,117,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb14" Content="RadioButton" HorizontalAlignment="Left" Margin="336,137,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb15" Content="RadioButton" HorizontalAlignment="Left" Margin="490,57,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb16" Content="RadioButton" HorizontalAlignment="Left" Margin="490,77,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb17" Content="RadioButton" HorizontalAlignment="Left" Margin="490,97,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb18" Content="RadioButton" HorizontalAlignment="Left" Margin="490,117,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb19" Content="RadioButton" HorizontalAlignment="Left" Margin="490,137,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb20" Content="RadioButton" HorizontalAlignment="Left" Margin="644,57,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb21" Content="RadioButton" HorizontalAlignment="Left" Margin="644,77,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb22" Content="RadioButton" HorizontalAlignment="Left" Margin="644,97,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb23" Content="RadioButton" HorizontalAlignment="Left" Margin="644,117,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <RadioButton Name="rb24" Content="RadioButton" HorizontalAlignment="Left" Margin="644,137,0,0" VerticalAlignment="Top" Height="17" Width="140"/>
+        <TextBlock Name="itemTitle" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Club Sandwich" VerticalAlignment="Top" Height="21" Width="160"/>
+        <TextBlock Name="quantityAmount" HorizontalAlignment="Left" Margin="406,326,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Center" Width="20" RenderTransformOrigin="-0.7,0.146" Height="17"/>
+        <Button Name="quantitySub" Content="-" HorizontalAlignment="Left" Margin="381,324,0,0" VerticalAlignment="Top" Width="20" Click="DecreaseQuantity" Height="20"/>
+        <Button Name="quantityAdd" Content="+" HorizontalAlignment="Left" Margin="431,324,0,0" VerticalAlignment="Top" Width="20" Click="IncreaseQuantity" Height="20"/>
+        <TextBlock Name="quantityLabel" HorizontalAlignment="Left" Height="24" Margin="297,324,0,0" TextWrapping="Wrap" Text="Quantity:" VerticalAlignment="Top" Width="79" TextAlignment="Right"/>
+    </Grid>
+</Window>

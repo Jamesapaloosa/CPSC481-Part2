@@ -23,29 +23,30 @@ namespace CPSC_481
         public Menu()
         {
             InitializeComponent();
-            addItemsToSingleList( "$9.99", @"Z:\CPSC481\CPSC 481\burger.jpg",  "Burger" , 1);
-            addItemsToSingleList("$9.99", @"Z:\CPSC481\CPSC 481\chickensoup.jpg", "Chicken Soup", 1);
-            addItemsToSingleList("$9.99", @"Z:\CPSC481\CPSC 481\momSpaghetti.jpg", "Mom's spaghetti", 1);
-            addItemsToSingleList("$9.99", @"Z:\CPSC481\CPSC 481\Ribeye.jpg", "Rib eye Steak", 1);
-            addItemsToSingleList("$9.99", @"Z:\CPSC481\CPSC 481\bostonBeefCake.jpg", "Boston Beef Cake", 1);
+            addItemToAllLists( "$9.99", @"Z:\CPSC481\CPSC 481\burger.jpg",  "Burger");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\chickensoup.jpg", "Chicken Soup");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\momSpaghetti.jpg", "Mom's spaghetti");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\Ribeye.jpg", "Rib eye Steak");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\bostonBeefCake.jpg", "Boston Beef Cake");
 
-            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Coke" });
-            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Pepsi" });
-            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Whisky" });
-            this.DrinksListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Scotch" });
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\coke.png", "Coke");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\Pepsi.jpg", "Pepsi");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\whiskey.jpg", "Whisky");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\scotch.png", "Scotch");
 
-            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Fries" });
-            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Onion Rings" });
-            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Chips" });
-            this.SidesListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Caesar Sald" });
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\fries.jpg", "Fries");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\onionRings.jpg", "Onion Rings");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\chips.jpg", "Chips");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\salad.jpg", "Caesar Salad");
 
-            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Pie" });
-            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Chocolate Cake" });
-            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Brownie" });
-            this.DessertListView.Items.Add(new MenuObject { Price = "$9.99", path = "Z/image Burger", Description = "Cheese Cake" });
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\pie.jpg", "Pie");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\cake.jpg", "Chocolate Cake");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\brownie.jpg", "Brownie");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\cheesecake.jpg", "Cheesecake");
 
-            this.OrderList.Items.Add("Whisky 12X - $126.00");
-            this.TotalPriceLabel.Content = "$126.00";
+
+            addItemToOrder("Whiskey", "10", "$99.90");
+            this.TotalPriceLabel.Content = "$99.90";
         }
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -33,3 +33,7 @@ Z:\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csproj.GenerateResource.c
 Z:\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csproj.CoreCompileInputs.cache
 Z:\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.exe
 Z:\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.pdb
+Z:\CPSC481\CPSC 481\obj\Debug\OrderTableView.baml
+Z:\CPSC481\CPSC 481\obj\Debug\OrderCell.baml
+Z:\CPSC481\CPSC 481\obj\Debug\OrderTableView.g.cs
+Z:\CPSC481\CPSC 481\obj\Debug\OrderCell.g.cs

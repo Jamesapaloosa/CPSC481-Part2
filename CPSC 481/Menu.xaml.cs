@@ -23,26 +23,35 @@ namespace CPSC_481
         public Menu()
         {
             InitializeComponent();
+            addItemToAllLists("", "", "Meals");
             addItemToAllLists( "$9.99", @"Z:\CPSC481\CPSC 481\burger.jpg",  "Burger");
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\chickensoup.jpg", "Chicken Soup");
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\momSpaghetti.jpg", "Mom's spaghetti");
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\Ribeye.jpg", "Rib eye Steak");
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\bostonBeefCake.jpg", "Boston Beef Cake");
 
-            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\coke.png", "Coke");
-            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\Pepsi.jpg", "Pepsi");
-            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\whiskey.jpg", "Whisky");
-            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\scotch.png", "Scotch");
+            addItemToAllLists("", "", "Sides");
 
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\fries.jpg", "Fries");
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\onionRings.jpg", "Onion Rings");
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\chips.jpg", "Chips");
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\salad.jpg", "Caesar Salad");
 
+            addItemToAllLists("", "", "Desserts");
+
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\pie.jpg", "Pie");
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\cake.jpg", "Chocolate Cake");
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\brownie.jpg", "Brownie");
             addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\cheesecake.jpg", "Cheesecake");
+
+            addItemToAllLists("", "", "Drinks");
+
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\coke.png", "Coke");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\Pepsi.jpg", "Pepsi");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\whiskey.jpg", "Whisky");
+            addItemToAllLists("$9.99", @"Z:\CPSC481\CPSC 481\scotch.png", "Scotch");
+
+
 
 
             addItemToOrder("Whiskey", "10", "$99.90");
@@ -110,6 +119,11 @@ namespace CPSC_481
             public string path { get; set; }
             public string Description { get; set; }
             public string Price { get; set; }
+        }
+
+        private void SendOrPayButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

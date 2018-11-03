@@ -31,7 +31,7 @@ namespace CPSC_481
 		{
             OrderItem orderItem = new OrderItem(menuItem);
             OrderCell orderCell = new OrderCell(orderItem);
-            orderCell.OnDelete += this.orderCell_Delete;
+            orderCell.OnAction += this.orderCell_OnAction;
             this.stackPanel.Children.Add(orderCell);
 
             this.totalPrice += menuItem.price;
@@ -67,6 +67,15 @@ namespace CPSC_481
                 }
 
                 this.update();
+
+                MessageBoxResult result = MessageBox.Show("Confirm Order?",
+                                          "",
+                                          MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    MessageBox.Show("PS. You can still order more items.",
+                        "Order Confirmed!");
+                }
             }
             else if (this.finalizedOrderItemCount > 0)
             {
@@ -81,7 +90,7 @@ namespace CPSC_481
             }
         }
 
-        private void orderCell_Delete(OrderCell sender, EventArgs e)
+        private void orderCell_OnAction(OrderCell sender, EventArgs e)
         {
             if (sender.orderItem.isFinalized)
                 return;

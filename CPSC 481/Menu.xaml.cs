@@ -35,11 +35,11 @@ namespace CPSC_481
 
         private void loadMenuItems()
         {
-            this.menuItems.Add(new MenuItem("Burger", 16.00m));
-            this.menuItems.Add(new MenuItem("Chicken Soup", 6.00m));
-            this.menuItems.Add(new MenuItem("Boston Beef Cake", 12.00m));
-            this.menuItems.Add(new MenuItem("Rib eye Steak", 26.00m));
-            this.menuItems.Add(new MenuItem("Whiskey", 126.00m));
+            this.menuItems.Add(new MenuItem("Burger", MenuItem.Type.Food, 16.00m));
+            this.menuItems.Add(new MenuItem("Chicken Soup", MenuItem.Type.Food, 6.00m));
+            this.menuItems.Add(new MenuItem("Boston Beef Cake", MenuItem.Type.Food, 12.00m));
+            this.menuItems.Add(new MenuItem("Rib eye Steak", MenuItem.Type.Food, 26.00m));
+            this.menuItems.Add(new MenuItem("Whiskey", MenuItem.Type.Drink, 126.00m));
         }
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

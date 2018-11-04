@@ -31,9 +31,10 @@ namespace CPSC_481
 		{
             OrderItem orderItem = new OrderItem(menuItem);
             OrderCell orderCell = new OrderCell(orderItem);
+
             orderCell.OnAction += this.orderCell_OnAction;
             this.stackPanel.Children.Add(orderCell);
-
+            
             this.totalPrice += menuItem.price;
             this.pendingOrderItemCount += 1;
 
@@ -102,5 +103,6 @@ namespace CPSC_481
 
             this.update();
         }
+
     }
 }

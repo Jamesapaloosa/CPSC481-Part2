@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace CPSC_481
 {
@@ -20,7 +21,7 @@ namespace CPSC_481
             InitializeComponent();
 
             this.orderItem = orderItem;
-
+            this.imageView.Source = new BitmapImage(new Uri(orderItem.menuItem.imageName, UriKind.Relative));
             this.titleLabel.Content = orderItem.menuItem.name;
             this.priceLabel.Content = orderItem.menuItem.price;
         }

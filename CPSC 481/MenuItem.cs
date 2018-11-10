@@ -10,7 +10,7 @@ namespace CPSC_481
         public String name { get; set; }
         public String description { get; set; }
         public decimal price { get; set; }
-        public MenuItem.Type type;
+        public MenuItem.Type type { get; set; }
         public String imageName { get; set; }
 
         public MenuItem(String name, String description, decimal price, MenuItem.Type type, String imageName)

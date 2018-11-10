@@ -26,7 +26,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Center" 
                 Margin="0,0,0,0" >
-            <Image Source="waiter.jpg" />
+            <Image Source="waiter.jpg" Width="auto" Height="auto"/>
         </Button>
 
 
@@ -35,122 +35,75 @@
                               Grid.Row="1"
                               Grid.Column="1">
         </local:OrderTableView>
-        
-        
-        
-        <TabControl x:Name="tabControl" 
-                    Grid.Row="0"
-                    Grid.RowSpan="2"
-                    Grid.Column="0"
-                    Margin="10,26,0,0" 
-                    TabStripPlacement="Left">
-            <TabItem Header="Meals" HorizontalAlignment="Right">
-                <ListView x:Name="MealsListView" ItemsSource="{Binding SourceCollection}" SelectionChanged="listView_SelectionChanged">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="path" Width="70">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding imageName}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding description}" Width="335"/>
-                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding price}" Width="90"/>
-                            <GridViewColumn Header="Add" Width="100">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button>Add to order</Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-            <TabItem Header="Sides" HorizontalAlignment="Right">
-                <ListView x:Name="SidesListView" ItemsSource="{Binding SourceCollection}" SelectionChanged="listView_SelectionChanged">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="path" Width="70">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding imageName}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding description}" Width="335"/>
-                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding price}" Width="90"/>
-                            <GridViewColumn Header="Add" Width="100">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button>Add to order</Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-            <TabItem Header="Dessert" HorizontalAlignment="Right">
-                <ListView x:Name="DessertListView" ItemsSource="{Binding SourceCollection}" SelectionChanged="listView_SelectionChanged">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="path" Width="70">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding imageName}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding description}" Width="335"/>
-                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding price}" Width="90"/>
-                            <GridViewColumn Header="Add" Width="100">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button>Add to order</Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-            <TabItem Header="Drinks" HorizontalAlignment="Right">
-                <ListView x:Name="DrinksListView" ItemsSource="{Binding SourceCollection}"  SelectionChanged="listView_SelectionChanged" Margin="0,0,-10,0">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="path" Width="70">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding imageName}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding description}" Width="335"/>
-                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding price}" Width="90"/>
-                            <GridViewColumn Header="Add" Width="100">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button>Add to order</Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-
-        </TabControl>
-        <Label x:Name="TotalPriceLabel" Content="PRICE$$$$$" HorizontalAlignment="Left" Height="28" Margin="777,560,0,0" VerticalAlignment="Top" Width="161"/>
-        <Button x:Name="SendOrPayButton" Content="Order" HorizontalAlignment="Left" Height="28" Margin="938,560,0,0" VerticalAlignment="Top" Width="86" Click="SendOrPayButton_Click"/>
-        <Image x:Name="image" Source="cover_page_dark.png"  HorizontalAlignment="Left" Height="85" Margin="823,10,0,0" VerticalAlignment="Top" Width="70"/>
 
 
+
+        <Grid Background="LightGray"
+              Grid.Row="0"
+              Grid.RowSpan="2"
+              Grid.Column="0"
+              Margin="10,26,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TabControl x:Name="tabControl" 
+                        Grid.Column="0"
+                        TabStripPlacement="Left"
+                        SelectionChanged="tabControl_SelectionChanged">
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <Label Height="0" Width="0"/>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+
+            <ListView x:Name= "menuItemListView"
+                      Grid.Column="1"
+                      SelectionMode="Single"
+                      SelectionChanged="menuItemListView_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding imageName}" Height="100" Width="100"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=name}"/>
+                        <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Path=description}"/>
+                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=price, StringFormat='{}{0:c}'}"/>
+                    </GridView>
+                </ListView.View>
+
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" FontSize="17" Text="{Binding Name}"/>
+                                    <TextBlock FontWeight="Bold" FontSize="17" Text="s"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+            </ListView>
+        </Grid>
+
+        <Image x:Name="image" 
+               Source="cover_page_dark.png" 
+               Grid.Row="0"
+               Grid.Column="1"
+               Margin="10,10,10,10" />
 
     </Grid>
-    <Window.Resources>
 
+
+
+    <Window.Resources>
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Template">

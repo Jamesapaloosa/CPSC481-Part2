@@ -1,0 +1,4 @@
+Option1Label_o1,0.00_o2,0.00
+Option2 Label_ o1,0.00_o2,0.00
+Option 3Label_ o1,0.00_o2,1.00_o3,2.00_o4,3.00_o5,4.00
+Option4Label_o1,0.00_o2,0.00_o3,0.00

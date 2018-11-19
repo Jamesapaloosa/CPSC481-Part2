@@ -14,7 +14,7 @@ namespace CPSC_481
         public String imageName { get; set; }
         public string[,,] options = new string[5, 6, 2];
 
-        public MenuItem(String name, String description, decimal price, MenuItem.Type type, String imageName)
+        public MenuItem(String name, String description, decimal price, MenuItem.Type type, String imageName, string[,,] itemOptions)
         {
             this.name = name;
             this.description = description;

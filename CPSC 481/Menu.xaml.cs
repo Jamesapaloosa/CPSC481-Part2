@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +16,25 @@ using System.Windows.Shapes;
 
 namespace CPSC_481
 {
-    
     /// <summary>
     /// Interaction logic for Menu.xaml
     /// </summary>
     public partial class Menu : Window
     {
+        RadioButton[,] rbs = new RadioButton[5, 5];
+        TextBlock[] optionLabels = new TextBlock[5];
+        string[] optionTitles = new string[5];
+        string[,] optionOptions = new string[5, 5];
+        decimal[,] optionPrices = new decimal[5, 5];
+        decimal baseCost = 0;
+
+        Thickness defaultCorner = new Thickness(28, 37, 0, 0);
+        Thickness optionsCorner = new Thickness(0, 0, 0, 0);
+
+        int columnGap = 20;
+        int optionHeight = 17;
+        MenuItem currentSelection;
+
         public Menu()
         {
             InitializeComponent();
@@ -171,7 +185,7 @@ namespace CPSC_481
             try
             {
                 MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
-                this.orderTableView.add(menuItem);
+                this.NewOptionsMenu(menuItem);
             }
             catch (Exception error)
             {
@@ -349,7 +363,17 @@ namespace CPSC_481
                     }
                 }
             }
-            //this.orderTableView.add(menuItem, selected);
+
+            try
+            {
+               // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
+                this.orderTableView.add(this.currentSelection, selected);
+                Reset();
+            }
+            catch (Exception error)
+            {
+                System.Diagnostics.Debug.WriteLine(error);
+            }
         }
 
         private void CancelButtonClicked(object sender, RoutedEventArgs e)

@@ -27,7 +27,7 @@ namespace CPSC_481
             this.update();
         }
 
-		public void add(MenuItem menuItem)
+		public void add(MenuItem menuItem, int[] selected)
 		{
             OrderItem orderItem = new OrderItem(menuItem);
             OrderCell orderCell = new OrderCell(orderItem);

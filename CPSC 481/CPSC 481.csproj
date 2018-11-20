@@ -62,7 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="OrderCell.xaml">
+    <Page Include="OrderItemCell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -77,8 +77,8 @@
     <Compile Include="OrderTableView.xaml.cs">
       <DependentUpon>OrderTableView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OrderCell.xaml.cs">
-      <DependentUpon>OrderCell.xaml</DependentUpon>
+    <Compile Include="OrderItemCell.xaml.cs">
+      <DependentUpon>OrderItemCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>

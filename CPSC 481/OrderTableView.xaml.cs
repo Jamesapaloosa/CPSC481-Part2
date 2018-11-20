@@ -11,6 +11,10 @@ namespace CPSC_481
         private int pendingOrderItemCount;
         private int finalizedOrderItemCount;
 
+
+
+
+
         public OrderTableView()
         {
             InitializeComponent();
@@ -25,23 +29,32 @@ namespace CPSC_481
             this.finalizedOrderItemCount = 0;
 
             this.update();
-        }
+        }   
 
-		public void add(MenuItem menuItem, int[] selected)
+		public void add(OrderItem orderItem)
 		{
-            OrderItem orderItem = new OrderItem(menuItem);
-            OrderCell orderCell = new OrderCell(orderItem);
+            OrderItemCell orderItemCell = new OrderItemCell(orderItem);
 
-            orderCell.OnAction += this.orderCell_OnAction;
-            this.stackPanel.Children.Add(orderCell);
+            orderItemCell.OnAction += this.orderItemCell_OnAction;
+            this.stackPanel.Children.Add(orderItemCell);
             
-            this.totalPrice += menuItem.price;
+            this.totalPrice += orderItem.totalPrice;
             this.pendingOrderItemCount += 1;
 
 			this.update();
 		}
 
-		public void update()
+        private void remove(OrderItemCell orderItemCell)
+        {
+            this.stackPanel.Children.Remove(orderItemCell);
+
+            this.totalPrice -= orderItemCell.orderItem.menuItem.price;
+            this.pendingOrderItemCount -= 1;
+
+            this.update();
+        }
+
+		private void update()
 		{
             this.totalPriceLabel.Content = String.Format("{0:C}", this.totalPrice);
             
@@ -53,29 +66,33 @@ namespace CPSC_481
                 this.actionButton.Content = "Pay";
         }
 
+        private void onOrderConfirmed()
+        {
+            this.finalizedOrderItemCount += this.pendingOrderItemCount;
+            this.pendingOrderItemCount = 0;
+
+            foreach (var child in this.stackPanel.Children)
+            {
+                OrderItemCell orderItemCell = (OrderItemCell)child;
+                orderItemCell.orderItem.isFinalized = true;
+                orderItemCell.update();
+                //orderItemCell.IsEnabled = !orderItemCell.orderItem.isFinalized;
+            }
+
+            this.update();
+        }
+
         private void actionButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.pendingOrderItemCount > 0)
             {
-                this.finalizedOrderItemCount += this.pendingOrderItemCount;
-                this.pendingOrderItemCount = 0;
-
-                foreach (var child in this.stackPanel.Children)
-                {
-                    OrderCell orderCell = (OrderCell)child;
-                    orderCell.orderItem.isFinalized = true;
-                    orderCell.IsEnabled = !orderCell.orderItem.isFinalized;
-                }
-
-                this.update();
-
                 MessageBoxResult result = MessageBox.Show("Confirm Order?",
-                                          "",
+                                          "PS. You can still order more items.",
                                           MessageBoxButton.OKCancel);
+
                 if (result == MessageBoxResult.OK)
                 {
-                    MessageBox.Show("PS. You can still order more items.",
-                        "Order Confirmed!");
+                    this.onOrderConfirmed();
                 }
             }
             else if (this.finalizedOrderItemCount > 0)
@@ -84,6 +101,7 @@ namespace CPSC_481
                                           "Confirmation",
                                           MessageBoxButton.OKCancel,
                                           MessageBoxImage.Question);
+
                 if (result == MessageBoxResult.OK)
                 {
                     MessageBox.Show("Server is on the way!");
@@ -91,18 +109,21 @@ namespace CPSC_481
             }
         }
 
-        private void orderCell_OnAction(OrderCell sender, EventArgs e)
+        private void orderItemCell_OnAction(OrderItemCell sender, OrderItemCell.ActionType action)
         {
-            if (sender.orderItem.isFinalized)
-                return;
-
-            this.stackPanel.Children.Remove(sender);
-
-            this.totalPrice -= sender.orderItem.menuItem.price;
-            this.pendingOrderItemCount -= 1;
-
-            this.update();
+            switch (action)
+            {
+                case OrderItemCell.ActionType.Edit:
+                    MessageBox.Show("TODO: Bring up options menu again");
+                    break;
+                case OrderItemCell.ActionType.Delete:
+                    if (!sender.orderItem.isFinalized)
+                        this.remove(sender);
+                    break;
+                case OrderItemCell.ActionType.RequestServer:
+                    MessageBox.Show("Server is on the way!");
+                    break;
+            }
         }
-
     }
 }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -34,6 +35,10 @@ namespace CPSC_481
         int columnGap = 20;
         int optionHeight = 17;
         MenuItem currentSelection;
+
+
+
+
 
         public Menu()
         {
@@ -96,7 +101,7 @@ namespace CPSC_481
             items.Add(new MenuItem("Burger", "description", 19.99m, MenuItem.Type.Main, @"Images\burger.jpg", LoadOptionsFromFile(@"Options\burger.txt")));
             items.Add(new MenuItem("Chicken Soup", "description", 9.99m, MenuItem.Type.Main, @"Images\chickensoup.jpg", LoadOptionsFromFile(@"Options\chickensoup.txt")));
             items.Add(new MenuItem("Mom's Spaghetti", "description", 9.99m, MenuItem.Type.Main, @"Images\momSpaghetti.jpg", LoadOptionsFromFile(@"Options\momSpaghetti.txt")));
-            items.Add(new MenuItem("Boston Beef Cake", "description", 9.99m, MenuItem.Type.Main, @"Images\bostonBeefCake.jpg", LoadOptionsFromFile(@"Options\bostonBeefCake.txt")));
+            items.Add(new MenuItem("Boston Beef Cake", "description", 9.99m, MenuItem.Type.Main, @"Images\bostonBeefCake.jpg", LoadOptionsFromFile(@"Options\bostonBeefCake.txt")));
             items.Add(new MenuItem("Rib eye Steak", "description", 9.99m, MenuItem.Type.Main, @"Images\Ribeye.jpg", LoadOptionsFromFile(@"Options\ribeye.txt")));
 
             // Sides
@@ -112,7 +117,7 @@ namespace CPSC_481
             items.Add(new MenuItem("Cheesecake", "description", 9.99m, MenuItem.Type.Dessert, @"Images\cheesecake.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
 
             // Drinks
-            items.Add(new MenuItem("Coke", "description", 9.99m, MenuItem.Type.Drink, @"Images\coke.jpg", LoadOptionsFromFile(@"Options\coke.txt")));
+            items.Add(new MenuItem("Coke", "description", 9.99m, MenuItem.Type.Drink, @"Images\coke.png", LoadOptionsFromFile(@"Options\coke.txt")));
             items.Add(new MenuItem("Pepsi", "description", 9.99m, MenuItem.Type.Drink, @"Images\Pepsi.jpg", LoadOptionsFromFile(@"Options\pepsi.txt")));
             items.Add(new MenuItem("Whiskey", "description", 9.99m, MenuItem.Type.Drink, @"Images\whiskey.jpg", LoadOptionsFromFile(@"Options\whiskey.txt")));
             items.Add(new MenuItem("Scotch", "description", 9.99m, MenuItem.Type.Drink, @"Images\scotch.png", LoadOptionsFromFile(@"Options\scotch.txt")));
@@ -202,7 +207,8 @@ namespace CPSC_481
         {
             Reset();
             currentSelection = item;
-            Canvas.SetZIndex(OptionsPopUp, 2);
+            this.OptionsPopUp.Visibility = Visibility.Visible;
+            //Canvas.SetZIndex(OptionsPopUp, 2);
             addButton.Visibility = Visibility.Visible;
             cancelButton.Visibility = Visibility.Visible;
             quantityAdd.Visibility = Visibility.Visible;
@@ -275,7 +281,8 @@ namespace CPSC_481
 
         private void Reset()
         {
-            Canvas.SetZIndex(OptionsPopUp, -2);
+           // Canvas.SetZIndex(OptionsPopUp, -2);
+           this.OptionsPopUp.Visibility = Visibility.Hidden;
             addButton.Visibility = Visibility.Hidden;
             cancelButton.Visibility = Visibility.Hidden;
             quantityAdd.Visibility = Visibility.Hidden;
@@ -352,23 +359,24 @@ namespace CPSC_481
 
         private void AddButtonClicked(object sender, RoutedEventArgs e)
         {
-            int[] selected = { -1, -1, -1, -1, -1 };
+            int[] options = { -1, -1, -1, -1, -1 };
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
                     if ((rbs[i,j].IsChecked == true) && (rbs[i,j].IsVisible))
                     {
-                        selected[i] = j;
+                        options[i] = j;
                     }
                 }
             }
 
             try
             {
-               // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
-                this.orderTableView.add(this.currentSelection, selected);
-                Reset();
+                // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
+                OrderItem orderItem = new OrderItem(this.currentSelection, options);
+                this.orderTableView.add(orderItem);
+                this.Reset();
             }
             catch (Exception error)
             {
@@ -378,7 +386,7 @@ namespace CPSC_481
 
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
-            Reset();
+            this.Reset();
         }
     }
 }

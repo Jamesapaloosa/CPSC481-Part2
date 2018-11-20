@@ -40,11 +40,8 @@ Z:\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csprojAssemblyReference.c
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\bin\Debug\CPSC 481.exe.config
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\bin\Debug\CPSC 481.exe
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\bin\Debug\CPSC 481.pdb
-\\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csprojAssemblyReference.cache
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\OrderTableView.baml
-\\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\OrderCell.baml
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\OrderTableView.g.cs
-\\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\OrderCell.g.cs
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\Menu.g.cs
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\App.g.cs
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -57,3 +54,6 @@ Z:\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csprojAssemblyReference.c
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csproj.CoreCompileInputs.cache
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.exe
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.pdb
+\\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\OrderItemCell.baml
+\\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\OrderItemCell.g.cs
+\\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csprojAssemblyReference.cache

@@ -1,5 +1,4 @@
 ﻿<Window x:Class="CPSC_481.Menu"
-        x:Name="MainWindow"
         xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
         xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006"  
@@ -45,8 +44,7 @@
         <local:OrderTableView x:Name= "orderTableView"
                               Grid.Column="2"
                               Grid.Row="0"
-                              Grid.RowSpan="3">
-        </local:OrderTableView>
+                              Grid.RowSpan="3" />
 
 
 
@@ -56,7 +54,7 @@
                         TabStripPlacement="Right"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        SelectionChanged="tabControl_SelectionChanged">
+                        SelectionChanged="TabControl_SelectionChanged">
 
             <TabControl.ContentTemplate>
                 <DataTemplate>
@@ -72,7 +70,7 @@
                   Grid.Row="1"
                   Grid.RowSpan="2"
                   SelectionMode="Single"
-                  SelectionChanged="menuItemListView_SelectionChanged">
+                  SelectionChanged="MenuItemListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridView.ColumnHeaderContainerStyle>
@@ -145,7 +143,7 @@
             <TextBlock Name="selection4Label"  HorizontalAlignment="Left" Margin="490,37,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
             <TextBlock Name="selection5Label"  HorizontalAlignment="Left" Margin="644,37,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
             <TextBlock Name="specReqTitle" HorizontalAlignment="Left" Margin="28,194,0,0" TextWrapping="Wrap" Text="Special Requests:" VerticalAlignment="Top"/>
-            <TextBox Name="specReqEntry" HorizontalAlignment="Left" Height="85" Margin="10,215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="773" GotFocus="specReqEntry_GotFocus" LostFocus="specReqEntry_LostFocus"/>
+            <TextBox Name="specReqEntry" HorizontalAlignment="Left" Height="85" Margin="10,215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="773" GotFocus="SpecReqEntry_GotFocus" LostFocus="SpecReqEntry_LostFocus"/>
             <Button Name="addButton" Content="ADD ->" HorizontalAlignment="Left" Margin="725,375,0,0" VerticalAlignment="Top" Width="58" RenderTransformOrigin="-0.238,-0.075" Height="36" Click="AddButtonClicked"/>
             <Button Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Width="59" RenderTransformOrigin="-0.238,-0.075" Height="36" Click="CancelButtonClicked" />
             <TextBlock Name="totalLabel" HorizontalAlignment="Left" Margin="406,354,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top"/>

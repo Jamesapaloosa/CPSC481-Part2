@@ -62,7 +62,7 @@
                     Margin="10,10,10,10"
                     FontSize="20" 
                     Grid.Row="2" 
-                    Click="actionButton_Click"/>
+                    Click="ActionButton_Click"/>
         </Grid>
     </Grid>
 

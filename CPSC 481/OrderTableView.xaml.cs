@@ -19,45 +19,22 @@ namespace CPSC_481
         {
             InitializeComponent();
 
-            this.reset();
+            this.Reset();
         }
 
-        private void reset()
+        private void Reset()
         {
             this.totalPrice = 0.0m;
             this.pendingOrderItemCount = 0;
             this.finalizedOrderItemCount = 0;
 
-            this.update();
-        }   
-
-		public void add(OrderItem orderItem)
-		{
-            OrderItemCell orderItemCell = new OrderItemCell(orderItem);
-
-            orderItemCell.OnAction += this.orderItemCell_OnAction;
-            this.stackPanel.Children.Add(orderItemCell);
-            
-            this.totalPrice += orderItem.totalPrice;
-            this.pendingOrderItemCount += 1;
-
-			this.update();
-		}
-
-        private void remove(OrderItemCell orderItemCell)
-        {
-            this.stackPanel.Children.Remove(orderItemCell);
-
-            this.totalPrice -= orderItemCell.orderItem.menuItem.price;
-            this.pendingOrderItemCount -= 1;
-
-            this.update();
+            this.Update();
         }
 
-		private void update()
-		{
+        private void Update()
+        {
             this.totalPriceLabel.Content = String.Format("{0:C}", this.totalPrice);
-            
+
             this.actionButton.IsEnabled = !(this.stackPanel.Children.Count == 0);
 
             if (this.pendingOrderItemCount > 0)
@@ -66,7 +43,30 @@ namespace CPSC_481
                 this.actionButton.Content = "Pay";
         }
 
-        private void onOrderConfirmed()
+        public void Add(OrderItem orderItem)
+		{
+            OrderItemCell orderItemCell = new OrderItemCell(orderItem);
+
+            orderItemCell.OnAction += this.OrderItemCell_OnAction;
+            this.stackPanel.Children.Add(orderItemCell);
+            
+            this.totalPrice += orderItem.totalPrice;
+            this.pendingOrderItemCount += 1;
+
+			this.Update();
+		}
+
+        private void Remove(OrderItemCell orderItemCell)
+        {
+            this.stackPanel.Children.Remove(orderItemCell);
+
+            this.totalPrice -= orderItemCell.orderItem.menuItem.price;
+            this.pendingOrderItemCount -= 1;
+
+            this.Update();
+        }
+
+        private void FinalizeOrder()
         {
             this.finalizedOrderItemCount += this.pendingOrderItemCount;
             this.pendingOrderItemCount = 0;
@@ -79,10 +79,10 @@ namespace CPSC_481
                 //orderItemCell.IsEnabled = !orderItemCell.orderItem.isFinalized;
             }
 
-            this.update();
+            this.Update();
         }
 
-        private void actionButton_Click(object sender, RoutedEventArgs e)
+        private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.pendingOrderItemCount > 0)
             {
@@ -92,7 +92,7 @@ namespace CPSC_481
 
                 if (result == MessageBoxResult.OK)
                 {
-                    this.onOrderConfirmed();
+                    this.FinalizeOrder();
                 }
             }
             else if (this.finalizedOrderItemCount > 0)
@@ -109,7 +109,7 @@ namespace CPSC_481
             }
         }
 
-        private void orderItemCell_OnAction(OrderItemCell sender, OrderItemCell.ActionType action)
+        private void OrderItemCell_OnAction(OrderItemCell sender, OrderItemCell.ActionType action)
         {
             switch (action)
             {
@@ -118,7 +118,7 @@ namespace CPSC_481
                     break;
                 case OrderItemCell.ActionType.Delete:
                     if (!sender.orderItem.isFinalized)
-                        this.remove(sender);
+                        this.Remove(sender);
                     break;
                 case OrderItemCell.ActionType.RequestServer:
                     MessageBox.Show("Server is on the way!");

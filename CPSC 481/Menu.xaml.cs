@@ -46,7 +46,7 @@ namespace CPSC_481
 
             this.tabControl.ItemsSource = Enum.GetValues(typeof(MenuItem.Type));
 
-            CollectionView collectionViewSource = (CollectionView)CollectionViewSource.GetDefaultView(this.loadMenuItems());
+            CollectionView collectionViewSource = (CollectionView)CollectionViewSource.GetDefaultView(this.LoadMenuItems());
             collectionViewSource.GroupDescriptions.Add(new PropertyGroupDescription("type"));
             this.menuItemListView.ItemsSource = collectionViewSource;
             
@@ -93,9 +93,11 @@ namespace CPSC_481
             Reset();
         }
 
-        private List<MenuItem> loadMenuItems()
+        private List<MenuItem> LoadMenuItems()
         {
+#pragma warning disable IDE0028 // Simplify collection initialization
             var items = new List<MenuItem>();
+#pragma warning restore IDE0028 // Simplify collection initialization
 
             // Mains
             items.Add(new MenuItem("Burger", "description", 19.99m, MenuItem.Type.Main, @"Images\burger.jpg", LoadOptionsFromFile(@"Options\burger.txt")));
@@ -167,7 +169,7 @@ namespace CPSC_481
             return ret;
         }
 
-        private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -185,7 +187,7 @@ namespace CPSC_481
             }
         }
 
-        private void menuItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MenuItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -252,8 +254,8 @@ namespace CPSC_481
             OptionsPopUp.Width = optionsCorner.Left + columnGap;
             OptionsPopUp.Height = (optionsCorner.Top) + 256;
 
-            OptionsPopUp.Margin = new Thickness(((MainWindow.Width / 2) - (OptionsPopUp.Width / 2)),
-                                                ((MainWindow.Height / 2) - (OptionsPopUp.Height / 2)), 
+            OptionsPopUp.Margin = new Thickness(((this.Width / 2) - (OptionsPopUp.Width / 2)),
+                                                ((this.Height / 2) - (OptionsPopUp.Height / 2)), 
                                                 0, 
                                                 0);
 
@@ -311,16 +313,14 @@ namespace CPSC_481
 
         private void IncreaseQuantity(object sender, RoutedEventArgs e)
         {
-            int x = 0;
-            int.TryParse(quantityAmount.Text, out x);
+            int.TryParse(quantityAmount.Text, out int x);
             quantityAmount.Text = (x + 1).ToString("0");
             UpdateTotal(sender, e);
         }
 
         private void DecreaseQuantity(object sender, RoutedEventArgs e)
         {
-            int x = 0;
-            int.TryParse(quantityAmount.Text, out x);
+            int.TryParse(quantityAmount.Text, out int x);
             x--;
             if (x < 1)
             {
@@ -347,12 +347,12 @@ namespace CPSC_481
             totalLabel.Text = temp.ToString("0.00");
         }
 
-        private void specReqEntry_GotFocus(object sender, RoutedEventArgs e)
+        private void SpecReqEntry_GotFocus(object sender, RoutedEventArgs e)
         {
             //specReqEntry.Margin = movedRequestLoc;
         }
 
-        private void specReqEntry_LostFocus(object sender, RoutedEventArgs e)
+        private void SpecReqEntry_LostFocus(object sender, RoutedEventArgs e)
         {
             //specReqEntry.Margin = defaultRequestLoc;
         }
@@ -375,7 +375,7 @@ namespace CPSC_481
             {
                 // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
                 OrderItem orderItem = new OrderItem(this.currentSelection, options);
-                this.orderTableView.add(orderItem);
+                this.orderTableView.Add(orderItem);
                 this.Reset();
             }
             catch (Exception error)

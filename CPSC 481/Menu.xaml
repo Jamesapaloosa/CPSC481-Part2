@@ -8,8 +8,64 @@
         Title="Menu" 
         Height="641"
         Width="1053">
-    
+
+    <Window.Resources>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border Name="Border" Background="LightBlue" BorderBrush="Black" BorderThickness="1,1,1,1">
+                                <ContentPresenter x:Name="TitleContent" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="12,2,12,2"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="LightBlue" />
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="120"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="LightGray" />
+                                <Setter Property="Height" Value="45"/>
+                                <Setter Property="Width" Value="100"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="orderButton">
+            <Setter Property="Background" Value="#e8cc5e"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Window.Resources>
+
+
+
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="2*" />
@@ -20,16 +76,16 @@
             <RowDefinition Height="4*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        
-        
-        
+
+
+
         <Image Source="Images\cover_page_dark.png" 
                Grid.Row="0"
                Grid.Column="0"
                Margin="10,10,10,10" />
 
-        
-        
+
+
         <Label Grid.Column="1" 
                Grid.Row="0"
                Content="Moonlight Diner II"
@@ -63,34 +119,69 @@
             </TabControl.ContentTemplate>
         </TabControl>
 
-        
-        
-        <ListView x:Name= "menuItemListView"
-                  Grid.Column="1"
-                  Grid.Row="1"
-                  Grid.RowSpan="2"
-                  SelectionMode="Single"
-                  SelectionChanged="MenuItemListView_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridView.ColumnHeaderContainerStyle>
-                        <Style TargetType="GridViewColumnHeader">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </Style>
-                    </GridView.ColumnHeaderContainerStyle>
 
+
+            <ListView x:Name= "menuItemListView"
+                      Grid.Column="1"
+                      Grid.Row="1"
+                      Grid.RowSpan="2"
+                      SelectionMode="Single"
+                      SelectionChanged="MenuItemListView_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding imageName}" Height="100" Width="100"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding Path=name}">
+                                            <TextBlock.Style>
+                                                <Style>
+                                                    <Setter Property="TextBlock.FontSize"  Value="18"/>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Path=description}" TextWrapping="WrapWithOverflow" Width="200" Height="50"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=priceAsString}">
+                                        <TextBlock.Style>
+                                            <Style>
+                                                <Setter Property="TextBlock.FontSize" Value="24"/>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding imageName}" Height="100" Width="100"/>
+                            <Button Style="{StaticResource orderButton}">
+                                Order
+                            </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=name}"/>
-                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Path=description}"/>
-                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=price, StringFormat='{}{0:c}'}"/>
                 </GridView>
-            </ListView.View>
+                </ListView.View>
 
             <ListView.GroupStyle>
                 <GroupStyle>
@@ -179,37 +270,8 @@
             <Button Name="quantityAdd" Content="+" HorizontalAlignment="Left" Margin="431,324,0,0" VerticalAlignment="Top" Width="20" Click="IncreaseQuantity" Height="20"/>
             <TextBlock Name="quantityLabel" HorizontalAlignment="Left" Height="24" Margin="297,324,0,0" TextWrapping="Wrap" Text="Quantity:" VerticalAlignment="Top" Width="79" TextAlignment="Right"/>
         </Grid>
-            
+
     </Grid>
 
-    <Window.Resources>
-        <Style TargetType="{x:Type TabItem}">
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TabItem}">
-                        <Grid>
-                            <Border Name="Border" Background="LightBlue" BorderBrush="Black" BorderThickness="1,1,1,1">
-                                <ContentPresenter x:Name="TitleContent" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="12,2,12,2"/>
-                            </Border>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="LightBlue" />
-                                <Setter Property="FontSize" Value="16"/>
-                                <Setter Property="Height" Value="60"/>
-                                <Setter Property="Width" Value="120"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="LightGray" />
-                                <Setter Property="Height" Value="45"/>
-                                <Setter Property="Width" Value="100"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-    </Window.Resources>
+   
 </Window>

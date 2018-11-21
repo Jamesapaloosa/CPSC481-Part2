@@ -17,3 +17,23 @@
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csproj.CoreCompileInputs.cache
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.exe
 \\vmware-host\Shared Folders\Downloads\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.pdb
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\bin\Debug\CPSC 481.exe.config
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\bin\Debug\CPSC 481.exe
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\bin\Debug\CPSC 481.pdb
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csprojAssemblyReference.cache
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\OrderTableView.baml
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\OrderItemCell.baml
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\OrderTableView.g.cs
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\OrderItemCell.g.cs
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\Menu.g.cs
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\App.g.cs
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481_MarkupCompile.cache
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481_MarkupCompile.lref
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\Menu.baml
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.g.resources
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC_481.Properties.Resources.resources
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csproj.GenerateResource.cache
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csproj.CoreCompileInputs.cache
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.exe
+C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.pdb

@@ -35,10 +35,7 @@ namespace CPSC_481
         int columnGap = 20;
         int optionHeight = 17;
         MenuItem currentSelection;
-
-
-
-
+        private object menuItem;
 
         public Menu()
         {
@@ -169,6 +166,68 @@ namespace CPSC_481
             return ret;
         }
 
+        private static bool IsMenuVisible(FrameworkElement element, FrameworkElement container)
+        {
+            if (!element.IsVisible)
+                return false;
+
+            Rect bounds =
+                element.TransformToAncestor(container).TransformBounds(new Rect(0.0, 0.0, element.ActualWidth, element.ActualHeight));
+            var rect = new Rect(0.0, 0.0, container.ActualWidth, container.ActualHeight);
+            return rect.Contains(bounds.TopLeft) || rect.Contains(bounds.BottomRight);
+        }
+
+        private List<object> GetVisibleItemsFromListbox(ListBox listBox, FrameworkElement parentToTestVisibility)
+        {
+            var items = new List<object>();
+            foreach (var item in menuItemListView.Items)
+            {
+                if (IsMenuVisible((ListBoxItem)listBox.ItemContainerGenerator.ContainerFromItem(item), parentToTestVisibility))
+                    items.Add(item);
+                else if (items.Any())
+                    break;
+            }
+
+            return items;
+        }
+
+        private bool containsMoreThanHalf(List<object> group, List<object> visibleObjects)
+        {
+            int count = 0;
+            foreach(object item in group)
+            {
+                foreach(object item2 in visibleObjects)
+                {
+                    if (item.Equals(item2))
+                    {
+                        count++;
+                        break;
+                    }
+                }
+            }
+            if (count > (visibleObjects.Count / 2))
+                return true;
+            return false;
+        }
+
+        private bool tabIsAhead(object groupHead, object firstVisable)
+        {
+            object item;
+            int headIndex = -1;
+            int visableIndex = -1;
+            for (int i = 0; i < menuItemListView.Items.Count; i++)
+            {
+                item = menuItemListView.Items[i];
+                if (item.Equals(groupHead))
+                    headIndex = i;
+                else if (item.Equals(firstVisable))
+                    visableIndex = i;
+            }
+            if (visableIndex > headIndex)
+                return true;
+            return false;
+        }
+
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -176,10 +235,23 @@ namespace CPSC_481
                 MenuItem.Type menuItemType = (MenuItem.Type)this.tabControl.SelectedItem;
                 CollectionView collectionViewSource = (CollectionView)this.menuItemListView.ItemsSource;
                 CollectionViewGroup group = (CollectionViewGroup)collectionViewSource.Groups[this.tabControl.SelectedIndex];
-                var menuItem = group.Items[0];
-                this.menuItemListView.ScrollIntoView(menuItem);
-                ListViewItem listViewItem = this.menuItemListView.ItemContainerGenerator.ContainerFromItem(menuItem) as ListViewItem;
-                listViewItem.Focus();
+                List<object> Lgroup = new List<object>();
+                foreach(object item in group.Items)
+                {
+                    Lgroup.Add(item);
+                }
+                List<object> visable = GetVisibleItemsFromListbox(menuItemListView, this);
+                bool pass = containsMoreThanHalf(Lgroup, visable);
+                if (!pass)
+                {
+                    if(tabIsAhead(Lgroup[0], visable[0]))
+                        menuItem = group.Items[0];
+                    else
+                        menuItem = group.Items[3];
+                    this.menuItemListView.ScrollIntoView(menuItem);
+                    ListViewItem listViewItem = this.menuItemListView.ItemContainerGenerator.ContainerFromItem(menuItem) as ListViewItem;
+                    listViewItem.Focus();
+                }
             }
             catch (Exception error)
             {

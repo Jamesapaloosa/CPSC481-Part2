@@ -9,7 +9,63 @@
         Height="641"
         Width="1053">
 
+    <Window.Resources>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border Name="Border" Background="LightBlue" BorderBrush="Black" BorderThickness="1,1,1,1">
+                                <ContentPresenter x:Name="TitleContent" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="12,2,12,2"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="LightBlue" />
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="120"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="LightGray" />
+                                <Setter Property="Height" Value="45"/>
+                                <Setter Property="Width" Value="100"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="orderButton">
+            <Setter Property="Background" Value="#e8cc5e"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Window.Resources>
+
+
+
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="2*" />
@@ -54,43 +110,78 @@
                         TabStripPlacement="Right"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        SelectionChanged="TabControl_SelectionChanged" Margin="39,0,54,0">
+                        SelectionChanged="TabControl_SelectionChanged">
 
             <TabControl.ContentTemplate>
                 <DataTemplate>
                     <Label Height="0" Width="0"  />
                 </DataTemplate>
             </TabControl.ContentTemplate>
-
         </TabControl>
 
 
 
-        <ListView x:Name= "menuItemListView"
-                  Grid.Row="1"
-                  Grid.RowSpan="2"
-                  SelectionMode="Single"
-                  SelectionChanged="MenuItemListView_SelectionChanged" Grid.ColumnSpan="2" Margin="101,0,0,0">
-            <ListView.View>
-                <GridView>
-                    <GridView.ColumnHeaderContainerStyle>
-                        <Style TargetType="GridViewColumnHeader">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </Style>
-                    </GridView.ColumnHeaderContainerStyle>
+            <ListView x:Name= "menuItemListView"
+                      Grid.Column="1"
+                      Grid.Row="1"
+                      Grid.RowSpan="2"
+                      SelectionMode="Single"
+                      SelectionChanged="MenuItemListView_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
 
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding imageName}" Height="100" Width="100"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding Path=name}">
+                                            <TextBlock.Style>
+                                                <Style>
+                                                    <Setter Property="TextBlock.FontSize"  Value="18"/>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Path=description}" TextWrapping="WrapWithOverflow" Width="200" Height="50"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=priceAsString}">
+                                        <TextBlock.Style>
+                                            <Style>
+                                                <Setter Property="TextBlock.FontSize" Value="24"/>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding imageName}" Height="100" Width="100"/>
+                            <Button Style="{StaticResource orderButton}">
+                                Order
+                            </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=name}"/>
-                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Path=description}"/>
-                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=price, StringFormat='{}{0:c}'}"/>
                 </GridView>
-            </ListView.View>
+                </ListView.View>
 
             <ListView.GroupStyle>
                 <GroupStyle>
@@ -110,9 +201,10 @@
 
         <Button x:Name="callServerButton"
                 Grid.Column="0"
-                Grid.Row="2"
-                Margin="10,74,54,10" >
-            <Image Source="Images\waiter.jpg" Stretch="Uniform" Width="82"/>
+                Grid.Row="3"
+                Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                Margin="10,10,10,10" >
+            <Image Source="Images\waiter.jpg" Stretch="Uniform"/>
         </Button>
 
 
@@ -181,39 +273,5 @@
 
     </Grid>
 
-    <Window.Resources>
-        <Style TargetType="{x:Type TabItem}">
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="LayoutTransform">
-                <Setter.Value>
-                    <RotateTransform Angle="270"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TabItem}">
-                        <Grid>
-                            <Border Name="Border" Background="LightBlue" BorderBrush="Black" BorderThickness="1,1,1,1">
-                                <ContentPresenter x:Name="TitleContent" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="12,2,12,2"/>
-                            </Border>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="LightBlue" />
-                                <Setter Property="FontSize" Value="16"/>
-                                <Setter Property="Height" Value="60"/>
-                                <Setter Property="Width" Value="90"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="LightGray" />
-                                <Setter Property="Height" Value="45"/>
-                                <Setter Property="Width" Value="80"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-    </Window.Resources>
+   
 </Window>

@@ -8,7 +8,7 @@
         Title="Menu" 
         Height="641"
         Width="1053">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -20,16 +20,16 @@
             <RowDefinition Height="4*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        
-        
-        
+
+
+
         <Image Source="Images\cover_page_dark.png" 
                Grid.Row="0"
                Grid.Column="0"
                Margin="10,10,10,10" />
 
-        
-        
+
+
         <Label Grid.Column="1" 
                Grid.Row="0"
                Content="Moonlight Diner II"
@@ -54,23 +54,23 @@
                         TabStripPlacement="Right"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        SelectionChanged="TabControl_SelectionChanged">
+                        SelectionChanged="TabControl_SelectionChanged" Margin="39,0,54,0">
 
             <TabControl.ContentTemplate>
                 <DataTemplate>
                     <Label Height="0" Width="0"  />
                 </DataTemplate>
             </TabControl.ContentTemplate>
+
         </TabControl>
 
-        
-        
+
+
         <ListView x:Name= "menuItemListView"
-                  Grid.Column="1"
                   Grid.Row="1"
                   Grid.RowSpan="2"
                   SelectionMode="Single"
-                  SelectionChanged="MenuItemListView_SelectionChanged">
+                  SelectionChanged="MenuItemListView_SelectionChanged" Grid.ColumnSpan="2" Margin="101,0,0,0">
             <ListView.View>
                 <GridView>
                     <GridView.ColumnHeaderContainerStyle>
@@ -110,10 +110,9 @@
 
         <Button x:Name="callServerButton"
                 Grid.Column="0"
-                Grid.Row="3"
-                Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                Margin="10,10,10,10" >
-            <Image Source="Images\waiter.jpg" Stretch="Uniform"/>
+                Grid.Row="2"
+                Margin="10,74,54,10" >
+            <Image Source="Images\waiter.jpg" Stretch="Uniform" Width="82"/>
         </Button>
 
 
@@ -179,12 +178,17 @@
             <Button Name="quantityAdd" Content="+" HorizontalAlignment="Left" Margin="431,324,0,0" VerticalAlignment="Top" Width="20" Click="IncreaseQuantity" Height="20"/>
             <TextBlock Name="quantityLabel" HorizontalAlignment="Left" Height="24" Margin="297,324,0,0" TextWrapping="Wrap" Text="Quantity:" VerticalAlignment="Top" Width="79" TextAlignment="Right"/>
         </Grid>
-            
+
     </Grid>
 
     <Window.Resources>
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <RotateTransform Angle="270"/>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
@@ -198,12 +202,12 @@
                                 <Setter TargetName="Border" Property="Background" Value="LightBlue" />
                                 <Setter Property="FontSize" Value="16"/>
                                 <Setter Property="Height" Value="60"/>
-                                <Setter Property="Width" Value="120"/>
+                                <Setter Property="Width" Value="90"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="False">
                                 <Setter TargetName="Border" Property="Background" Value="LightGray" />
                                 <Setter Property="Height" Value="45"/>
-                                <Setter Property="Width" Value="100"/>
+                                <Setter Property="Width" Value="80"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

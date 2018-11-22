@@ -37,3 +37,23 @@ C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csproj
 C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.csproj.CoreCompileInputs.cache
 C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.exe
 C:\Users\Steven\coding_projects\CPSC481-Part2\CPSC 481\obj\Debug\CPSC 481.pdb
+Z:\CPSC481\CPSC 481\bin\Debug\CPSC 481.exe.config
+Z:\CPSC481\CPSC 481\bin\Debug\CPSC 481.exe
+Z:\CPSC481\CPSC 481\bin\Debug\CPSC 481.pdb
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.csprojAssemblyReference.cache
+Z:\CPSC481\CPSC 481\obj\Debug\OrderTableView.baml
+Z:\CPSC481\CPSC 481\obj\Debug\OrderItemCell.baml
+Z:\CPSC481\CPSC 481\obj\Debug\OrderTableView.g.cs
+Z:\CPSC481\CPSC 481\obj\Debug\OrderItemCell.g.cs
+Z:\CPSC481\CPSC 481\obj\Debug\Menu.g.cs
+Z:\CPSC481\CPSC 481\obj\Debug\App.g.cs
+Z:\CPSC481\CPSC 481\obj\Debug\GeneratedInternalTypeHelper.g.cs
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481_MarkupCompile.cache
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481_MarkupCompile.lref
+Z:\CPSC481\CPSC 481\obj\Debug\Menu.baml
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.g.resources
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC_481.Properties.Resources.resources
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.csproj.GenerateResource.cache
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.csproj.CoreCompileInputs.cache
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.exe
+Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.pdb

@@ -65,7 +65,6 @@
 
 
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="2*" />
@@ -111,6 +110,35 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         SelectionChanged="TabControl_SelectionChanged">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Width" Value="150"/>
+                    <Setter Property="Height" Value="50"/>
+                    <Setter Property="FontSize" Value="24"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TabItem">
+                                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="12,0,0,12" Margin="2,0">
+                                            <ContentPresenter x:Name="ContentSite"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"
+                                                ContentSource="Header"
+                                                Margin="10,2"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="#518f84" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="#284843" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>
 
             <TabControl.ContentTemplate>
                 <DataTemplate>
@@ -120,13 +148,14 @@
         </TabControl>
 
 
-
-            <ListView x:Name= "menuItemListView"
+        <ListView x:Name= "menuItemListView"
                       Grid.Column="1"
                       Grid.Row="1"
                       Grid.RowSpan="2"
                       SelectionMode="Single"
-                      SelectionChanged="MenuItemListView_SelectionChanged">
+                      SelectionChanged="MenuItemListView_SelectionChanged"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <ListView.View>
                     <GridView>
                         <GridView.ColumnHeaderContainerStyle>
@@ -204,10 +233,8 @@
                 Grid.Row="3"
                 Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                 Margin="10,10,10,10" >
-            <Image Source="Images\waiter.jpg" Stretch="Uniform"/>
+            <Image Source="Images\waiter.jpg" Stretch="Uniform" Width="200" Height="200"/>
         </Button>
-
-
 
         <Grid 
             Visibility="Hidden"

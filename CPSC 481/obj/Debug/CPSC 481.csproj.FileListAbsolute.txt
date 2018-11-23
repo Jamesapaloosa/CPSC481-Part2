@@ -57,3 +57,4 @@ Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.csproj.GenerateResource.cache
 Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.csproj.CoreCompileInputs.cache
 Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.exe
 Z:\CPSC481\CPSC 481\obj\Debug\CPSC 481.pdb
+Z:\CPSC481\CPSC 481\obj\Debug\Themes\Generic.baml

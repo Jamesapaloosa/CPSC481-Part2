@@ -102,24 +102,35 @@ namespace CPSC_481
             items.Add(new MenuItem("Mom's Spaghetti", "description", 9.99m, MenuItem.Type.Main, @"Images\momSpaghetti.jpg", LoadOptionsFromFile(@"Options\momSpaghetti.txt")));
             items.Add(new MenuItem("Boston Beef Cake", "description", 9.99m, MenuItem.Type.Main, @"Images\bostonBeefCake.jpg", LoadOptionsFromFile(@"Options\bostonBeefCake.txt")));
             items.Add(new MenuItem("Rib eye Steak", "description", 9.99m, MenuItem.Type.Main, @"Images\Ribeye.jpg", LoadOptionsFromFile(@"Options\ribeye.txt")));
+            items.Add(new MenuItem("Taco", "description", 9.99m, MenuItem.Type.Main, @"Images\taco.jpg", LoadOptionsFromFile(@"Options\ribeye.txt")));
+            items.Add(new MenuItem("Pizza", "description", 9.99m, MenuItem.Type.Main, @"Images\pizza.jpg", LoadOptionsFromFile(@"Options\ribeye.txt")));
 
             // Sides
             items.Add(new MenuItem("Fries", "description", 9.99m, MenuItem.Type.Side, @"Images\fries.jpg", LoadOptionsFromFile(@"Options\fries.txt")));
             items.Add(new MenuItem("Onion Rings", "description", 9.99m, MenuItem.Type.Side, @"Images\onionRings.jpg", LoadOptionsFromFile(@"Options\onionRings.txt")));
             items.Add(new MenuItem("Chips", "description", 9.99m, MenuItem.Type.Side, @"Images\chips.jpg", LoadOptionsFromFile(@"Options\chips.txt")));
             items.Add(new MenuItem("Salad", "description", 9.99m, MenuItem.Type.Side, @"Images\salad.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
+            items.Add(new MenuItem("Gravy", "description", 9.99m, MenuItem.Type.Side, @"Images\gravy.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
+            items.Add(new MenuItem("Bacon", "description", 9.99m, MenuItem.Type.Side, @"Images\bacon.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
+            items.Add(new MenuItem("Potatoes", "description", 9.99m, MenuItem.Type.Side, @"Images\potatoes.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
 
             // Desserts
             items.Add(new MenuItem("Pie", "description", 9.99m, MenuItem.Type.Dessert, @"Images\pie.jpg", LoadOptionsFromFile(@"Options\pie.txt")));
             items.Add(new MenuItem("Chocolate Cake", "description", 9.99m, MenuItem.Type.Dessert, @"Images\cake.jpg", LoadOptionsFromFile(@"Options\cake.txt")));
             items.Add(new MenuItem("Brownie", "description", 9.99m, MenuItem.Type.Dessert, @"Images\brownie.jpg", LoadOptionsFromFile(@"Options\brownie.txt")));
             items.Add(new MenuItem("Cheesecake", "description", 9.99m, MenuItem.Type.Dessert, @"Images\cheesecake.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
+            items.Add(new MenuItem("Ice Cream", "description", 9.99m, MenuItem.Type.Dessert, @"Images\icecream.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
+            items.Add(new MenuItem("Donught", "description", 9.99m, MenuItem.Type.Dessert, @"Images\donught.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
+            items.Add(new MenuItem("Candy", "description", 9.99m, MenuItem.Type.Dessert, @"Images\candy.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
 
             // Drinks
             items.Add(new MenuItem("Coke", "description", 9.99m, MenuItem.Type.Drink, @"Images\coke.png", LoadOptionsFromFile(@"Options\coke.txt")));
             items.Add(new MenuItem("Pepsi", "description", 9.99m, MenuItem.Type.Drink, @"Images\Pepsi.jpg", LoadOptionsFromFile(@"Options\pepsi.txt")));
             items.Add(new MenuItem("Whiskey", "description", 9.99m, MenuItem.Type.Drink, @"Images\whiskey.jpg", LoadOptionsFromFile(@"Options\whiskey.txt")));
             items.Add(new MenuItem("Scotch", "description", 9.99m, MenuItem.Type.Drink, @"Images\scotch.png", LoadOptionsFromFile(@"Options\scotch.txt")));
+            items.Add(new MenuItem("Premium Water", "description", 99.99m, MenuItem.Type.Drink, @"Images\water.jpg", LoadOptionsFromFile(@"Options\scotch.txt")));
+            items.Add(new MenuItem("Tap Water", "description", 0.00m, MenuItem.Type.Drink, @"Images\water.jpg", LoadOptionsFromFile(@"Options\scotch.txt")));
+            items.Add(new MenuItem("Tea", "description", 9.99m, MenuItem.Type.Drink, @"Images\tea.jpg", LoadOptionsFromFile(@"Options\scotch.txt")));
 
             return items;
         }
@@ -247,7 +258,7 @@ namespace CPSC_481
                     if(tabIsAhead(Lgroup[0], visable[0]))
                         menuItem = group.Items[0];
                     else
-                        menuItem = group.Items[3];
+                        menuItem = group.Items[6];
                     this.menuItemListView.ScrollIntoView(menuItem);
                     ListViewItem listViewItem = this.menuItemListView.ItemContainerGenerator.ContainerFromItem(menuItem) as ListViewItem;
                     listViewItem.Focus();

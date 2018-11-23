@@ -259,6 +259,7 @@ namespace CPSC_481
             }
         }
 
+
         private void MenuItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -381,6 +382,7 @@ namespace CPSC_481
                     rbs[i, j].Content = "";
                 }
             }
+            this.menuItemListView.SelectedItem = null;
         }
 
         private void IncreaseQuantity(object sender, RoutedEventArgs e)
@@ -459,6 +461,8 @@ namespace CPSC_481
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
             this.Reset();
+            
         }
+
     }
 }

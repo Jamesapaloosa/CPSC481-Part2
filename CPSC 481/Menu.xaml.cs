@@ -35,10 +35,7 @@ namespace CPSC_481
         int columnGap = 20;
         int optionHeight = 17;
         MenuItem currentSelection;
-
-
-
-
+        private object menuItem;
 
         public Menu()
         {
@@ -105,24 +102,35 @@ namespace CPSC_481
             items.Add(new MenuItem("Mom's Spaghetti", "description", 9.99m, MenuItem.Type.Main, @"Images\momSpaghetti.jpg", LoadOptionsFromFile(@"Options\momSpaghetti.txt")));
             items.Add(new MenuItem("Boston Beef Cake", "description", 9.99m, MenuItem.Type.Main, @"Images\bostonBeefCake.jpg", LoadOptionsFromFile(@"Options\bostonBeefCake.txt")));
             items.Add(new MenuItem("Rib eye Steak", "description", 9.99m, MenuItem.Type.Main, @"Images\Ribeye.jpg", LoadOptionsFromFile(@"Options\ribeye.txt")));
+            items.Add(new MenuItem("Taco", "description", 9.99m, MenuItem.Type.Main, @"Images\taco.jpg", LoadOptionsFromFile(@"Options\ribeye.txt")));
+            items.Add(new MenuItem("Pizza", "description", 9.99m, MenuItem.Type.Main, @"Images\pizza.jpg", LoadOptionsFromFile(@"Options\ribeye.txt")));
 
             // Sides
             items.Add(new MenuItem("Fries", "description", 9.99m, MenuItem.Type.Side, @"Images\fries.jpg", LoadOptionsFromFile(@"Options\fries.txt")));
             items.Add(new MenuItem("Onion Rings", "description", 9.99m, MenuItem.Type.Side, @"Images\onionRings.jpg", LoadOptionsFromFile(@"Options\onionRings.txt")));
             items.Add(new MenuItem("Chips", "description", 9.99m, MenuItem.Type.Side, @"Images\chips.jpg", LoadOptionsFromFile(@"Options\chips.txt")));
             items.Add(new MenuItem("Salad", "description", 9.99m, MenuItem.Type.Side, @"Images\salad.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
+            items.Add(new MenuItem("Gravy", "description", 9.99m, MenuItem.Type.Side, @"Images\gravy.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
+            items.Add(new MenuItem("Bacon", "description", 9.99m, MenuItem.Type.Side, @"Images\bacon.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
+            items.Add(new MenuItem("Potatoes", "description", 9.99m, MenuItem.Type.Side, @"Images\potatoes.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
 
             // Desserts
             items.Add(new MenuItem("Pie", "description", 9.99m, MenuItem.Type.Dessert, @"Images\pie.jpg", LoadOptionsFromFile(@"Options\pie.txt")));
             items.Add(new MenuItem("Chocolate Cake", "description", 9.99m, MenuItem.Type.Dessert, @"Images\cake.jpg", LoadOptionsFromFile(@"Options\cake.txt")));
             items.Add(new MenuItem("Brownie", "description", 9.99m, MenuItem.Type.Dessert, @"Images\brownie.jpg", LoadOptionsFromFile(@"Options\brownie.txt")));
             items.Add(new MenuItem("Cheesecake", "description", 9.99m, MenuItem.Type.Dessert, @"Images\cheesecake.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
+            items.Add(new MenuItem("Ice Cream", "description", 9.99m, MenuItem.Type.Dessert, @"Images\icecream.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
+            items.Add(new MenuItem("Donught", "description", 9.99m, MenuItem.Type.Dessert, @"Images\donught.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
+            items.Add(new MenuItem("Candy", "description", 9.99m, MenuItem.Type.Dessert, @"Images\candy.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
 
             // Drinks
             items.Add(new MenuItem("Coke", "description", 9.99m, MenuItem.Type.Drink, @"Images\coke.png", LoadOptionsFromFile(@"Options\coke.txt")));
             items.Add(new MenuItem("Pepsi", "description", 9.99m, MenuItem.Type.Drink, @"Images\Pepsi.jpg", LoadOptionsFromFile(@"Options\pepsi.txt")));
             items.Add(new MenuItem("Whiskey", "description", 9.99m, MenuItem.Type.Drink, @"Images\whiskey.jpg", LoadOptionsFromFile(@"Options\whiskey.txt")));
             items.Add(new MenuItem("Scotch", "description", 9.99m, MenuItem.Type.Drink, @"Images\scotch.png", LoadOptionsFromFile(@"Options\scotch.txt")));
+            items.Add(new MenuItem("Premium Water", "description", 99.99m, MenuItem.Type.Drink, @"Images\water.jpg", LoadOptionsFromFile(@"Options\scotch.txt")));
+            items.Add(new MenuItem("Tap Water", "description", 0.00m, MenuItem.Type.Drink, @"Images\water.jpg", LoadOptionsFromFile(@"Options\scotch.txt")));
+            items.Add(new MenuItem("Tea", "description", 9.99m, MenuItem.Type.Drink, @"Images\tea.jpg", LoadOptionsFromFile(@"Options\scotch.txt")));
 
             return items;
         }
@@ -169,6 +177,68 @@ namespace CPSC_481
             return ret;
         }
 
+        private static bool IsMenuVisible(FrameworkElement element, FrameworkElement container)
+        {
+            if (!element.IsVisible)
+                return false;
+
+            Rect bounds =
+                element.TransformToAncestor(container).TransformBounds(new Rect(0.0, 0.0, element.ActualWidth, element.ActualHeight));
+            var rect = new Rect(0.0, 0.0, container.ActualWidth, container.ActualHeight);
+            return rect.Contains(bounds.TopLeft) || rect.Contains(bounds.BottomRight);
+        }
+
+        private List<object> GetVisibleItemsFromListbox(ListBox listBox, FrameworkElement parentToTestVisibility)
+        {
+            var items = new List<object>();
+            foreach (var item in menuItemListView.Items)
+            {
+                if (IsMenuVisible((ListBoxItem)listBox.ItemContainerGenerator.ContainerFromItem(item), parentToTestVisibility))
+                    items.Add(item);
+                else if (items.Any())
+                    break;
+            }
+
+            return items;
+        }
+
+        private bool containsMoreThanHalf(List<object> group, List<object> visibleObjects)
+        {
+            int count = 0;
+            foreach(object item in group)
+            {
+                foreach(object item2 in visibleObjects)
+                {
+                    if (item.Equals(item2))
+                    {
+                        count++;
+                        break;
+                    }
+                }
+            }
+            if (count > (visibleObjects.Count / 2))
+                return true;
+            return false;
+        }
+
+        private bool tabIsAhead(object groupHead, object firstVisable)
+        {
+            object item;
+            int headIndex = -1;
+            int visableIndex = -1;
+            for (int i = 0; i < menuItemListView.Items.Count; i++)
+            {
+                item = menuItemListView.Items[i];
+                if (item.Equals(groupHead))
+                    headIndex = i;
+                else if (item.Equals(firstVisable))
+                    visableIndex = i;
+            }
+            if (visableIndex > headIndex)
+                return true;
+            return false;
+        }
+
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -176,16 +246,30 @@ namespace CPSC_481
                 MenuItem.Type menuItemType = (MenuItem.Type)this.tabControl.SelectedItem;
                 CollectionView collectionViewSource = (CollectionView)this.menuItemListView.ItemsSource;
                 CollectionViewGroup group = (CollectionViewGroup)collectionViewSource.Groups[this.tabControl.SelectedIndex];
-                var menuItem = group.Items[0];
-                this.menuItemListView.ScrollIntoView(menuItem);
-                ListViewItem listViewItem = this.menuItemListView.ItemContainerGenerator.ContainerFromItem(menuItem) as ListViewItem;
-                listViewItem.Focus();
+                List<object> Lgroup = new List<object>();
+                foreach(object item in group.Items)
+                {
+                    Lgroup.Add(item);
+                }
+                List<object> visable = GetVisibleItemsFromListbox(menuItemListView, this);
+                bool pass = containsMoreThanHalf(Lgroup, visable);
+                if (!pass)
+                {
+                    if(tabIsAhead(Lgroup[0], visable[0]))
+                        menuItem = group.Items[0];
+                    else
+                        menuItem = group.Items[6];
+                    this.menuItemListView.ScrollIntoView(menuItem);
+                    ListViewItem listViewItem = this.menuItemListView.ItemContainerGenerator.ContainerFromItem(menuItem) as ListViewItem;
+                    listViewItem.Focus();
+                }
             }
             catch (Exception error)
             {
                 System.Diagnostics.Debug.WriteLine(error);
             }
         }
+
 
         private void MenuItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -309,6 +393,7 @@ namespace CPSC_481
                     rbs[i, j].Content = "";
                 }
             }
+            this.menuItemListView.SelectedItem = null;
         }
 
         private void IncreaseQuantity(object sender, RoutedEventArgs e)
@@ -387,6 +472,8 @@ namespace CPSC_481
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
             this.Reset();
+            
         }
+
     }
 }

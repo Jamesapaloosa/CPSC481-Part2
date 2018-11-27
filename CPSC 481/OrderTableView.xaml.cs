@@ -45,7 +45,7 @@ namespace CPSC_481
 
         public void Add(OrderItem orderItem)
 		{
-            OrderItemCell orderItemCell = new OrderItemCell(orderItem);
+            OrderItemCell orderItemCell = new OrderItemCell(orderItem, this);
 
             orderItemCell.OnAction += this.OrderItemCell_OnAction;
             this.stackPanel.Children.Add(orderItemCell);
@@ -56,7 +56,7 @@ namespace CPSC_481
 			this.Update();
 		}
 
-        private void Remove(OrderItemCell orderItemCell)
+        public void Remove(OrderItemCell orderItemCell)
         {
             this.stackPanel.Children.Remove(orderItemCell);
 

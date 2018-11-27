@@ -37,8 +37,6 @@ namespace CPSC_481
         MenuItem currentSelection;
         private object menuItem;
 
-        Boolean isScrolling = false;
-
         public Menu()
         {
             InitializeComponent();
@@ -272,25 +270,6 @@ namespace CPSC_481
             }
         }
 
-        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
-        {
-            try
-            {
-                isScrolling = true;
-                List<object> visable = GetVisibleItemsFromListbox(menuItemListView, this);
-                for (int i = 0; i < tabControl.Items.Count; i++) {
-                    if (((MenuItem)visable[2]).type.Equals(tabControl.Items[i]))
-                    {
-                        tabControl.SelectedIndex = i;
-                    }
-                }
-                isScrolling = false;
-            }
-            catch (Exception error)
-            {
-                System.Diagnostics.Debug.WriteLine(error);
-            }
-        }
 
         private void MenuItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -308,6 +287,18 @@ namespace CPSC_481
         private void SendOrPayButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        public void EditOptionsMenu(MenuItem item, int[] chosenOptions)
+        {
+            NewOptionsMenu(item);
+            for (int i = 0; i < 5; i++)
+            {
+                if ((chosenOptions[i] >= 0) && (chosenOptions[i] < 5))
+                {
+                    rbs[i, chosenOptions[i]].IsChecked = true;
+                }
+            }
         }
         
         private void NewOptionsMenu(MenuItem item)
@@ -480,7 +471,7 @@ namespace CPSC_481
             try
             {
                 // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
-                OrderItem orderItem = new OrderItem(this.currentSelection, options);
+                OrderItem orderItem = new OrderItem(this.currentSelection, options, this);
                 this.orderTableView.Add(orderItem);
                 this.Reset();
             }

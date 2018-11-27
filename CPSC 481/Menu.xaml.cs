@@ -37,6 +37,8 @@ namespace CPSC_481
         MenuItem currentSelection;
         private object menuItem;
 
+        Boolean isScrolling = false;
+
         public Menu()
         {
             InitializeComponent();
@@ -270,6 +272,25 @@ namespace CPSC_481
             }
         }
 
+        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            try
+            {
+                isScrolling = true;
+                List<object> visable = GetVisibleItemsFromListbox(menuItemListView, this);
+                for (int i = 0; i < tabControl.Items.Count; i++) {
+                    if (((MenuItem)visable[2]).type.Equals(tabControl.Items[i]))
+                    {
+                        tabControl.SelectedIndex = i;
+                    }
+                }
+                isScrolling = false;
+            }
+            catch (Exception error)
+            {
+                System.Diagnostics.Debug.WriteLine(error);
+            }
+        }
 
         private void MenuItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -36,6 +36,8 @@ namespace CPSC_481
         int optionHeight = 17;
         MenuItem currentSelection;
         private object menuItem;
+        public int[] oldOrder = new int[5];
+        bool editingOldOrder = false;
 
         Boolean isScrolling = false;
 
@@ -310,6 +312,20 @@ namespace CPSC_481
 
         }
         
+        public void EditOptionsMenu(MenuItem item, int[] chosenOptions)
+        {
+            oldOrder = chosenOptions;
+            NewOptionsMenu(item);
+            for (int i = 0; i < 5; i++)
+            {
+                if ((chosenOptions[i] >= 0) && (chosenOptions[i] < 5))
+                {
+                    rbs[i, chosenOptions[i]].IsChecked = true;
+                }
+            }
+            editingOldOrder = true;
+        }
+        
         private void NewOptionsMenu(MenuItem item)
         {
             Reset();
@@ -403,6 +419,7 @@ namespace CPSC_481
             totalTitle.Visibility = Visibility.Hidden;
             totalLabel.Visibility = Visibility.Hidden;
             itemTitle.Visibility = Visibility.Hidden;
+            editingOldOrder = false;
             optionsCorner = new Thickness(defaultCorner.Left + rbs[0,0].Width + columnGap, defaultCorner.Top, 0, 0);
             for (int i = 0; i < rbs.GetLength(0); i++)
             {
@@ -492,8 +509,24 @@ namespace CPSC_481
 
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
-            this.Reset();
-            
+            if (editingOldOrder)
+            {
+                try
+                {
+                    // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
+                    OrderItem orderItem = new OrderItem(this.currentSelection, oldOrder, this);
+                    this.orderTableView.Add(orderItem);
+                    this.Reset();
+                }
+                catch (Exception error)
+                {
+                    System.Diagnostics.Debug.WriteLine(error);
+                }
+            }
+            else
+            {
+                this.Reset();
+            }
         }
 
     }

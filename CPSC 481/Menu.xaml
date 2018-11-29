@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:CPSC_481"
         mc:Ignorable="d"
         Title="Menu" 
-        Height="641"
-        Width="1053">
+        Height="926.594"
+        Width="1463.938">
 
     <Window.Resources>
         <Style TargetType="{x:Type TabItem}">
@@ -69,7 +69,7 @@
 
 
 
-    <Grid>
+    <Grid x:Name="MainGrid" >
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -203,7 +203,7 @@
                                 </StackPanel>
                             </DataTemplate>
                         </GroupStyle.HeaderTemplate>
-                        
+
                     </GroupStyle>
                 </ListView.GroupStyle>
             </ListView>

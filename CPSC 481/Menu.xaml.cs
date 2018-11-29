@@ -245,32 +245,35 @@ namespace CPSC_481
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
+            if (!isScrolling)
             {
-                MenuItem.Type menuItemType = (MenuItem.Type)this.tabControl.SelectedItem;
-                CollectionView collectionViewSource = (CollectionView)this.menuItemListView.ItemsSource;
-                CollectionViewGroup group = (CollectionViewGroup)collectionViewSource.Groups[this.tabControl.SelectedIndex];
-                List<object> Lgroup = new List<object>();
-                foreach(object item in group.Items)
+                try
                 {
-                    Lgroup.Add(item);
+                    MenuItem.Type menuItemType = (MenuItem.Type)this.tabControl.SelectedItem;
+                    CollectionView collectionViewSource = (CollectionView)this.menuItemListView.ItemsSource;
+                    CollectionViewGroup group = (CollectionViewGroup)collectionViewSource.Groups[this.tabControl.SelectedIndex];
+                    List<object> Lgroup = new List<object>();
+                    foreach (object item in group.Items)
+                    {
+                        Lgroup.Add(item);
+                    }
+                    List<object> visable = GetVisibleItemsFromListbox(menuItemListView, this);
+                    bool pass = containsMoreThanHalf(Lgroup, visable);
+                    if (!pass)
+                    {
+                        if (tabIsAhead(Lgroup[0], visable[0]))
+                            menuItem = group.Items[0];
+                        else
+                            menuItem = group.Items[6];
+                        this.menuItemListView.ScrollIntoView(menuItem);
+                        ListViewItem listViewItem = this.menuItemListView.ItemContainerGenerator.ContainerFromItem(menuItem) as ListViewItem;
+                        listViewItem.Focus();
+                    }
                 }
-                List<object> visable = GetVisibleItemsFromListbox(menuItemListView, this);
-                bool pass = containsMoreThanHalf(Lgroup, visable);
-                if (!pass)
+                catch (Exception error)
                 {
-                    if(tabIsAhead(Lgroup[0], visable[0]))
-                        menuItem = group.Items[0];
-                    else
-                        menuItem = group.Items[6];
-                    this.menuItemListView.ScrollIntoView(menuItem);
-                    ListViewItem listViewItem = this.menuItemListView.ItemContainerGenerator.ContainerFromItem(menuItem) as ListViewItem;
-                    listViewItem.Focus();
+                    System.Diagnostics.Debug.WriteLine(error);
                 }
-            }
-            catch (Exception error)
-            {
-                System.Diagnostics.Debug.WriteLine(error);
             }
         }
 
@@ -497,7 +500,7 @@ namespace CPSC_481
             try
             {
                 // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
-                OrderItem orderItem = new OrderItem(this.currentSelection, options);
+                OrderItem orderItem = new OrderItem(this.currentSelection, options, this);
                 this.orderTableView.Add(orderItem);
                 this.Reset();
             }

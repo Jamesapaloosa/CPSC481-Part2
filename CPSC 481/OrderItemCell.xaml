@@ -15,6 +15,7 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
 
         <Border Background="Black"
@@ -49,8 +50,15 @@
                    VerticalAlignment="Center"/>
         </Grid>
 
-        <Button x:Name="actionButton"
+        <Button x:Name="editButton"
                 Grid.Column="2"
+                Content="Edit"
+                Height="{Binding ElementName=grid, Path=ActualHeight}"
+                Width="{Binding Height, RelativeSource={RelativeSource Self}}"
+                Click="editButton_Click"/>
+
+        <Button x:Name="actionButton"
+                Grid.Column="3"
                 Content="Action"
                 Height="{Binding ElementName=grid, Path=ActualHeight}"
                 Width="{Binding Height, RelativeSource={RelativeSource Self}}"

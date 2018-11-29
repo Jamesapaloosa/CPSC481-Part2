@@ -10,6 +10,7 @@ namespace CPSC_481
         public String name { get; set; }
         public String description { get; set; }
         public decimal price { get; set; }
+        public String priceAsString { get; set; } // Easiest way around stupid WPF issues. 
         public MenuItem.Type type { get; set; }
         public String imageName { get; set; }
         public string[,,] options = new string[5, 6, 2];
@@ -17,10 +18,13 @@ namespace CPSC_481
         public MenuItem(String name, String description, decimal price, MenuItem.Type type, String imageName, string[,,] itemOptions)
         {
             this.name = name;
-            this.description = description;
+            //this.description = description;
+            this.description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum lacus libero, sed varius lorem varius id. Sed quis mi orci. Proin ultricies ligula ipsum. In congue mollis elit, non ornare nisl iaculis ut.";
             this.price = price;
+            this.priceAsString = "$" + price.ToString("0.00");
             this.type = type;
             this.imageName = imageName;
+
             try
             {
                 for (int i = 0; i < 5; i++)

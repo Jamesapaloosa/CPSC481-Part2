@@ -21,15 +21,17 @@ namespace CPSC_481
 
 
         public OrderItem orderItem { get; private set; }
+        public OrderTableView otable { get; private set; }
 
 
 
 
 
-        public OrderItemCell(OrderItem orderItem)
+        public OrderItemCell(OrderItem orderItem, OrderTableView otable)
         {
             InitializeComponent();
 
+            this.otable = otable;
             this.orderItem = orderItem;
             this.imageView.Source = new BitmapImage(new Uri(this.orderItem.menuItem.imageName, UriKind.Relative));
             this.titleLabel.Content = this.orderItem.menuItem.name;
@@ -78,6 +80,14 @@ namespace CPSC_481
                 return;
 
             this.OnAction(this, ActionType.Edit);
+        }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.orderItem.isFinalized)
+                return;
+            otable.Remove(this);
+            this.orderItem.sourceMenu.EditOptionsMenu(this.orderItem.menuItem, this.orderItem.options);
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace CPSC_481
 {
@@ -243,6 +244,16 @@ namespace CPSC_481
             return false;
         }
 
+        private bool checkIfItemIsInCollection(object desiredItem, List<object> collection)
+        {
+            foreach(object item in collection)
+            {
+                if (desiredItem.Equals(item))
+                    return true;
+            }
+            return false;
+        }
+
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!isScrolling)
@@ -262,18 +273,36 @@ namespace CPSC_481
                     if (!pass)
                     {
                         if (tabIsAhead(Lgroup[0], visable[0]))
+                        {
                             menuItem = group.Items[0];
+                            if (!checkIfItemIsInCollection(menuItem, GetVisibleItemsFromListbox(menuItemListView, this)))
+                            {
+                                this.menuItemScrollViewer.PageUp();
+                            }
+                        }
                         else
+                        {
                             menuItem = group.Items[6];
+                            if (!checkIfItemIsInCollection(menuItem, GetVisibleItemsFromListbox(menuItemListView, this)))
+                            {
+                                this.menuItemScrollViewer.PageDown();
+                            }
+                        }
+
+
+                        /*
                         this.menuItemListView.ScrollIntoView(menuItem);
                         ListViewItem listViewItem = this.menuItemListView.ItemContainerGenerator.ContainerFromItem(menuItem) as ListViewItem;
+                        listViewItem.BringIntoView();
                         listViewItem.Focus();
+                        */
                     }
                 }
                 catch (Exception error)
                 {
                     System.Diagnostics.Debug.WriteLine(error);
                 }
+                
             }
         }
 
@@ -297,10 +326,24 @@ namespace CPSC_481
             }
         }
 
+        private void toggleOptions(bool onVoff)
+        {
+            bool val;
+            if (onVoff)
+                val = true;
+            else
+                val = false;
+
+            this.tabControl.IsEnabled = val;
+            this.menuItemListView.IsEnabled = val;
+            this.orderTableView.IsEnabled = val;
+        }
+
         private void MenuItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
+                toggleOptions(false);
                 MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
                 this.NewOptionsMenu(menuItem);
             }
@@ -434,7 +477,7 @@ namespace CPSC_481
                     rbs[i, j].Content = "";
                 }
             }
-            this.menuItemListView.SelectedItem = null;
+
         }
 
         private void IncreaseQuantity(object sender, RoutedEventArgs e)
@@ -508,6 +551,7 @@ namespace CPSC_481
             {
                 System.Diagnostics.Debug.WriteLine(error);
             }
+            toggleOptions(true);
         }
 
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
@@ -530,6 +574,7 @@ namespace CPSC_481
             {
                 this.Reset();
             }
+            toggleOptions(true);
         }
 
     }

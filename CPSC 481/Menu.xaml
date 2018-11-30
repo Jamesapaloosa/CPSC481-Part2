@@ -143,8 +143,10 @@
             <ListView x:Name= "menuItemListView"
                           SelectionMode="Single"
                           SelectionChanged="MenuItemListView_SelectionChanged"
-                          ScrollViewer.CanContentScroll="False"
-                          PreviewMouseWheel="menuItemListView_PreviewMouseWheel" Width="1281" BorderBrush="Orange" BorderThickness="0">
+                          ScrollViewer.CanContentScroll="True"
+                          PreviewMouseWheel="menuItemListView_PreviewMouseWheel" Width="1281" BorderBrush="Orange" BorderThickness="0"
+                          TouchMove="menuItemListView_TouchDrag"
+                          TouchUp="menuItemListView_TouchUp">
                 <ListView.View>
                     <GridView>
 

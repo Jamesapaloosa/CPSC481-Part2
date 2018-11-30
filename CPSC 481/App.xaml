@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:CPSC_481"
              StartupUri="Menu.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="HamburgerHeaven">pack://application:,,,/Fonts/#HamburgerHeaven</FontFamily>
+        <FontFamily x:Key="Magneto">pack://application:,,,/Fonts/#Magneto</FontFamily>
+        <FontFamily x:Key="RobotoRegular">pack://application:,,,/Fonts/#Roboto</FontFamily>
+        <FontFamily x:Key="RobotoThin">pack://application:,,,/Fonts/#Roboto Thin</FontFamily>
+        <FontFamily x:Key="Unispace">pack://application:,,,/Fonts/#Unispace</FontFamily>
+        <FontFamily x:Key="Deftone">pack://application:,,,/Fonts/#Deftone Stylus</FontFamily>
     </Application.Resources>
 </Application>

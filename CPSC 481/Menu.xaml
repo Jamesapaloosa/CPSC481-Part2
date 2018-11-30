@@ -7,10 +7,20 @@
         mc:Ignorable="d"
         Title="Menu" 
         Height="926.594"
-        Width="1463.938">
+        Width="1647.938"
+        ResizeMode="NoResize"
+        >
+
+    <Window.Background>
+        <ImageBrush ImageSource="Images/menu/checker_background.png"/>
+    </Window.Background>
 
     <Window.Resources>
+
+        <local:HeaderImageGetter x:Key="HeaderImageGetter" />
+
         <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Margin" Value="150,100,100,105"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="LayoutTransform">
                 <Setter.Value>
@@ -20,22 +30,33 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
-                        <Grid>
-                            <Border Name="Border" Background="LightBlue" BorderBrush="Black" BorderThickness="1,1,1,1">
-                                <ContentPresenter x:Name="TitleContent" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="12,2,12,2"/>
+                        <Grid Margin="0,0,10,-5">
+                            <Border Name="Border" Background="White" BorderBrush="#DE532F" BorderThickness="4,4,4,0" CornerRadius="10,10,0,0">
+                                <ContentPresenter x:Name="TitleContent" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="0,0,0,0"/>
                             </Border>
                         </Grid>
+
                         <ControlTemplate.Triggers>
+
+                            <!-- Yes there are a lot of duplicate values, yes thats ugly.-->
+
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="LightBlue" />
-                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="Margin" Value="0,0,0,00"/>
+                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                                <Setter Property="FontSize" Value="38"/>
                                 <Setter Property="Height" Value="70"/>
-                                <Setter Property="Width" Value="140"/>
+                                <Setter Property="Width" Value="170"/>
+                                <Setter Property="FontFamily" Value="{StaticResource HamburgerHeaven}"/>
+                                <Setter Property="Foreground" Value="#ED2625" />
                             </Trigger>
                             <Trigger Property="IsSelected" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="LightGray" />
+                                <Setter Property="Margin" Value="0,0,0,0"/>
+                                <Setter Property="FontSize" Value="38"/>
                                 <Setter Property="Height" Value="50"/>
-                                <Setter Property="Width" Value="110"/>
+                                <Setter Property="Width" Value="170"/>
+                                <Setter Property="FontFamily" Value="{StaticResource HamburgerHeaven}"/>
+                                <Setter Property="Foreground" Value="#ED2625" />
+                                <Setter Property="HorizontalAlignment" Value="Right"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -64,7 +85,6 @@
             </Setter>
         </Style>
 
-
     </Window.Resources>
 
 
@@ -72,9 +92,9 @@
     <Grid x:Name="MainGrid" >
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="Auto" MinWidth="71" />
+            <ColumnDefinition Width="1176*" />
+            <ColumnDefinition Width="395*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -84,29 +104,16 @@
 
 
 
-        <Image Source="Images\cover_page_dark.png" 
+        <Image Source="Images\menu\logo.png" 
                Grid.Row="0"
                Grid.Column="1"
-               Margin="10,10,471,10" />
-
-
-
-        <Label Grid.Column="1" 
-               Grid.Row="0"
-               Content="Moonlight Diner II"
-               FontSize="50" 
-               FontWeight="ExtraBold"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="110,5,0,5" Width="471"/>
+               Margin="10,0,23,10"/>
 
 
 
         <local:OrderTableView x:Name= "orderTableView"
                               Grid.Column="2"
-                              Grid.Row="0"
-                              Grid.RowSpan="3" Height="612" Margin="0,0,-0.333,0" VerticalAlignment="Bottom" />
-
+                              Grid.RowSpan="3" Height="806" VerticalAlignment="Bottom" Panel.ZIndex="-2" />
 
 
         <TabControl x:Name="tabControl" 
@@ -115,7 +122,7 @@
                         TabStripPlacement="Right"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        SelectionChanged="TabControl_SelectionChanged" Grid.RowSpan="2">
+                        SelectionChanged="TabControl_SelectionChanged" Grid.RowSpan="2" Background="Transparent" BorderThickness="0,0,0,0">
 
             <TabControl.ContentTemplate>
                 <DataTemplate>
@@ -130,15 +137,17 @@
             Grid.Row="1"
             Grid.RowSpan="2"
             CanContentScroll="True"
-            VerticalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Hidden"
             ScrollChanged="ScrollViewer_ScrollChanged"
-            PanningMode="VerticalOnly">
+            PanningMode="VerticalOnly" Margin="0,0,30,0">
             <ListView x:Name= "menuItemListView"
                           SelectionMode="Single"
                           SelectionChanged="MenuItemListView_SelectionChanged"
-                          ScrollViewer.CanContentScroll="True">
+                          ScrollViewer.CanContentScroll="True"
+                          PreviewMouseWheel="menuItemListView_PreviewMouseWheel" Width="1281" BorderBrush="Orange" BorderThickness="0">
                 <ListView.View>
                     <GridView>
+
                         <GridView.ColumnHeaderContainerStyle>
                             <Style TargetType="GridViewColumnHeader">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -148,7 +157,7 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding imageName}" Height="100" Width="100"/>
+                                    <Image Source="{Binding imageName}" Height="150" Width="150" Margin="15,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -156,14 +165,11 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel VerticalAlignment="Top">
-                                        <TextBlock Text="{Binding Path=name}">
-                                            <TextBlock.Style>
-                                                <Style>
-                                                    <Setter Property="TextBlock.FontSize"  Value="18"/>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding Path=description}" TextWrapping="WrapWithOverflow" Width="285" Height="50"/>
+                                        <TextBlock Text="{Binding Path=name}" FontFamily="{StaticResource HamburgerHeaven}"  FontSize="30" Foreground="#ED2625" Margin="10,30,0,0"/>
+
+
+                                        <TextBlock Text="{Binding Path=description}" TextWrapping="WrapWithOverflow" Width="400" Height="120"
+                                                   FontSize="16" FontFamily="{StaticResource RobotoRegular}" Foreground="Black" Margin="25,10,0,0"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -171,22 +177,14 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=priceAsString}">
-                                        <TextBlock.Style>
-                                            <Style>
-                                                <Setter Property="TextBlock.FontSize" Value="24"/>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                    <TextBlock Text="{Binding Path=priceAsString}" Margin="100,0,0,0" FontFamily="{StaticResource RobotoThin}" FontSize="28" Foreground="Black"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Style="{StaticResource orderButton}">
-                                        Order
-                                    </Button>
+                                    <Image Source="Images/menu/order_button.png" Width="140" Height="46" Margin="100,0,0,0"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -198,8 +196,7 @@
                         <GroupStyle.HeaderTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontWeight="Bold" FontSize="17" Text="{Binding Name}"/>
-                                    <TextBlock FontWeight="Bold" FontSize="17" Text="s"/>
+                                    <Image Source="{Binding Name, Converter={StaticResource HeaderImageGetter}}" Height="83" Width="1037" Margin="50,0,0,0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GroupStyle.HeaderTemplate>
@@ -212,9 +209,8 @@
 
         <Button x:Name="callServerButton"
                 Grid.Column="0"
-                Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                Margin="10,10,10,0" >
-            <Image Source="Images\waiter.jpg" Stretch="Uniform" Width="100"/>
+                Margin="0" Height="57" RenderTransformOrigin="0.559,-0.936" VerticalAlignment="Top" >
+            <Image Source="Images\waiter.jpg" Stretch="Uniform" Width="50" Height="62" VerticalAlignment="Top"/>
         </Button>
 
 
@@ -229,8 +225,8 @@
             Height="450"
             Panel.ZIndex="2"
             Background="LightGray"
-            Grid.RowSpan="6"
-            Grid.ColumnSpan="6"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
             >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -280,6 +276,13 @@
             <Button Name="quantityAdd" Content="+" HorizontalAlignment="Left" Margin="431,324,0,0" VerticalAlignment="Top" Width="20" Click="IncreaseQuantity" Height="20"/>
             <TextBlock Name="quantityLabel" HorizontalAlignment="Left" Height="24" Margin="297,324,0,0" TextWrapping="Wrap" Text="Quantity:" VerticalAlignment="Top" Width="79" TextAlignment="Right"/>
         </Grid>
+
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="84" Stroke="White" VerticalAlignment="Top" Width="1642" Panel.ZIndex="-2" Grid.ColumnSpan="3"/>
+        <Border BorderBrush="#FFE05431" BorderThickness="0,0,0,13" HorizontalAlignment="Left" Height="84" VerticalAlignment="Top" Width="1642" RenderTransformOrigin="-0.7,2.2" Grid.ColumnSpan="3" Panel.ZIndex="-1"/>
+        <Border BorderBrush="#FFE05431" BorderThickness="4,0" Grid.Column="1" HorizontalAlignment="Left" Height="823" VerticalAlignment="Top" Width="1133" Grid.RowSpan="3" Margin="0,75,0,0"/>
+        <Border BorderBrush="#FFE05431" BorderThickness="4,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Height="823" VerticalAlignment="Top" Width="411" Grid.RowSpan="3" Margin="1162,75,-2,0" Grid.ColumnSpan="2" Panel.ZIndex="-1"/>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="44" Margin="4,84,0,0" Stroke="White" VerticalAlignment="Top" Width="1126" Grid.Column="1" Panel.ZIndex="-1"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="70,0,0,0" TextWrapping="Wrap" Text="Your Orders" VerticalAlignment="Top" FontFamily="{StaticResource Deftone}" FontSize="60" Foreground="#ED2625"/>
 
     </Grid>
 

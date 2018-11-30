@@ -78,6 +78,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HeaderImageGetter.cs" />
     <Compile Include="MenuItem.cs" />
     <Compile Include="OrderItem.cs" />
     <Compile Include="OrderTableView.xaml.cs">
@@ -106,6 +107,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\Roboto-Regular.ttf" />
+    <Resource Include="Fonts\HAMBH___.ttf" />
+    <Resource Include="Fonts\Roboto-Thin.ttf" />
+    <Resource Include="Fonts\MAGNETOB.TTF" />
+    <Resource Include="Fonts\unispace bd.ttf" />
+    <Resource Include="Fonts\DEFTONE.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -175,6 +182,75 @@
     <Resource Include="Images\whiskey.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\order_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\checker_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\drinks_header.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\mains_header.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\sides_header.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\desserts_header.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\horizontal_divider_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\edit_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\refil_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\delete_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\problem_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\taco.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\pizza.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pizza.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gravy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bacon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\potatoes.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\donught.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\candy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icecream.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\water.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tea.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

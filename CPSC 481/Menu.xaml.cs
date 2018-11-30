@@ -92,6 +92,7 @@ namespace CPSC_481
                     rbs[i, j].GroupName = temp;
                 }
             }
+
             Reset();
         }
 
@@ -272,7 +273,30 @@ namespace CPSC_481
                     bool pass = containsMoreThanHalf(Lgroup, visable);
                     if (!pass)
                     {
-                        if (tabIsAhead(Lgroup[0], visable[0]))
+
+                        var offset = 0;
+
+
+                        // Quick and dirty, just dont change the number of items.
+                        switch (menuItemType)
+                        {
+                            case MenuItem.Type.Main:
+                                offset = 0;
+                                break;
+                            case MenuItem.Type.Side:
+                                offset = 1485;
+                                break;
+                            case MenuItem.Type.Dessert:
+                                offset = 2975;
+                                break;
+                            case MenuItem.Type.Drink:
+                                offset = 4465;
+                                break;
+                        }
+
+                        menuItemScrollViewer.ScrollToVerticalOffset(offset);
+
+                        /*if (tabIsAhead(Lgroup[0], visable[0]))
                         {
                             menuItem = group.Items[0];
                             if (!checkIfItemIsInCollection(menuItem, GetVisibleItemsFromListbox(menuItemListView, this)))
@@ -285,9 +309,9 @@ namespace CPSC_481
                             menuItem = group.Items[6];
                             if (!checkIfItemIsInCollection(menuItem, GetVisibleItemsFromListbox(menuItemListView, this)))
                             {
-                                this.menuItemScrollViewer.PageDown();
+                                this.menuItemScrollViewer.ScrollToVerticalOffset(200);
                             }
-                        }
+                        }*/
 
 
                         /*
@@ -305,6 +329,17 @@ namespace CPSC_481
                 
             }
         }
+
+        /// <summary>
+        /// Passes scroll input events to the scrollviewer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuItemListView_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            menuItemScrollViewer.ScrollToVerticalOffset(menuItemScrollViewer.VerticalOffset - e.Delta);
+        }
+
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
@@ -324,6 +359,8 @@ namespace CPSC_481
             {
                 System.Diagnostics.Debug.WriteLine(error);
             }
+
+            
         }
 
         private void toggleOptions(bool onVoff)
@@ -577,5 +614,8 @@ namespace CPSC_481
             toggleOptions(true);
         }
 
+     
     }
+
+
 }

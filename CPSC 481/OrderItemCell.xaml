@@ -27,47 +27,63 @@
                    Width="{Binding Height, RelativeSource={RelativeSource Self}}">
             </Image>
         </Border>
-        
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            
+
             <Label x:Name="titleLabel" 
                    Grid.Row="0"
                    Content="Title"
                    HorizontalAlignment="Left"
-                   Margin="10,0,0,0"
-                   VerticalAlignment="Center"/>
+                   Margin="4,-5,0,27"
+                   VerticalAlignment="Center"
+                   FontFamily="{StaticResource HamburgerHeaven}"
+                   Foreground="#ED2625"
+                   FontSize="24"/>
 
-            <Label x:Name="priceLabel" 
-                   Grid.Row="1"
+            <Label x:Name="priceLabel"
                    Content="Title"
-                   FontWeight="ExtraLight"
                    HorizontalAlignment="Left"
-                   Margin="20,0,0,0"
-                   VerticalAlignment="Center"/>
+                   Margin="17,29,0,0"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   FontFamily="{StaticResource RobotoThin}"/>
         </Grid>
 
         <Button x:Name="editButton"
                 Grid.Column="2"
-                Content="Edit"
                 Height="{Binding ElementName=grid, Path=ActualHeight}"
                 Width="{Binding Height, RelativeSource={RelativeSource Self}}"
-                Click="editButton_Click"/>
+                Click="editButton_Click" 
+                BorderThickness="0,0,0,0"
+                Background="White">
+
+            <StackPanel>
+                <Image Source="Images\menu\edit_button.png" />
+            </StackPanel>
+        </Button>
 
         <Button x:Name="actionButton"
                 Grid.Column="3"
-                Content="Action"
                 Height="{Binding ElementName=grid, Path=ActualHeight}"
                 Width="{Binding Height, RelativeSource={RelativeSource Self}}"
-                Click="actionButton_Click" />
+                Click="actionButton_Click"
+                BorderThickness="0"
+                Background="White"
+                Margin="15,0,0,0">
+
+            <Image x:Name="actionButtonImage" Source="Images\menu\edit_button.png" />
+        </Button>
 
         <Button x:Name="selectedButton"
                 IsEnabled="False"
                 Opacity="0"
-                Click="selectedButton_Click">
+                Click="selectedButton_Click"
+                BorderThickness="0,0,0,0"
+                Background="White">
         </Button>
     </Grid>
 

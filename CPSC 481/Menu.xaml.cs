@@ -455,34 +455,38 @@ namespace CPSC_481
                 }
             }
 
-            OptionsPopUp.Width = optionsCorner.Left + columnGap;
-            OptionsPopUp.Height = (optionsCorner.Top) + 256;
-
-            OptionsPopUp.Margin = new Thickness(((this.Width / 2) - (OptionsPopUp.Width / 2)),
-                                                ((this.Height / 2) - (OptionsPopUp.Height / 2)), 
-                                                0, 
-                                                0);
+            optionsCorner.Left = optionsCorner.Left + columnGap;
 
             specReqTitle.Margin = new Thickness(28, (optionsCorner.Top + optionHeight), 0, 0);
             specReqEntry.Margin = new Thickness(10, (optionsCorner.Top + 2 * optionHeight), 0, 0);
-            specReqEntry.Width = OptionsPopUp.Width - 40;
+            specReqEntry.Width = optionsCorner.Left - 40;
 
-            double left = (OptionsPopUp.Width / 2);
-            double top = OptionsPopUp.Height - 130;
+            optionsCorner.Top = optionsCorner.Top + (3 * optionHeight) + specReqEntry.ActualHeight;
 
-            quantityLabel.Margin = new Thickness((left - (quantityLabel.Width + quantitySub.Width) - 3), top, 0, 0);
-            quantitySub.Margin = new Thickness((left - quantitySub.Width), top, 0, 0);
-            quantityAmount.Margin = new Thickness(left, top, 0, 0);
-            quantityAdd.Margin = new Thickness((left + quantityAmount.Width), top, 0, 0);
+            double left = optionsCorner.Left / 2;
 
-            totalTitle.Margin = new Thickness((left - totalTitle.Width), (top + quantityAmount.Height + 5), 0, 0);
-            totalLabel.Margin = new Thickness(left, (top + quantityAmount.Height + 5), 0, 0);
+            quantityLabel.Margin = new Thickness((left - (quantityLabel.Width + quantitySub.Width) - 3), optionsCorner.Top, 0, 0);
+            quantitySub.Margin = new Thickness((left - quantitySub.Width), optionsCorner.Top, 0, 0);
+            quantityAmount.Margin = new Thickness(left, optionsCorner.Top, 0, 0);
+            quantityAdd.Margin = new Thickness((left + quantityAmount.Width), optionsCorner.Top, 0, 0);
 
+            totalTitle.Margin = new Thickness((left - totalTitle.Width), (optionsCorner.Top + quantityAmount.Height + 5), 0, 0);
+            totalLabel.Margin = new Thickness(left, (optionsCorner.Top + quantityAmount.Height + 5), 0, 0);
 
-            addButton.Margin = new Thickness((OptionsPopUp.Width - 75), (OptionsPopUp.Height - 75), 0, 0);
-            cancelButton.Margin = new Thickness(10, (OptionsPopUp.Height - 75), 0, 0);
+            optionsCorner.Top = totalLabel.Margin.Top + optionHeight;
+
+            addButton.Margin = new Thickness((optionsCorner.Left - addButton.ActualWidth), (optionsCorner.Top), 0, 0);
+            cancelButton.Margin = new Thickness(0, (optionsCorner.Top), 0, 0);
 
             totalLabel.Text = baseCost.ToString("0.00");
+
+            OptionsPopUp.Width = optionsCorner.Left;
+            OptionsPopUp.Height = optionsCorner.Top + addButton.ActualHeight;
+
+            OptionsPopUp.Margin = new Thickness(((this.Width / 2) - (OptionsPopUp.Width / 2)),
+                                                ((this.Height / 2) - (OptionsPopUp.Height / 2)),
+                                                0,
+                                                0);
         }
 
         private void Reset()

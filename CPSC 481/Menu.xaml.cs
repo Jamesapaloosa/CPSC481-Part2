@@ -42,6 +42,8 @@ namespace CPSC_481
 
         Boolean isScrolling = false;
 
+        double prevTouchPoint = 0;
+
         public Menu()
         {
             InitializeComponent();
@@ -340,6 +342,16 @@ namespace CPSC_481
             menuItemScrollViewer.ScrollToVerticalOffset(menuItemScrollViewer.VerticalOffset - e.Delta);
         }
 
+        private void menuItemListView_TouchDrag(object sender, TouchEventArgs t)
+        {
+            if (prevTouchPoint == 0)
+            {
+                prevTouchPoint = t.GetTouchPoint(this).Position.Y;
+            }
+            menuItemScrollViewer.ScrollToVerticalOffset(menuItemScrollViewer.VerticalOffset - (t.GetTouchPoint(this).Position.Y - prevTouchPoint));
+            prevTouchPoint = t.GetTouchPoint(this).Position.Y;
+        }
+
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
@@ -618,7 +630,10 @@ namespace CPSC_481
             toggleOptions(true);
         }
 
-     
+        private void menuItemListView_TouchUp(object sender, TouchEventArgs e)
+        {
+            prevTouchPoint = 0;
+        }
     }
 
 

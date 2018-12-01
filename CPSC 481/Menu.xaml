@@ -139,14 +139,14 @@
             CanContentScroll="True"
             VerticalScrollBarVisibility="Hidden"
             ScrollChanged="ScrollViewer_ScrollChanged"
-            PanningMode="VerticalOnly" Margin="0,0,30,0">
+            PanningMode="VerticalOnly" Margin="0,0,30,0"
+            TouchMove="menuItemListView_TouchDrag"
+            TouchUp="menuItemListView_TouchUp">
             <ListView x:Name= "menuItemListView"
                           SelectionMode="Single"
                           SelectionChanged="MenuItemListView_SelectionChanged"
                           ScrollViewer.CanContentScroll="True"
-                          PreviewMouseWheel="menuItemListView_PreviewMouseWheel" Width="1281" BorderBrush="Orange" BorderThickness="0"
-                          TouchMove="menuItemListView_TouchDrag"
-                          TouchUp="menuItemListView_TouchUp">
+                          PreviewMouseWheel="menuItemListView_PreviewMouseWheel" Width="1281" BorderBrush="Orange" BorderThickness="0">
                 <ListView.View>
                     <GridView>
 
@@ -216,8 +216,18 @@
         </Button>
 
 
+        <local:OptionsMenu 
+            x:Name="OptionsPopUp" 
+            Margin="0,0,0,0"
+            Visibility="Hidden"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Panel.ZIndex="2"
+            Background="LightGray"
+            Grid.RowSpan="6"
+            Grid.ColumnSpan="6"/>
 
-        <Grid 
+        <!--Grid 
             Visibility="Hidden"
             Name="OptionsPopUp"
             Margin="0,0,0,0"
@@ -277,7 +287,7 @@
             <Button Name="quantitySub" Content="-" HorizontalAlignment="Left" Margin="381,324,0,0" VerticalAlignment="Top" Width="20" Click="DecreaseQuantity" Height="20"/>
             <Button Name="quantityAdd" Content="+" HorizontalAlignment="Left" Margin="431,324,0,0" VerticalAlignment="Top" Width="20" Click="IncreaseQuantity" Height="20"/>
             <TextBlock Name="quantityLabel" HorizontalAlignment="Left" Height="24" Margin="297,324,0,0" TextWrapping="Wrap" Text="Quantity:" VerticalAlignment="Top" Width="79" TextAlignment="Right"/>
-        </Grid>
+        </-->
 
         <Rectangle Fill="White" HorizontalAlignment="Left" Height="84" Stroke="White" VerticalAlignment="Top" Width="1642" Panel.ZIndex="-2" Grid.ColumnSpan="3"/>
         <Border BorderBrush="#FFE05431" BorderThickness="0,0,0,13" HorizontalAlignment="Left" Height="84" VerticalAlignment="Top" Width="1642" RenderTransformOrigin="-0.7,2.2" Grid.ColumnSpan="3" Panel.ZIndex="-1"/>

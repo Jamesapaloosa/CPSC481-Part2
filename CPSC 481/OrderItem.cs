@@ -4,7 +4,7 @@ namespace CPSC_481
 {
     public class OrderItem
     {
-        public Menu sourceMenu { get; private set; }
+        public OptionsMenu sourceMenu { get; private set; }
         public MenuItem menuItem { get; private set; }
         public int[] options;
         public bool isFinalized;
@@ -18,12 +18,12 @@ namespace CPSC_481
         }
 
 
-        public OrderItem(MenuItem menuItem, int[] options, Menu sourceMenu)
+        public OrderItem(MenuItem menuItem, int[] options, OptionsMenu sourceOptionsMenu)
         {
             this.menuItem = menuItem;
             this.options = options;
             this.isFinalized = false;
-            this.sourceMenu = sourceMenu;
+            this.sourceMenu = sourceOptionsMenu;
         }
     }
 }

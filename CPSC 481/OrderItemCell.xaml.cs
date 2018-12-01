@@ -2,6 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace CPSC_481
 {
@@ -49,17 +50,23 @@ namespace CPSC_481
                 switch (this.orderItem.menuItem.type)
                 {
                     case MenuItem.Type.Drink:
-                        this.actionButton.Content = "Refill";
+                        actionButtonImage.Source = new BitmapImage(
+                                new Uri("pack://application:,,,/CPSC 481;component/Images/menu/refil_button.png", UriKind.RelativeOrAbsolute));
                         break;
                     default:
-                        this.actionButton.Content = "Problem";
+                        actionButtonImage.Source = new BitmapImage(
+                              new Uri("pack://application:,,,/CPSC 481;component/Images/menu/problem_button.png", UriKind.RelativeOrAbsolute));
                         break;
                 }
+
+                editButton.Visibility = Visibility.Collapsed;
             }
             else
             {
-                this.actionButton.Content = "Delete";
+                actionButtonImage.Source = new BitmapImage(
+                                new Uri("pack://application:,,,/CPSC 481;component/Images/menu/delete_button.png", UriKind.RelativeOrAbsolute));
             }
+
         }
 
         private void actionButton_Click(object sender, RoutedEventArgs e)

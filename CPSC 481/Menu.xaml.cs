@@ -36,11 +36,12 @@ namespace CPSC_481
         int columnGap = 20;
         int optionHeight = 17;
         MenuItem currentSelection;
-        private object menuItem;
         public int[] oldOrder = new int[5];
         bool editingOldOrder = false;
 
         Boolean isScrolling = false;
+
+        double prevTouchPoint = 0;
 
         public Menu()
         {
@@ -51,48 +52,8 @@ namespace CPSC_481
             CollectionView collectionViewSource = (CollectionView)CollectionViewSource.GetDefaultView(this.LoadMenuItems());
             collectionViewSource.GroupDescriptions.Add(new PropertyGroupDescription("type"));
             this.menuItemListView.ItemsSource = collectionViewSource;
-            
-            // Options menu initialization
 
-            rbs[0, 0] = rb0;
-            rbs[0, 1] = rb1;
-            rbs[0, 2] = rb2;
-            rbs[0, 3] = rb3;
-            rbs[0, 4] = rb4;
-            rbs[1, 0] = rb5;
-            rbs[1, 1] = rb6;
-            rbs[1, 2] = rb7;
-            rbs[1, 3] = rb8;
-            rbs[1, 4] = rb9;
-            rbs[2, 0] = rb10;
-            rbs[2, 1] = rb11;
-            rbs[2, 2] = rb12;
-            rbs[2, 3] = rb13;
-            rbs[2, 4] = rb14;
-            rbs[3, 0] = rb15;
-            rbs[3, 1] = rb16;
-            rbs[3, 2] = rb17;
-            rbs[3, 3] = rb18;
-            rbs[3, 4] = rb19;
-            rbs[4, 0] = rb20;
-            rbs[4, 1] = rb21;
-            rbs[4, 2] = rb22;
-            rbs[4, 3] = rb23;
-            rbs[4, 4] = rb24;
-            optionLabels[0] = selection1Label;
-            optionLabels[1] = selection2Label;
-            optionLabels[2] = selection3Label;
-            optionLabels[3] = selection4Label;
-            optionLabels[4] = selection5Label;
-            for (int i = 0; i < rbs.GetLength(0); i++)
-            {
-                string temp = "Option" + i.ToString();
-                for (int j = 0; j < rbs.GetLength(1); j++)
-                {
-                    rbs[i, j].GroupName = temp;
-                }
-            }
-            Reset();
+            OptionsPopUp.SetupOptionsMenu(this, (this.LoadMenuItems()).ElementAt(0), orderTableView);
         }
 
         private List<MenuItem> LoadMenuItems()
@@ -148,17 +109,14 @@ namespace CPSC_481
                 string contents = File.ReadAllText(System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\")) + path);
                 char[] deliminaters = new char[] { '\r', '\n' };
                 string[] temp1 = contents.Split(deliminaters, StringSplitOptions.RemoveEmptyEntries);
-                //System.Diagnostics.Debug.WriteLine("contents = " + contents.ToString());
                 for (int i = 0; (i < temp1.Length && (i < ret.GetLength(0))); i++)
                 {
                     if (!(String.IsNullOrEmpty(temp1[i])))
                     {
-                        //System.Diagnostics.Debug.WriteLine("temp1 = " + temp1[i]);
                         string[] fullSplit = temp1[i].Split('_');
                         ret[i, 0, 0] = fullSplit[0];
                         for (int j = 1; ((j < fullSplit.Length) && (j < ret.GetLength(1))); j++)
                         {
-                            //System.Diagnostics.Debug.WriteLine("Full Split = " + fullSplit[j]);
                             string[] temp2 = fullSplit[j].Split(',');
                             if (temp2.Length == 2)
                             {
@@ -272,7 +230,30 @@ namespace CPSC_481
                     bool pass = containsMoreThanHalf(Lgroup, visable);
                     if (!pass)
                     {
-                        if (tabIsAhead(Lgroup[0], visable[0]))
+
+                        var offset = 0;
+
+
+                        // Quick and dirty, just dont change the number of items.
+                        switch (menuItemType)
+                        {
+                            case MenuItem.Type.Main:
+                                offset = 0;
+                                break;
+                            case MenuItem.Type.Side:
+                                offset = 1485;
+                                break;
+                            case MenuItem.Type.Dessert:
+                                offset = 2975;
+                                break;
+                            case MenuItem.Type.Drink:
+                                offset = 4465;
+                                break;
+                        }
+
+                        menuItemScrollViewer.ScrollToVerticalOffset(offset);
+
+                        /*if (tabIsAhead(Lgroup[0], visable[0]))
                         {
                             menuItem = group.Items[0];
                             if (!checkIfItemIsInCollection(menuItem, GetVisibleItemsFromListbox(menuItemListView, this)))
@@ -285,9 +266,9 @@ namespace CPSC_481
                             menuItem = group.Items[6];
                             if (!checkIfItemIsInCollection(menuItem, GetVisibleItemsFromListbox(menuItemListView, this)))
                             {
-                                this.menuItemScrollViewer.PageDown();
+                                this.menuItemScrollViewer.ScrollToVerticalOffset(200);
                             }
-                        }
+                        }*/
 
 
                         /*
@@ -305,6 +286,27 @@ namespace CPSC_481
                 
             }
         }
+
+        /// <summary>
+        /// Passes scroll input events to the scrollviewer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuItemListView_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            menuItemScrollViewer.ScrollToVerticalOffset(menuItemScrollViewer.VerticalOffset - e.Delta);
+        }
+
+        private void menuItemListView_TouchDrag(object sender, TouchEventArgs t)
+        {
+            if (prevTouchPoint == 0)
+            {
+                prevTouchPoint = t.GetTouchPoint(this).Position.Y;
+            }
+            menuItemScrollViewer.ScrollToVerticalOffset(menuItemScrollViewer.VerticalOffset - (t.GetTouchPoint(this).Position.Y - prevTouchPoint));
+            prevTouchPoint = t.GetTouchPoint(this).Position.Y;
+        }
+
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
@@ -324,9 +326,11 @@ namespace CPSC_481
             {
                 System.Diagnostics.Debug.WriteLine(error);
             }
+
+            
         }
 
-        private void toggleOptions(bool onVoff)
+        public void toggleOptions(bool onVoff)
         {
             bool val;
             if (onVoff)
@@ -345,7 +349,7 @@ namespace CPSC_481
             {
                 toggleOptions(false);
                 MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
-                this.NewOptionsMenu(menuItem);
+                OptionsPopUp.NewOptionsMenu(menuItem);
             }
             catch (Exception error)
             {
@@ -357,11 +361,11 @@ namespace CPSC_481
         {
 
         }
-        
+        /*
         public void EditOptionsMenu(MenuItem item, int[] chosenOptions)
         {
             oldOrder = chosenOptions;
-            NewOptionsMenu(item);
+            //NewOptionsMenu(item);
             for (int i = 0; i < 5; i++)
             {
                 if ((chosenOptions[i] >= 0) && (chosenOptions[i] < 5))
@@ -371,7 +375,7 @@ namespace CPSC_481
             }
             editingOldOrder = true;
         }
-        
+        /*
         private void NewOptionsMenu(MenuItem item)
         {
             Reset();
@@ -418,34 +422,38 @@ namespace CPSC_481
                 }
             }
 
-            OptionsPopUp.Width = optionsCorner.Left + columnGap;
-            OptionsPopUp.Height = (optionsCorner.Top) + 256;
-
-            OptionsPopUp.Margin = new Thickness(((this.Width / 2) - (OptionsPopUp.Width / 2)),
-                                                ((this.Height / 2) - (OptionsPopUp.Height / 2)), 
-                                                0, 
-                                                0);
+            optionsCorner.Left = optionsCorner.Left + columnGap;
 
             specReqTitle.Margin = new Thickness(28, (optionsCorner.Top + optionHeight), 0, 0);
             specReqEntry.Margin = new Thickness(10, (optionsCorner.Top + 2 * optionHeight), 0, 0);
-            specReqEntry.Width = OptionsPopUp.Width - 40;
+            specReqEntry.Width = optionsCorner.Left - 40;
 
-            double left = (OptionsPopUp.Width / 2);
-            double top = OptionsPopUp.Height - 130;
+            optionsCorner.Top = optionsCorner.Top + (3 * optionHeight) + specReqEntry.ActualHeight;
 
-            quantityLabel.Margin = new Thickness((left - (quantityLabel.Width + quantitySub.Width) - 3), top, 0, 0);
-            quantitySub.Margin = new Thickness((left - quantitySub.Width), top, 0, 0);
-            quantityAmount.Margin = new Thickness(left, top, 0, 0);
-            quantityAdd.Margin = new Thickness((left + quantityAmount.Width), top, 0, 0);
+            double left = optionsCorner.Left / 2;
 
-            totalTitle.Margin = new Thickness((left - totalTitle.Width), (top + quantityAmount.Height + 5), 0, 0);
-            totalLabel.Margin = new Thickness(left, (top + quantityAmount.Height + 5), 0, 0);
+            quantityLabel.Margin = new Thickness((left - (quantityLabel.Width + quantitySub.Width) - 3), optionsCorner.Top, 0, 0);
+            quantitySub.Margin = new Thickness((left - quantitySub.Width), optionsCorner.Top, 0, 0);
+            quantityAmount.Margin = new Thickness(left, optionsCorner.Top, 0, 0);
+            quantityAdd.Margin = new Thickness((left + quantityAmount.Width), optionsCorner.Top, 0, 0);
 
+            totalTitle.Margin = new Thickness((left - totalTitle.Width), (optionsCorner.Top + quantityAmount.Height + 5), 0, 0);
+            totalLabel.Margin = new Thickness(left, (optionsCorner.Top + quantityAmount.Height + 5), 0, 0);
 
-            addButton.Margin = new Thickness((OptionsPopUp.Width - 75), (OptionsPopUp.Height - 75), 0, 0);
-            cancelButton.Margin = new Thickness(10, (OptionsPopUp.Height - 75), 0, 0);
+            optionsCorner.Top = totalLabel.Margin.Top + optionHeight;
+
+            addButton.Margin = new Thickness((optionsCorner.Left - addButton.ActualWidth), (optionsCorner.Top), 0, 0);
+            cancelButton.Margin = new Thickness(0, (optionsCorner.Top), 0, 0);
 
             totalLabel.Text = baseCost.ToString("0.00");
+
+            OptionsPopUp.Width = optionsCorner.Left;
+            OptionsPopUp.Height = optionsCorner.Top + addButton.ActualHeight;
+
+            OptionsPopUp.Margin = new Thickness(((this.Width / 2) - (OptionsPopUp.Width / 2)),
+                                                ((this.Height / 2) - (OptionsPopUp.Height / 2)),
+                                                0,
+                                                0);
         }
 
         private void Reset()
@@ -576,6 +584,12 @@ namespace CPSC_481
             }
             toggleOptions(true);
         }
-
+        */
+        private void menuItemListView_TouchUp(object sender, TouchEventArgs e)
+        {
+            prevTouchPoint = 0;
+        }
     }
+
+
 }

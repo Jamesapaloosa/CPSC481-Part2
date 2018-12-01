@@ -3,12 +3,37 @@
    xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006"  
    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008"  
-   Background="Black"
+   Background="White"
    mc:Ignorable = "d" 
    d:DesignHeight = "800" 
    d:DesignWidth = "300">
 
-    <Grid Background="PeachPuff" 
+    <UserControl.Resources>
+
+
+        <Style TargetType="{x:Type Button}" x:Key="payButton">
+            <Setter Property="Background" Value="#67913D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="400"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="{StaticResource Unispace}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Background="White" 
           Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -23,18 +48,13 @@
         
         
         
-        <Label Content="Your Order"
-               Grid.Row="0"
-               FontSize="20" 
-               FontWeight="Bold"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center" />
+      
         
-        <ScrollViewer Height="auto" Width="auto" Grid.Row="1">
+        <ScrollViewer Height="auto" Width="auto" Grid.Row="1" Margin="10,10,10,10" VerticalScrollBarVisibility="Hidden">
             <StackPanel x:Name="stackPanel" Height="auto" Width="auto"></StackPanel>
         </ScrollViewer>
 
-        <Grid Background="YellowGreen" 
+        <Grid Background="White" 
               Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -42,27 +62,29 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-
+            <Image Source="Images\menu\horizontal_divider_1.png" Margin="0,-27,0,27" />
 
             <Label Content="Order Total"
-                   FontSize="20" 
+                   FontSize="50" 
                    FontWeight="Bold"
                    Grid.Row="0"
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" />
+                   VerticalAlignment="Center" 
+                   FontFamily="{StaticResource Magneto}"
+                   Foreground="#ED2625" Margin="28,5,30,32" Grid.RowSpan="2"/>
             <Label x:Name="totalPriceLabel" 
                    Content="Price"
-                   FontSize="20" 
-                   FontWeight="ExtraLight"
+                   FontSize="26" 
                    Grid.Row="1"
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" />
+                   VerticalAlignment="Center" 
+                   FontFamily="{StaticResource RobotoThin}" Margin="118,45,116,0"/>
             <Button x:Name="actionButton" 
                     Content="Order"
-                    Margin="10,10,10,10"
-                    FontSize="20" 
+                    Margin="20,10,20,10"
                     Grid.Row="2" 
-                    Click="ActionButton_Click"/>
+                    Click="ActionButton_Click"
+                    Style="{StaticResource payButton}" Width="280"/>
         </Grid>
     </Grid>
 

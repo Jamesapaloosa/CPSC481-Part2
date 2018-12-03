@@ -16,6 +16,9 @@ namespace CPSC_481
 
         private void Reset()
         {
+            this.finalizedItemStackPanel.Children.Clear();
+            this.pendingItemStackPanel.Children.Clear();
+
             this.Update();
         }
 
@@ -31,30 +34,33 @@ namespace CPSC_481
                 totalPrice += cell.orderItem.totalPrice;
             }
             this.totalPriceLabel.Content = String.Format("{0:C}", totalPrice);
-            
+
 
 
             //this.finalizedItemSectionHeader.Height = (this.finalizedItemStackPanel.Children.Count == 0) ? 0.0 : Double.NaN;
             //this.pendingItemSectionHeader.Height = (this.pendingItemStackPanel.Children.Count == 0) ? 0.0 : Double.NaN;
-            
+
+            this.finalizedItemSectionHeader.Height = 0.0;
+            this.pendingItemSectionHeader.Height = 0.0;
+            this.actionGrid.Height = 0.0;
+
+            if (this.finalizedItemStackPanel.Children.Count > 0)
+            {
+                this.finalizedItemSectionHeader.Height = Double.NaN;
+                this.actionGrid.Height = Double.NaN;
+                this.actionButton.Content = "Pay";
+            }
             if (this.pendingItemStackPanel.Children.Count > 0)
             {
                 this.pendingItemSectionHeader.Height = Double.NaN;
                 this.actionGrid.Height = Double.NaN;
                 this.actionButton.Content = "Order";
             }
-            else if (this.finalizedItemStackPanel.Children.Count > 0)
-            {
-                this.finalizedItemSectionHeader.Height = Double.NaN;
-                this.actionGrid.Height = Double.NaN;
-                this.actionButton.Content = "Pay";
-            }
-            else
-            {
-                this.finalizedItemSectionHeader.Height = 0.0;
-                this.pendingItemSectionHeader.Height = 0.0;
-                this.actionGrid.Height = 0.0;
-            }
+
+
+
+            this.actionButton.Height = Double.NaN;
+            this.actionConfirmationView.Height = 0.0;
         }
 
         public void Add(OrderItem orderItem)
@@ -65,6 +71,8 @@ namespace CPSC_481
             this.pendingItemStackPanel.Children.Add(orderItemCell);
 
 			this.Update();
+
+            this.scrollViewer.ScrollToEnd();
 		}
 
         public void Remove(OrderItemCell orderItemCell)
@@ -94,28 +102,27 @@ namespace CPSC_481
 
         private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
+            this.totalPriceLabel.Content = "Art thou sure?";
+            this.actionButton.Height = 0.0;
+            this.actionConfirmationView.Height = Double.NaN;
+        }
+
+        private void ConfirmationNoButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.actionButton.Height = Double.NaN;
+            this.actionConfirmationView.Height = 0.0;
+        }
+
+        private void ConfirmationYesButton_Click(object sender, RoutedEventArgs e)
+        {
             if (this.pendingItemStackPanel.Children.Count > 0)
             {
-                MessageBoxResult result = MessageBox.Show("Confirm Order?",
-                                          "PS. You can still order more items.",
-                                          MessageBoxButton.OKCancel);
-
-                if (result == MessageBoxResult.OK)
-                {
-                    this.FinalizeOrder();
-                }
+                this.FinalizeOrder();
             }
             else if (this.finalizedItemStackPanel.Children.Count > 0)
             {
-                MessageBoxResult result = MessageBox.Show("Close order and pay?",
-                                          "Confirmation",
-                                          MessageBoxButton.OKCancel,
-                                          MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.OK)
-                {
-                    MessageBox.Show("Server is on the way!");
-                }
+                MessageBox.Show("Server is on the way!");
+                this.Reset();
             }
         }
 

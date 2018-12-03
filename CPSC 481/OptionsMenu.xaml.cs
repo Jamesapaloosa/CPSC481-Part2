@@ -252,9 +252,9 @@ namespace CPSC_481
 
             try
             {
-                // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
                 OrderItem orderItem = new OrderItem(item, this.optionsCost, options, this);
                 this.orderTable.Add(orderItem);
+                menu.menuItemListView.SelectedItem = null;
                 this.Reset();
             }
             catch (Exception error)
@@ -283,6 +283,7 @@ namespace CPSC_481
             }
             else
             {
+                menu.menuItemListView.SelectedItem = null;
                 this.Reset();
             }
             menu.toggleOptions(true);

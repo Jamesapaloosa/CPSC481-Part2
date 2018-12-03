@@ -14,7 +14,8 @@ namespace CPSC_481
         string[] optionTitles = new string[5];
         string[,] optionOptions = new string[5, 5];
         decimal[,] optionPrices = new decimal[5, 5];
-        decimal baseCost = 0;
+        decimal baseCost = 0.0m;
+        decimal optionsCost = 0.0m;
 
         Thickness defaultCorner;
         Thickness optionsCorner;
@@ -185,6 +186,7 @@ namespace CPSC_481
                 }
             }
             editingOldOrder = true;
+            this.UpdateTotal(null, null);
         }
 
         private void IncreaseQuantity(object sender, RoutedEventArgs e)
@@ -208,19 +210,20 @@ namespace CPSC_481
 
         private void UpdateTotal(object sender, RoutedEventArgs e)
         {
-            decimal temp = baseCost;
+            this.optionsCost = 0.0m;
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
                     if ((rbs[i, j].IsChecked == true) && (rbs[i, j].Visibility.Equals(Visibility.Visible)))
                     {
-                        temp = temp + optionPrices[i, j];
+                        this.optionsCost += optionPrices[i, j];
                     }
                 }
             }
-            temp = temp * (Convert.ToInt32(quantityAmount.Text));
-            totalLabel.Text = temp.ToString("0.00");
+            Int32 quantity = Convert.ToInt32(quantityAmount.Text);
+            decimal totalCost = (this.baseCost + this.optionsCost) * quantity;
+            totalLabel.Text = totalCost.ToString("0.00");
         }
 
         private void SpecReqEntry_GotFocus(object sender, RoutedEventArgs e)
@@ -250,7 +253,7 @@ namespace CPSC_481
             try
             {
                 // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
-                OrderItem orderItem = new OrderItem(item, options, this);
+                OrderItem orderItem = new OrderItem(item, this.optionsCost, options, this);
                 this.orderTable.Add(orderItem);
                 this.Reset();
             }
@@ -269,7 +272,7 @@ namespace CPSC_481
                 try
                 {
                     // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
-                    OrderItem orderItem = new OrderItem(item, oldOrder, this);
+                    OrderItem orderItem = new OrderItem(item, this.optionsCost, oldOrder, this);
                     this.orderTable.Add(orderItem);
                     this.Reset();
                 }

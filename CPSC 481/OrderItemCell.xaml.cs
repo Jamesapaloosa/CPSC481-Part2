@@ -6,13 +6,6 @@ using System.Windows.Media;
 
 namespace CPSC_481
 {
-    
-    
-
-
-
-
-
     public partial class OrderItemCell : UserControl
     {
         public enum ActionType { Edit, Delete, RequestServer }

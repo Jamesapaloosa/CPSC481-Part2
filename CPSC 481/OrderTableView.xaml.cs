@@ -7,14 +7,6 @@ namespace CPSC_481
 {
     public partial class OrderTableView : UserControl
     {
-        private decimal totalPrice;
-        private int pendingOrderItemCount;
-        private int finalizedOrderItemCount;
-
-
-
-
-
         public OrderTableView()
         {
             InitializeComponent();
@@ -24,23 +16,45 @@ namespace CPSC_481
 
         private void Reset()
         {
-            this.totalPrice = 0.0m;
-            this.pendingOrderItemCount = 0;
-            this.finalizedOrderItemCount = 0;
-
             this.Update();
         }
 
         private void Update()
         {
-            this.totalPriceLabel.Content = String.Format("{0:C}", this.totalPrice);
+            decimal totalPrice = 0.0m;
+            foreach (OrderItemCell cell in this.finalizedItemStackPanel.Children)
+            {
+                totalPrice += cell.orderItem.totalPrice;
+            }
+            foreach (OrderItemCell cell in this.pendingItemStackPanel.Children)
+            {
+                totalPrice += cell.orderItem.totalPrice;
+            }
+            this.totalPriceLabel.Content = String.Format("{0:C}", totalPrice);
+            
 
-            this.actionButton.IsEnabled = !(this.stackPanel.Children.Count == 0);
 
-            if (this.pendingOrderItemCount > 0)
+            //this.finalizedItemSectionHeader.Height = (this.finalizedItemStackPanel.Children.Count == 0) ? 0.0 : Double.NaN;
+            //this.pendingItemSectionHeader.Height = (this.pendingItemStackPanel.Children.Count == 0) ? 0.0 : Double.NaN;
+            
+            if (this.pendingItemStackPanel.Children.Count > 0)
+            {
+                this.pendingItemSectionHeader.Height = Double.NaN;
+                this.actionGrid.Height = Double.NaN;
                 this.actionButton.Content = "Order";
-            else if (this.finalizedOrderItemCount > 0)
+            }
+            else if (this.finalizedItemStackPanel.Children.Count > 0)
+            {
+                this.finalizedItemSectionHeader.Height = Double.NaN;
+                this.actionGrid.Height = Double.NaN;
                 this.actionButton.Content = "Pay";
+            }
+            else
+            {
+                this.finalizedItemSectionHeader.Height = 0.0;
+                this.pendingItemSectionHeader.Height = 0.0;
+                this.actionGrid.Height = 0.0;
+            }
         }
 
         public void Add(OrderItem orderItem)
@@ -48,43 +62,39 @@ namespace CPSC_481
             OrderItemCell orderItemCell = new OrderItemCell(orderItem, this);
 
             orderItemCell.OnAction += this.OrderItemCell_OnAction;
-            this.stackPanel.Children.Add(orderItemCell);
-            
-            this.totalPrice += orderItem.totalPrice;
-            this.pendingOrderItemCount += 1;
+            this.pendingItemStackPanel.Children.Add(orderItemCell);
 
 			this.Update();
 		}
 
         public void Remove(OrderItemCell orderItemCell)
         {
-            this.stackPanel.Children.Remove(orderItemCell);
-
-            this.totalPrice -= orderItemCell.orderItem.menuItem.price;
-            this.pendingOrderItemCount -= 1;
+            this.pendingItemStackPanel.Children.Remove(orderItemCell);
 
             this.Update();
         }
 
         private void FinalizeOrder()
         {
-            this.finalizedOrderItemCount += this.pendingOrderItemCount;
-            this.pendingOrderItemCount = 0;
-
-            foreach (var child in this.stackPanel.Children)
+            foreach (OrderItemCell orderItemCell in this.pendingItemStackPanel.Children)
             {
-                OrderItemCell orderItemCell = (OrderItemCell)child;
-                orderItemCell.orderItem.isFinalized = true;
-                orderItemCell.update();
+                OrderItemCell orderItemCellCopy = new OrderItemCell(orderItemCell.orderItem, this);
+                orderItemCellCopy.OnAction += this.OrderItemCell_OnAction;
+
+                this.finalizedItemStackPanel.Children.Add(orderItemCellCopy);
+                orderItemCellCopy.orderItem.isFinalized = true;
+                orderItemCellCopy.update();
                 //orderItemCell.IsEnabled = !orderItemCell.orderItem.isFinalized;
             }
+            this.pendingItemStackPanel.Children.Clear();
+            
 
             this.Update();
         }
 
         private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.pendingOrderItemCount > 0)
+            if (this.pendingItemStackPanel.Children.Count > 0)
             {
                 MessageBoxResult result = MessageBox.Show("Confirm Order?",
                                           "PS. You can still order more items.",
@@ -95,7 +105,7 @@ namespace CPSC_481
                     this.FinalizeOrder();
                 }
             }
-            else if (this.finalizedOrderItemCount > 0)
+            else if (this.finalizedItemStackPanel.Children.Count > 0)
             {
                 MessageBoxResult result = MessageBox.Show("Close order and pay?",
                                           "Confirmation",

@@ -14,17 +14,17 @@ namespace CPSC_481
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
 
-            MenuItem.Type type = (MenuItem.Type)value;
+            MenuObject.Type type = (MenuObject.Type)value;
 
             switch (type)
             {
-                case MenuItem.Type.Main:
+                case MenuObject.Type.Main:
                     return "Images/menu/mains_header.png";
-                case MenuItem.Type.Drink:
+                case MenuObject.Type.Drink:
                     return "Images/menu/drinks_header.png";
-                case MenuItem.Type.Side:
+                case MenuObject.Type.Side:
                     return "Images/menu/sides_header.png";
-                case MenuItem.Type.Dessert:
+                case MenuObject.Type.Dessert:
                     return "Images/menu/desserts_header.png";
             }
 

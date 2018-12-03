@@ -6,53 +6,133 @@
    mc:Ignorable = "d"
    Name="optionsMenuWindow" Height="443.333" Width="774">
 
+
+    <UserControl.Resources>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="FontFamily" Value="{StaticResource RobotoRegular}"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="headers">
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="FontFamily" Value="{StaticResource HamburgerHeaven}"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+
+
+        <Style TargetType="{x:Type Button}" x:Key="cancelButton">
+            <Setter Property="Margin" Value="50,0,0,0"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Background" Value="#67913D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="{StaticResource Unispace}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style TargetType="{x:Type Button}" x:Key="addButton">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Background" Value="#67913D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="{StaticResource Unispace}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="quantButton">
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="{StaticResource Unispace}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+
     <Grid 
+        
+        
             Name="optionsMenu"
             VerticalAlignment="Top"
             HorizontalAlignment="Left"
             Panel.ZIndex="2"
-            Background="LightGray" Height="444"
+            Background="White" Height="615" Margin="0,0,-539,-172" Width="1313"
             >
-        <TextBlock Name="selection1Label" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="- Choose Bread:" VerticalAlignment="Top" Width="140"/>
-        <TextBlock Name="selection2Label"  HorizontalAlignment="Left" Margin="10,53,0,0" TextWrapping="Wrap" Text="- Choose Side:" VerticalAlignment="Top" Width="140"/>
-        <TextBlock Name="selection3Label"  HorizontalAlignment="Left" Margin="10,96,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
-        <TextBlock Name="selection4Label"  HorizontalAlignment="Left" Margin="10,139,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
-        <TextBlock Name="selection5Label"  HorizontalAlignment="Left" Margin="10,182,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
-        <TextBlock Name="specReqTitle" HorizontalAlignment="Left" Margin="19,227,0,0" TextWrapping="Wrap" Text="Special Requests:" VerticalAlignment="Top"/>
-        <TextBox Name="specReqEntry" HorizontalAlignment="Left" Height="85" Margin="1,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="773" GotFocus="SpecReqEntry_GotFocus" LostFocus="SpecReqEntry_LostFocus"/>
-        <Button Name="addButton" Content="ADD ->" HorizontalAlignment="Left" Margin="716,408,0,0" VerticalAlignment="Top" Width="58" RenderTransformOrigin="-0.238,-0.075" Height="36" Click="AddButtonClicked"/>
-        <Button Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="1,408,0,0" VerticalAlignment="Top" Width="59" RenderTransformOrigin="-0.238,-0.075" Height="36" Click="CancelButtonClicked" />
-        <TextBlock Name="totalLabel" HorizontalAlignment="Left" Margin="397,387,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top"/>
-        <TextBlock Name="totalTitle" HorizontalAlignment="Left" Margin="354,387,0,0" TextWrapping="Wrap" Text="Total: $" VerticalAlignment="Top" Width="43"/>
-        <RadioButton Name="rb0" Content="RadioButton" HorizontalAlignment="Left" Margin="28,31,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb1" Content="RadioButton" HorizontalAlignment="Left" Margin="182,31,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb2" Content="RadioButton" HorizontalAlignment="Left" Margin="326,31,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb3" Content="RadioButton" HorizontalAlignment="Left" Margin="490,31,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb4" Content="RadioButton" HorizontalAlignment="Left" Margin="634,31,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb5" Content="RadioButton" HorizontalAlignment="Left" Margin="28,74,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb6" Content="RadioButton" HorizontalAlignment="Left" Margin="182,74,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb7" Content="RadioButton" HorizontalAlignment="Left" Margin="326,74,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb8" Content="RadioButton" HorizontalAlignment="Left" Margin="490,74,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb9" Content="RadioButton" HorizontalAlignment="Left" Margin="634,74,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb10" Content="RadioButton" HorizontalAlignment="Left" Margin="28,117,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb11" Content="RadioButton" HorizontalAlignment="Left" Margin="182,117,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb12" Content="RadioButton" HorizontalAlignment="Left" Margin="326,117,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb13" Content="RadioButton" HorizontalAlignment="Left" Margin="490,117,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb14" Content="RadioButton" HorizontalAlignment="Left" Margin="634,117,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb15" Content="RadioButton" HorizontalAlignment="Left" Margin="28,160,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb16" Content="RadioButton" HorizontalAlignment="Left" Margin="182,160,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb17" Content="RadioButton" HorizontalAlignment="Left" Margin="326,160,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb18" Content="RadioButton" HorizontalAlignment="Left" Margin="490,160,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb19" Content="RadioButton" HorizontalAlignment="Left" Margin="634,160,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb20" Content="RadioButton" HorizontalAlignment="Left" Margin="28,203,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb21" Content="RadioButton" HorizontalAlignment="Left" Margin="182,203,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb22" Content="RadioButton" HorizontalAlignment="Left" Margin="326,203,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb23" Content="RadioButton" HorizontalAlignment="Left" Margin="490,208,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <RadioButton Name="rb24" Content="RadioButton" HorizontalAlignment="Left" Margin="634,203,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
-        <TextBlock Name="quantityAmount" HorizontalAlignment="Left" Margin="397,359,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Center" Width="20" RenderTransformOrigin="-0.7,0.146" Height="17"/>
-        <Button Name="quantitySub" Content="-" HorizontalAlignment="Left" Margin="372,357,0,0" VerticalAlignment="Top" Width="20" Click="DecreaseQuantity" Height="20"/>
-        <Button Name="quantityAdd" Content="+" HorizontalAlignment="Left" Margin="422,357,0,0" VerticalAlignment="Top" Width="20" Click="IncreaseQuantity" Height="20"/>
-        <TextBlock Name="quantityLabel" HorizontalAlignment="Left" Height="24" Margin="288,357,0,0" TextWrapping="Wrap" Text="Quantity:" VerticalAlignment="Top" Width="79" TextAlignment="Right"/>
+        <TextBlock Style="{StaticResource headers}" Name="selection1Label" HorizontalAlignment="Left" Margin="109,5,0,0" TextWrapping="Wrap" Text="- Choose Bread:" VerticalAlignment="Top" Width="140"/>
+        <TextBlock Style="{StaticResource headers}" Name="selection2Label"  HorizontalAlignment="Left" Margin="109,60,0,0" TextWrapping="Wrap" Text="- Choose Side:" VerticalAlignment="Top" Width="140"/>
+        <TextBlock Style="{StaticResource headers}" Name="selection3Label"  HorizontalAlignment="Left" Margin="109,116,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
+        <TextBlock Style="{StaticResource headers}" Name="selection4Label"  HorizontalAlignment="Left" Margin="113,181,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
+        <TextBlock Style="{StaticResource headers}" Name="selection5Label"  HorizontalAlignment="Left" Margin="113,245,0,0" TextWrapping="Wrap" Text="- Choose :" VerticalAlignment="Top" Width="140"/>
+        <TextBlock Style="{StaticResource headers}" Name="specReqTitle" HorizontalAlignment="Left" Margin="113,296,0,0" TextWrapping="Wrap" Text="Special Requests:" VerticalAlignment="Top"/>
+        <TextBox Name="specReqEntry" HorizontalAlignment="Left" Height="78" Margin="30,330,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="1023" GotFocus="SpecReqEntry_GotFocus" LostFocus="SpecReqEntry_LostFocus"/>
+        <Button Style="{StaticResource addButton}"  Name="addButton" Content="ADD ->" HorizontalAlignment="Left" Margin="854,454,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.238,-0.075" Click="AddButtonClicked"/>
+        <Button Style="{StaticResource cancelButton}" Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="31,454,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.238,-0.075" Click="CancelButtonClicked" Height="46" Background="Red" />
+        <TextBlock Name="totalLabel" HorizontalAlignment="Left" Margin="579,484,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" FontFamily="{StaticResource RobotoThin}" FontSize="36"/>
+        <TextBlock Name="totalTitle" HorizontalAlignment="Left" Margin="466,484,0,0" TextWrapping="Wrap" Text="Total: $" VerticalAlignment="Top" Width="151" FontFamily="{StaticResource RobotoThin}" FontSize="36"/>
+        <RadioButton Name="rb0" Content="RadioButton" HorizontalAlignment="Left" Margin="127,38,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb1" Content="RadioButton" HorizontalAlignment="Left" Margin="281,38,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb2" Content="RadioButton" HorizontalAlignment="Left" Margin="425,38,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb3" Content="RadioButton" HorizontalAlignment="Left" Margin="589,38,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb4" Content="RadioButton" HorizontalAlignment="Left" Margin="733,38,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb5" Content="RadioButton" HorizontalAlignment="Left" Margin="127,94,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb6" Content="RadioButton" HorizontalAlignment="Left" Margin="281,94,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb7" Content="RadioButton" HorizontalAlignment="Left" Margin="425,94,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb8" Content="RadioButton" HorizontalAlignment="Left" Margin="589,94,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb9" Content="RadioButton" HorizontalAlignment="Left" Margin="733,94,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb10" Content="RadioButton" HorizontalAlignment="Left" Margin="118,156,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb11" Content="RadioButton" HorizontalAlignment="Left" Margin="281,156,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb12" Content="RadioButton" HorizontalAlignment="Left" Margin="425,156,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb13" Content="RadioButton" HorizontalAlignment="Left" Margin="589,156,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb14" Content="RadioButton" HorizontalAlignment="Left" Margin="733,156,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb15" Content="RadioButton" HorizontalAlignment="Left" Margin="118,222,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb16" Content="RadioButton" HorizontalAlignment="Left" Margin="281,222,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb17" Content="RadioButton" HorizontalAlignment="Left" Margin="425,222,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb18" Content="RadioButton" HorizontalAlignment="Left" Margin="589,222,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb19" Content="RadioButton" HorizontalAlignment="Left" Margin="733,222,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb20" Content="RadioButton" HorizontalAlignment="Left" Margin="118,279,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb21" Content="RadioButton" HorizontalAlignment="Left" Margin="281,279,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb22" Content="RadioButton" HorizontalAlignment="Left" Margin="425,279,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb23" Content="RadioButton" HorizontalAlignment="Left" Margin="589,279,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <RadioButton Name="rb24" Content="RadioButton" HorizontalAlignment="Left" Margin="733,279,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
+        <TextBlock Name="quantityAmount" HorizontalAlignment="Left" Margin="539,435,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Center" Width="45" RenderTransformOrigin="-0.7,0.146" Height="49" FontFamily="{StaticResource RobotoThin}" FontSize="32"/>
+        <Button Style="{StaticResource quantButton}" Name="quantitySub" Content="-" HorizontalAlignment="Left" Margin="601,429,0,0" VerticalAlignment="Top" Click="DecreaseQuantity" Background="#FFFF5555" />
+        <Button Style="{StaticResource quantButton}" Name="quantityAdd" Content="+" HorizontalAlignment="Left" Margin="651,429,0,0" VerticalAlignment="Top"  Click="IncreaseQuantity" Background="#FF67913D"/>
+        <TextBlock Name="quantityLabel" HorizontalAlignment="Left" Height="39" Margin="401,435,0,0" TextWrapping="Wrap" Text="Quantity:" VerticalAlignment="Top" Width="138" TextAlignment="Right" FontFamily="{StaticResource RobotoThin}" FontSize="32"/>
     </Grid>
 
 </UserControl>

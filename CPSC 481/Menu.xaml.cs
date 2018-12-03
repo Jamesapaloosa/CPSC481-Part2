@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
+using System.Windows.Threading;
 
 namespace CPSC_481
 {
@@ -35,7 +36,7 @@ namespace CPSC_481
 
         int columnGap = 20;
         int optionHeight = 17;
-        MenuItem currentSelection;
+        MenuObject currentSelection;
         public int[] oldOrder = new int[5];
         bool editingOldOrder = false;
 
@@ -47,56 +48,56 @@ namespace CPSC_481
         {
             InitializeComponent();
 
-            this.tabControl.ItemsSource = Enum.GetValues(typeof(MenuItem.Type));
+            this.tabControl.ItemsSource = Enum.GetValues(typeof(MenuObject.Type));
 
             CollectionView collectionViewSource = (CollectionView)CollectionViewSource.GetDefaultView(this.LoadMenuItems());
             collectionViewSource.GroupDescriptions.Add(new PropertyGroupDescription("type"));
             this.menuItemListView.ItemsSource = collectionViewSource;
 
-            OptionsPopUp.SetupOptionsMenu(this, (this.LoadMenuItems()).ElementAt(0), orderTableView);
+           // OptionsPopUp.SetupOptionsMenu(this, (this.LoadMenuItems()).ElementAt(0), orderTableView);
         }
 
-        private List<MenuItem> LoadMenuItems()
+        private List<MenuObject> LoadMenuItems()
         {
 #pragma warning disable IDE0028 // Simplify collection initialization
-            var items = new List<MenuItem>();
+            var items = new List<MenuObject>();
 #pragma warning restore IDE0028 // Simplify collection initialization
 
             // Mains
-            items.Add(new MenuItem("Burger", "description", 19.99m, MenuItem.Type.Main, @"Images\burger.jpg", LoadOptionsFromFile(@"Options\burger.txt")));
-            items.Add(new MenuItem("Chicken Soup", "description", 9.99m, MenuItem.Type.Main, @"Images\chickensoup.jpg", LoadOptionsFromFile(@"Options\chickensoup.txt")));
-            items.Add(new MenuItem("Mom's Spaghetti", "description", 9.99m, MenuItem.Type.Main, @"Images\momSpaghetti.jpg", LoadOptionsFromFile(@"Options\momSpaghetti.txt")));
-            items.Add(new MenuItem("Boston Beef Cake", "description", 9.99m, MenuItem.Type.Main, @"Images\bostonBeefCake.jpg", LoadOptionsFromFile(@"Options\bostonBeefCake.txt")));
-            items.Add(new MenuItem("Rib eye Steak", "description", 9.99m, MenuItem.Type.Main, @"Images\Ribeye.jpg", LoadOptionsFromFile(@"Options\ribeye.txt")));
-            items.Add(new MenuItem("Taco", "description", 9.99m, MenuItem.Type.Main, @"Images\taco.jpg", LoadOptionsFromFile(@"Options\ribeye.txt")));
-            items.Add(new MenuItem("Pizza", "description", 9.99m, MenuItem.Type.Main, @"Images\pizza.jpg", LoadOptionsFromFile(@"Options\ribeye.txt")));
+            items.Add(new MenuObject("Burger", "description", 19.99m, MenuObject.Type.Main, @"Images\burger.jpg", LoadOptionsFromFile(@"Options\burger.txt"), this, orderTableView));
+            items.Add(new MenuObject("Chicken Soup", "description", 9.99m, MenuObject.Type.Main, @"Images\chickensoup.jpg", LoadOptionsFromFile(@"Options\chickensoup.txt"), this, orderTableView));
+            items.Add(new MenuObject("Mom's Spaghetti", "description", 9.99m, MenuObject.Type.Main, @"Images\momSpaghetti.jpg", LoadOptionsFromFile(@"Options\momSpaghetti.txt"), this, orderTableView));
+            items.Add(new MenuObject("Boston Beef Cake", "description", 9.99m, MenuObject.Type.Main, @"Images\bostonBeefCake.jpg", LoadOptionsFromFile(@"Options\bostonBeefCake.txt"), this, orderTableView));
+            items.Add(new MenuObject("Rib eye Steak", "description", 9.99m, MenuObject.Type.Main, @"Images\Ribeye.jpg", LoadOptionsFromFile(@"Options\ribeye.txt"), this, orderTableView));
+            items.Add(new MenuObject("Taco", "description", 9.99m, MenuObject.Type.Main, @"Images\taco.jpg", LoadOptionsFromFile(@"Options\ribeye.txt"), this, orderTableView));
+            items.Add(new MenuObject("Pizza", "description", 9.99m, MenuObject.Type.Main, @"Images\pizza.jpg", LoadOptionsFromFile(@"Options\ribeye.txt"), this, orderTableView));
 
             // Sides
-            items.Add(new MenuItem("Fries", "description", 9.99m, MenuItem.Type.Side, @"Images\fries.jpg", LoadOptionsFromFile(@"Options\fries.txt")));
-            items.Add(new MenuItem("Onion Rings", "description", 9.99m, MenuItem.Type.Side, @"Images\onionRings.jpg", LoadOptionsFromFile(@"Options\onionRings.txt")));
-            items.Add(new MenuItem("Chips", "description", 9.99m, MenuItem.Type.Side, @"Images\chips.jpg", LoadOptionsFromFile(@"Options\chips.txt")));
-            items.Add(new MenuItem("Salad", "description", 9.99m, MenuItem.Type.Side, @"Images\salad.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
-            items.Add(new MenuItem("Gravy", "description", 9.99m, MenuItem.Type.Side, @"Images\gravy.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
-            items.Add(new MenuItem("Bacon", "description", 9.99m, MenuItem.Type.Side, @"Images\bacon.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
-            items.Add(new MenuItem("Potatoes", "description", 9.99m, MenuItem.Type.Side, @"Images\potatoes.jpg", LoadOptionsFromFile(@"Options\salad.txt")));
+            items.Add(new MenuObject("Fries", "description", 9.99m, MenuObject.Type.Side, @"Images\fries.jpg", LoadOptionsFromFile(@"Options\fries.txt"), this, orderTableView));
+            items.Add(new MenuObject("Onion Rings", "description", 9.99m, MenuObject.Type.Side, @"Images\onionRings.jpg", LoadOptionsFromFile(@"Options\onionRings.txt"), this, orderTableView));
+            items.Add(new MenuObject("Chips", "description", 9.99m, MenuObject.Type.Side, @"Images\chips.jpg", LoadOptionsFromFile(@"Options\chips.txt"), this, orderTableView));
+            items.Add(new MenuObject("Salad", "description", 9.99m, MenuObject.Type.Side, @"Images\salad.jpg", LoadOptionsFromFile(@"Options\salad.txt"), this, orderTableView));
+            items.Add(new MenuObject("Gravy", "description", 9.99m, MenuObject.Type.Side, @"Images\gravy.jpg", LoadOptionsFromFile(@"Options\salad.txt"), this, orderTableView));
+            items.Add(new MenuObject("Bacon", "description", 9.99m, MenuObject.Type.Side, @"Images\bacon.jpg", LoadOptionsFromFile(@"Options\salad.txt"), this, orderTableView));
+            items.Add(new MenuObject("Potatoes", "description", 9.99m, MenuObject.Type.Side, @"Images\potatoes.jpg", LoadOptionsFromFile(@"Options\salad.txt"), this, orderTableView));
 
             // Desserts
-            items.Add(new MenuItem("Pie", "description", 9.99m, MenuItem.Type.Dessert, @"Images\pie.jpg", LoadOptionsFromFile(@"Options\pie.txt")));
-            items.Add(new MenuItem("Chocolate Cake", "description", 9.99m, MenuItem.Type.Dessert, @"Images\cake.jpg", LoadOptionsFromFile(@"Options\cake.txt")));
-            items.Add(new MenuItem("Brownie", "description", 9.99m, MenuItem.Type.Dessert, @"Images\brownie.jpg", LoadOptionsFromFile(@"Options\brownie.txt")));
-            items.Add(new MenuItem("Cheesecake", "description", 9.99m, MenuItem.Type.Dessert, @"Images\cheesecake.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
-            items.Add(new MenuItem("Ice Cream", "description", 9.99m, MenuItem.Type.Dessert, @"Images\icecream.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
-            items.Add(new MenuItem("Donught", "description", 9.99m, MenuItem.Type.Dessert, @"Images\donught.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
-            items.Add(new MenuItem("Candy", "description", 9.99m, MenuItem.Type.Dessert, @"Images\candy.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt")));
+            items.Add(new MenuObject("Pie", "description", 9.99m, MenuObject.Type.Dessert, @"Images\pie.jpg", LoadOptionsFromFile(@"Options\pie.txt"), this, orderTableView));
+            items.Add(new MenuObject("Chocolate Cake", "description", 9.99m, MenuObject.Type.Dessert, @"Images\cake.jpg", LoadOptionsFromFile(@"Options\cake.txt"), this, orderTableView));
+            items.Add(new MenuObject("Brownie", "description", 9.99m, MenuObject.Type.Dessert, @"Images\brownie.jpg", LoadOptionsFromFile(@"Options\brownie.txt"), this, orderTableView));
+            items.Add(new MenuObject("Cheesecake", "description", 9.99m, MenuObject.Type.Dessert, @"Images\cheesecake.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt"), this, orderTableView));
+            items.Add(new MenuObject("Ice Cream", "description", 9.99m, MenuObject.Type.Dessert, @"Images\icecream.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt"), this, orderTableView));
+            items.Add(new MenuObject("Donught", "description", 9.99m, MenuObject.Type.Dessert, @"Images\donught.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt"), this, orderTableView));
+            items.Add(new MenuObject("Candy", "description", 9.99m, MenuObject.Type.Dessert, @"Images\candy.jpg", LoadOptionsFromFile(@"Options\cheesecake.txt"), this, orderTableView));
 
             // Drinks
-            items.Add(new MenuItem("Coke", "description", 9.99m, MenuItem.Type.Drink, @"Images\coke.png", LoadOptionsFromFile(@"Options\coke.txt")));
-            items.Add(new MenuItem("Pepsi", "description", 9.99m, MenuItem.Type.Drink, @"Images\Pepsi.jpg", LoadOptionsFromFile(@"Options\pepsi.txt")));
-            items.Add(new MenuItem("Whiskey", "description", 9.99m, MenuItem.Type.Drink, @"Images\whiskey.jpg", LoadOptionsFromFile(@"Options\whiskey.txt")));
-            items.Add(new MenuItem("Scotch", "description", 9.99m, MenuItem.Type.Drink, @"Images\scotch.png", LoadOptionsFromFile(@"Options\scotch.txt")));
-            items.Add(new MenuItem("Premium Water", "description", 99.99m, MenuItem.Type.Drink, @"Images\water.jpg", LoadOptionsFromFile(@"Options\scotch.txt")));
-            items.Add(new MenuItem("Tap Water", "description", 0.00m, MenuItem.Type.Drink, @"Images\water.jpg", LoadOptionsFromFile(@"Options\scotch.txt")));
-            items.Add(new MenuItem("Tea", "description", 9.99m, MenuItem.Type.Drink, @"Images\tea.jpg", LoadOptionsFromFile(@"Options\scotch.txt")));
+            items.Add(new MenuObject("Coke", "description", 9.99m, MenuObject.Type.Drink, @"Images\coke.png", LoadOptionsFromFile(@"Options\coke.txt"), this, orderTableView));
+            items.Add(new MenuObject("Pepsi", "description", 9.99m, MenuObject.Type.Drink, @"Images\Pepsi.jpg", LoadOptionsFromFile(@"Options\pepsi.txt"), this, orderTableView));
+            items.Add(new MenuObject("Whiskey", "description", 9.99m, MenuObject.Type.Drink, @"Images\whiskey.jpg", LoadOptionsFromFile(@"Options\whiskey.txt"), this, orderTableView));
+            items.Add(new MenuObject("Scotch", "description", 9.99m, MenuObject.Type.Drink, @"Images\scotch.png", LoadOptionsFromFile(@"Options\scotch.txt"), this, orderTableView));
+            items.Add(new MenuObject("Premium Water", "description", 99.99m, MenuObject.Type.Drink, @"Images\water.jpg", LoadOptionsFromFile(@"Options\scotch.txt"), this, orderTableView));
+            items.Add(new MenuObject("Tap Water", "description", 0.00m, MenuObject.Type.Drink, @"Images\water.jpg", LoadOptionsFromFile(@"Options\scotch.txt"), this, orderTableView));
+            items.Add(new MenuObject("Tea", "description", 9.99m, MenuObject.Type.Drink, @"Images\tea.jpg", LoadOptionsFromFile(@"Options\scotch.txt"), this, orderTableView));
 
             return items;
         }
@@ -218,7 +219,7 @@ namespace CPSC_481
             {
                 try
                 {
-                    MenuItem.Type menuItemType = (MenuItem.Type)this.tabControl.SelectedItem;
+                    MenuObject.Type menuItemType = (MenuObject.Type)this.tabControl.SelectedItem;
                     CollectionView collectionViewSource = (CollectionView)this.menuItemListView.ItemsSource;
                     CollectionViewGroup group = (CollectionViewGroup)collectionViewSource.Groups[this.tabControl.SelectedIndex];
                     List<object> Lgroup = new List<object>();
@@ -237,16 +238,16 @@ namespace CPSC_481
                         // Quick and dirty, just dont change the number of items.
                         switch (menuItemType)
                         {
-                            case MenuItem.Type.Main:
+                            case MenuObject.Type.Main:
                                 offset = 0;
                                 break;
-                            case MenuItem.Type.Side:
+                            case MenuObject.Type.Side:
                                 offset = 1485;
                                 break;
-                            case MenuItem.Type.Dessert:
+                            case MenuObject.Type.Dessert:
                                 offset = 2975;
                                 break;
-                            case MenuItem.Type.Drink:
+                            case MenuObject.Type.Drink:
                                 offset = 4465;
                                 break;
                         }
@@ -310,12 +311,14 @@ namespace CPSC_481
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+
+
             try
             {
                 isScrolling = true;
                 List<object> visable = GetVisibleItemsFromListbox(menuItemListView, this);
                 for (int i = 0; i < tabControl.Items.Count; i++) {
-                    if (((MenuItem)visable[2]).type.Equals(tabControl.Items[i]))
+                    if (((MenuObject)visable[2]).type.Equals(tabControl.Items[i]))
                     {
                         tabControl.SelectedIndex = i;
                     }
@@ -347,9 +350,65 @@ namespace CPSC_481
         {
             try
             {
-                toggleOptions(false);
-                MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
-                OptionsPopUp.NewOptionsMenu(menuItem);
+                //toggleOptions(false);
+
+
+                /*Style style = new Style();
+                style.TargetType = typeof(ListViewItem);
+                style.Setters.Add(new Setter(ListViewItem.BackgroundProperty, Brushes.Pink));
+                style.
+                menuItemListView.ItemContainerStyle = style;*/
+
+
+                MenuObject menuItem = (MenuObject)this.menuItemListView.SelectedItem;
+
+                foreach (MenuObject element in menuItemListView.Items)
+                {
+                    element.collapseOptions();
+                }
+
+                if (menuItem.OptionsExpander.IsExpanded)
+                {
+                    menuItem.collapseOptions();
+                } else
+                {
+                    menuItem.expandOptions();
+                }
+
+                int verticalOffset = 0;
+                var temp = menuItemListView.SelectedIndex;
+
+                if (menuItem.type == MenuObject.Type.Main)
+                {
+                    verticalOffset = menuItemListView.SelectedIndex * 215 + 128;
+                } else if (menuItem.type == MenuObject.Type.Side)
+                {
+                    verticalOffset = menuItemListView.SelectedIndex * 215 + (128 * 2);
+                } else if (menuItem.type == MenuObject.Type.Dessert)
+                {
+                    verticalOffset = menuItemListView.SelectedIndex * 215 + (128 * 3);
+                } else
+                {
+                    verticalOffset = menuItemListView.SelectedIndex * 215 + (128 * 4);
+
+                }
+
+
+                //verticalOffset -= 615;
+
+                /* menuItem.Transf
+                Point relativePOint = menuItem.TransformToAncestor(menuItemScrollViewer).Transform(new Point(0, 0));*/
+
+
+                Thread.Sleep(100);
+
+                    menuItemScrollViewer.ScrollToVerticalOffset(verticalOffset);
+     
+
+
+
+                e.Handled = true;
+                //OptionsPopUp.NewOptionsMenu(menuItem);
             }
             catch (Exception error)
             {
@@ -357,6 +416,7 @@ namespace CPSC_481
             }
         }
 
+   
         private void SendOrPayButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -588,6 +648,29 @@ namespace CPSC_481
         private void menuItemListView_TouchUp(object sender, TouchEventArgs e)
         {
             prevTouchPoint = 0;
+        }
+
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+            var temp = 5;
+        }
+
+        private void GridViewRowPresenter_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var temp = 5;
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var temp = 5;
+        }
+
+        private void ListViewItem_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+        {
+
+
+            e.Handled = true;
         }
     }
 

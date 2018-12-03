@@ -7,7 +7,7 @@ namespace CPSC_481
 {
     public partial class OptionsMenu : UserControl
     {
-        private MenuItem item;
+        private MenuObject item;
         private OrderTableView orderTable;
         RadioButton[,] rbs = new RadioButton[5, 5];
         TextBlock[] optionLabels = new TextBlock[5];
@@ -21,13 +21,14 @@ namespace CPSC_481
         Thickness optionsCorner;
 
         int columnGap = 20;
-        int optionHeight = 17;
+        int optionHeight = 50;
         public int[] oldOrder = new int[5];
         bool editingOldOrder = false;
+        MenuObject menuObject;
         Menu menu;
 
-        public OptionsMenu()
-        {
+        public OptionsMenu() {
+
             InitializeComponent();
 
             // Options menu initialization
@@ -75,17 +76,17 @@ namespace CPSC_481
             optionsCorner = defaultCorner;
         }
 
-        public void SetupOptionsMenu(Menu theMenu, MenuItem sourceItem, OrderTableView destinationOrderTable)
+        public void SetupOptionsMenu(Menu menu, MenuObject sourceItem, OrderTableView destinationOrderTable)
         {
             item = sourceItem;
             orderTable = destinationOrderTable;
-            this.menu = theMenu;
+            this.menuObject = sourceItem;
+            this.menu = menu;
 
             this.NewOptionsMenu();
-            this.Reset();
         }
 
-        public void NewOptionsMenu(MenuItem newItem)
+        public void NewOptionsMenu(MenuObject newItem)
         {
             editingOldOrder = false;
             item = newItem;
@@ -125,35 +126,32 @@ namespace CPSC_481
 
             optionsCorner.Left = optionsCorner.Left + columnGap;
 
-            specReqTitle.Margin = new Thickness(28, (optionsCorner.Top + optionHeight), 0, 0);
+            /*specReqTitle.Margin = new Thickness(28, (optionsCorner.Top + optionHeight), 0, 0);
             specReqEntry.Margin = new Thickness(10, (optionsCorner.Top + 2 * optionHeight), 0, 0);
-            specReqEntry.Width = optionsCorner.Left - 40;
+            specReqEntry.Width = optionsCorner.Left - 40;*/
 
             optionsCorner.Top = specReqEntry.Margin.Top + specReqEntry.ActualHeight + optionHeight;
 
             double left = optionsCorner.Left / 2;
 
-            quantityLabel.Margin = new Thickness((left - (quantityLabel.Width + quantitySub.Width) - 3), optionsCorner.Top, 0, 0);
+            /*quantityLabel.Margin = new Thickness((left - (quantityLabel.Width + quantitySub.Width) - 3), optionsCorner.Top, 0, 0);
             quantitySub.Margin = new Thickness((left - quantitySub.Width), optionsCorner.Top, 0, 0);
             quantityAmount.Margin = new Thickness(left, optionsCorner.Top, 0, 0);
-            quantityAdd.Margin = new Thickness((left + quantityAmount.Width), optionsCorner.Top, 0, 0);
+            quantityAdd.Margin = new Thickness((left + quantityAmount.Width), optionsCorner.Top, 0, 0);*/
 
-            totalTitle.Margin = new Thickness((left - totalTitle.Width), (optionsCorner.Top + quantityAmount.Height + 5), 0, 0);
+           /* totalTitle.Margin = new Thickness((left - totalTitle.Width), (optionsCorner.Top + quantityAmount.Height + 5), 0, 0);
             totalLabel.Margin = new Thickness(left, (optionsCorner.Top + quantityAmount.Height + 5), 0, 0);
-            totalLabel.Text = baseCost.ToString("0.00");
+            totalLabel.Text = baseCost.ToString("0.00");*/
 
             optionsCorner.Top = totalLabel.Margin.Top + optionHeight;
 
-            addButton.Margin = new Thickness((optionsCorner.Left - addButton.ActualWidth), (optionsCorner.Top), 0, 0);
-            cancelButton.Margin = new Thickness(0, (optionsCorner.Top), 0, 0);
+           // addButton.Margin = new Thickness((optionsCorner.Left - addButton.ActualWidth), (optionsCorner.Top), 0, 0);
+           // cancelButton.Margin = new Thickness(0, (optionsCorner.Top), 0, 0);
 
-            this.Width = optionsCorner.Left;
-            this.Height = optionsCorner.Top + addButton.ActualHeight;
+           // this.Width = optionsCorner.Left;
+            this.Height = 600;
 
-            this.Margin = new Thickness(((menu.Width / 2) - (this.Width / 2)),
-                                                ((menu.Height / 2) - (this.Height / 2)),
-                                                0,
-                                                0);
+            this.Margin = new Thickness(0,0,0,20);
         }
 
         private void Reset()
@@ -173,7 +171,7 @@ namespace CPSC_481
 
         }
 
-        public void EditOptionsMenu(MenuItem item, int[] chosenOptions)
+        public void EditOptionsMenu(MenuObject item, int[] chosenOptions)
         {
             this.item = item;
             oldOrder = chosenOptions;
@@ -187,6 +185,8 @@ namespace CPSC_481
             }
             editingOldOrder = true;
             this.UpdateTotal(null, null);
+
+            menu.menuItemListView.SelectedItem = menuObject;
         }
 
         private void IncreaseQuantity(object sender, RoutedEventArgs e)
@@ -262,7 +262,7 @@ namespace CPSC_481
                 System.Diagnostics.Debug.WriteLine(error);
             }
             editingOldOrder = false;
-            menu.toggleOptions(true);
+            menuObject.collapseOptions();
         }
 
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
@@ -274,7 +274,7 @@ namespace CPSC_481
                     // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
                     OrderItem orderItem = new OrderItem(item, this.optionsCost, oldOrder, this);
                     this.orderTable.Add(orderItem);
-                    this.Reset();
+                    //this.Reset();
                 }
                 catch (Exception error)
                 {
@@ -284,9 +284,12 @@ namespace CPSC_481
             else
             {
                 menu.menuItemListView.SelectedItem = null;
-                this.Reset();
+                menuObject.collapseOptions();
+                //this.Reset();
             }
-            menu.toggleOptions(true);
+
+
+            menuObject.collapseOptions();
         }
 
     }

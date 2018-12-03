@@ -60,6 +60,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MenuObject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OptionsMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,6 +88,9 @@
   <ItemGroup>
     <Compile Include="HeaderImageGetter.cs" />
     <Compile Include="MenuItem.cs" />
+    <Compile Include="MenuObject.xaml.cs">
+      <DependentUpon>MenuObject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OptionsMenu.xaml.cs">
       <DependentUpon>OptionsMenu.xaml</DependentUpon>
     </Compile>

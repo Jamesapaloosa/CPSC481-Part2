@@ -42,7 +42,7 @@ namespace CPSC_481
             {
                 switch (this.orderItem.menuItem.type)
                 {
-                    case MenuItem.Type.Drink:
+                    case MenuObject.Type.Drink:
                         actionButtonImage.Source = new BitmapImage(
                                 new Uri("pack://application:,,,/CPSC 481;component/Images/menu/refil_button.png", UriKind.RelativeOrAbsolute));
                         break;

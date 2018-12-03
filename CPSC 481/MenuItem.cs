@@ -3,6 +3,9 @@ using System.Windows.Media;
 
 namespace CPSC_481
 {
+
+    // REPLACED WITH MenuObject!!!!!!!!!
+
     public class MenuItem
     {
         public enum Type { Main, Side, Dessert, Drink };
@@ -11,11 +14,11 @@ namespace CPSC_481
         public String description { get; set; }
         public decimal price { get; set; }
         public String priceAsString { get; set; } // Easiest way around stupid WPF issues. 
-        public MenuItem.Type type { get; set; }
+        public MenuObject.Type type { get; set; }
         public String imageName { get; set; }
         public string[,,] options = new string[5, 6, 2];
 
-        public MenuItem(String name, String description, decimal price, MenuItem.Type type, String imageName, string[,,] itemOptions)
+        public MenuItem(String name, String description, decimal price, MenuObject.Type type, String imageName, string[,,] itemOptions)
         {
             this.name = name;
             //this.description = description;

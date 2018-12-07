@@ -32,6 +32,7 @@ namespace CPSC_481
         public string[,,] options = new string[5, 6, 2];
         public Menu menu;
         public OrderTableView orderTableView;
+        public OptionsMenu optionsMenu;
 
         public MenuObject(String name, String description, decimal price, MenuObject.Type type, String imageName, string[,,] itemOptions, Menu menu, OrderTableView orderTableView)
         {
@@ -68,7 +69,7 @@ namespace CPSC_481
             }
 
 
-            OptionsMenu optionsMenu = new OptionsMenu();
+            optionsMenu = new OptionsMenu();
             optionsMenu.SetupOptionsMenu(this.menu, this, this.orderTableView);
 
             orderOptions.Children.Add(optionsMenu);

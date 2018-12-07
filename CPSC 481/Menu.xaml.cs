@@ -254,6 +254,7 @@ namespace CPSC_481
 
                         menuItemScrollViewer.ScrollToVerticalOffset(offset);
 
+
                         /*if (tabIsAhead(Lgroup[0], visable[0]))
                         {
                             menuItem = group.Items[0];
@@ -390,8 +391,8 @@ namespace CPSC_481
                 } else
                 {
                     verticalOffset = menuItemListView.SelectedIndex * 215 + (128 * 4);
-
                 }
+                    
 
 
                 //verticalOffset -= 615;
@@ -399,10 +400,9 @@ namespace CPSC_481
                 /* menuItem.Transf
                 Point relativePOint = menuItem.TransformToAncestor(menuItemScrollViewer).Transform(new Point(0, 0));*/
 
-
-                Thread.Sleep(100);
-
-                    menuItemScrollViewer.ScrollToVerticalOffset(verticalOffset);
+                //menuItem.optionsMenu.NewOptionsMenu();
+                Thread.Sleep(300);
+                menuItemScrollViewer.ScrollToVerticalOffset(verticalOffset);
      
 
 

@@ -169,6 +169,28 @@ namespace CPSC_481
 
         }
 
+        private void resetSelecton()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int ii = 0; ii < 5; ii++)
+                {
+                    if (rbs[i, ii] != null)
+                    {
+                        if (ii == 0)
+                        {
+                            rbs[i, ii].IsChecked = true;
+                        } else {
+                            rbs[i, ii].IsChecked = false;
+                        }
+                    }
+                }
+            }
+            totalLabel.Text = baseCost.ToString("0.00");
+            quantityAmount.Text = "1";
+
+        }
+
         public void EditOptionsMenu(MenuObject item, int[] chosenOptions)
         {
             this.item = item;
@@ -253,7 +275,7 @@ namespace CPSC_481
                 OrderItem orderItem = new OrderItem(item, this.optionsCost, options, this);
                 this.orderTable.Add(orderItem);
                 menu.menuItemListView.SelectedItem = null;
-                this.Reset();
+                this.resetSelecton();
             }
             catch (Exception error)
             {
@@ -272,7 +294,7 @@ namespace CPSC_481
                     // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
                     OrderItem orderItem = new OrderItem(item, this.optionsCost, oldOrder, this);
                     this.orderTable.Add(orderItem);
-                    //this.Reset();
+                    this.resetSelecton();
                 }
                 catch (Exception error)
                 {

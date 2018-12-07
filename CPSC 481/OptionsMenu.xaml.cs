@@ -27,7 +27,10 @@ namespace CPSC_481
         MenuObject menuObject;
         Menu menu;
 
-        public OptionsMenu() {
+        public static OptionsMenu isOrdering = null;
+
+        public OptionsMenu()
+        {
 
             InitializeComponent();
 
@@ -103,7 +106,7 @@ namespace CPSC_481
                 rbs[i, 0].IsChecked = true;
                 optionLabels[i].Text = item.options[i, 0, 0];
                 optionLabels[i].Visibility = Visibility.Visible;
-                optionsCorner.Top = rbs[i,0].Margin.Top + rbs[i,0].ActualHeight;
+                optionsCorner.Top = rbs[i, 0].Margin.Top + rbs[i, 0].ActualHeight;
                 for (int j = 0; ((j < rbs.GetLength(1)) && !(String.IsNullOrEmpty(item.options[i, (j + 1), 0]))); j++)
                 {
                     optionOptions[i, j] = item.options[i, (j + 1), 0];
@@ -143,13 +146,13 @@ namespace CPSC_481
 
             optionsCorner.Top = quantityLabel.Margin.Top + (0.5) * quantitySub.Height;
 
-           addButton.Margin = new Thickness(addButton.Margin.Left, (optionsCorner.Top), 0, 0);
-           cancelButton.Margin = new Thickness(cancelButton.Margin.Left, (optionsCorner.Top), 0, 0);
+            addButton.Margin = new Thickness(addButton.Margin.Left, (optionsCorner.Top), 0, 0);
+            cancelButton.Margin = new Thickness(cancelButton.Margin.Left, (optionsCorner.Top), 0, 0);
 
-           // this.Width = optionsCorner.Left;
+            // this.Width = optionsCorner.Left;
             this.Height = cancelButton.Margin.Top + cancelButton.Height + optionHeight * 0.5;
 
-            this.Margin = new Thickness(0,0,0,20);
+            this.Margin = new Thickness(0, 0, 0, 20);
         }
 
         private void Reset()
@@ -180,7 +183,9 @@ namespace CPSC_481
                         if (ii == 0)
                         {
                             rbs[i, ii].IsChecked = true;
-                        } else {
+                        }
+                        else
+                        {
                             rbs[i, ii].IsChecked = false;
                         }
                     }
@@ -276,6 +281,7 @@ namespace CPSC_481
 
             try
             {
+                isOrdering = null;
                 OrderItem orderItem = new OrderItem(item, this.optionsCost, options, this);
                 this.orderTable.Add(orderItem);
                 menu.menuItemListView.SelectedItem = null;
@@ -291,10 +297,16 @@ namespace CPSC_481
 
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
+            this.CancelButtonClickedWorker();
+        }
+
+        public void CancelButtonClickedWorker()
+        {
             if (editingOldOrder)
             {
                 try
                 {
+                    isOrdering = null;
                     // MenuItem menuItem = (MenuItem)this.menuItemListView.SelectedItem;
                     OrderItem orderItem = new OrderItem(item, this.optionsCost, oldOrder, this);
                     this.orderTable.Add(orderItem);
@@ -308,11 +320,7 @@ namespace CPSC_481
             else
             {
                 menu.menuItemListView.SelectedItem = null;
-                menuObject.collapseOptions();
-                //this.Reset();
             }
-
-
             menuObject.collapseOptions();
         }
 

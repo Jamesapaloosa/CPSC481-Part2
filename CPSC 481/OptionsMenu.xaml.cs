@@ -191,7 +191,7 @@ namespace CPSC_481
 
         }
 
-        public void EditOptionsMenu(MenuObject item, int[] chosenOptions)
+        public void EditOptionsMenu(MenuObject item, int[] chosenOptions, OrderItem orderItem)
         {
             this.item = item;
             oldOrder = chosenOptions;
@@ -204,7 +204,11 @@ namespace CPSC_481
                 }
             }
             editingOldOrder = true;
+
+            quantityAmount.Text = orderItem.quantity.ToString();
             this.UpdateTotal(null, null);
+
+           
 
             menu.menuItemListView.SelectedItem = menuObject;
         }

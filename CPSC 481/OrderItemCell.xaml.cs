@@ -87,7 +87,7 @@ namespace CPSC_481
             if (this.orderItem.isFinalized)
                 return;
             otable.Remove(this);
-            this.orderItem.sourceMenu.EditOptionsMenu(this.orderItem.menuItem, this.orderItem.options);
+            this.orderItem.sourceMenu.EditOptionsMenu(this.orderItem.menuItem, this.orderItem.options, this.orderItem);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace CPSC_481
             }
         }
 
+        public int quantity;
 
         public OrderItem(MenuObject menuItem, decimal optionsCost, int[] options, OptionsMenu sourceOptionsMenu)
         {
@@ -26,6 +27,7 @@ namespace CPSC_481
             this.options = options;
             this.isFinalized = false;
             this.sourceMenu = sourceOptionsMenu;
+            this.quantity = Int32.Parse(this.menuItem.optionsMenu.quantityAmount.Text);
         }
     }
 }

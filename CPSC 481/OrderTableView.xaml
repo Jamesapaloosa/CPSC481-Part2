@@ -49,7 +49,7 @@
         
       
         
-        <ScrollViewer x:Name="scrollViewer" Height="auto" Width="auto" Grid.Row="1" Margin="10,10,10,10" VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer x:Name="scrollViewer" Height="auto" Width="auto" Grid.Row="1" Margin="10,10,10,10" VerticalScrollBarVisibility="Hidden" PanningMode="VerticalOnly">
             <StackPanel Height="auto" Width="auto">
                 <Label x:Name="finalizedItemSectionHeader" Content="Ordered Items" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="Gray"/>
                 <StackPanel x:Name="finalizedItemStackPanel" Height="auto" Width="auto"></StackPanel>

@@ -381,18 +381,17 @@ namespace CPSC_481
 
                 if (menuItem.type == MenuObject.Type.Main)
                 {
-                    verticalOffset = menuItemListView.SelectedIndex * 215 + 128;
+                    verticalOffset = menuItemListView.SelectedIndex * 222 + 90;
                 } else if (menuItem.type == MenuObject.Type.Side)
                 {
-                    verticalOffset = menuItemListView.SelectedIndex * 215 + (128 * 2);
+                    verticalOffset = menuItemListView.SelectedIndex * 222 + (90 * 2);
                 } else if (menuItem.type == MenuObject.Type.Dessert)
                 {
-                    verticalOffset = menuItemListView.SelectedIndex * 215 + (128 * 3);
+                    verticalOffset = menuItemListView.SelectedIndex * 222 + (90 * 3);
                 } else
                 {
-                    verticalOffset = menuItemListView.SelectedIndex * 215 + (128 * 4);
+                    verticalOffset = menuItemListView.SelectedIndex * 222 + (90 * 4);
                 }
-                    
 
 
                 //verticalOffset -= 615;

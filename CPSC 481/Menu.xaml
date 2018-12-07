@@ -253,7 +253,7 @@
 
         <Rectangle Fill="White" HorizontalAlignment="Left" Height="84" Stroke="White" VerticalAlignment="Top" Width="1642" Panel.ZIndex="-2" Grid.ColumnSpan="3"/>
         <Border BorderBrush="#FFE05431" BorderThickness="0,0,0,13" HorizontalAlignment="Left" Height="84" VerticalAlignment="Top" Width="1642" RenderTransformOrigin="-0.7,2.2" Grid.ColumnSpan="3" Panel.ZIndex="-1"/>
-        <Border BorderBrush="#FFE05431" BorderThickness="4,0" Grid.Column="1" HorizontalAlignment="Left" Height="823" VerticalAlignment="Top" Width="1133" Grid.RowSpan="3" Margin="0,75,0,0"/>
+        <Border BorderBrush="#FFE05431" BorderThickness="4,0" Grid.Column="1" HorizontalAlignment="Left" Height="823" VerticalAlignment="Top" Width="1134" Grid.RowSpan="3" Margin="0,75,0,0"/>
         <Border BorderBrush="#FFE05431" BorderThickness="4,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Height="823" VerticalAlignment="Top" Width="411" Grid.RowSpan="3" Margin="1162,75,-2,0" Grid.ColumnSpan="2" Panel.ZIndex="-1"/>
         <Rectangle Fill="White" HorizontalAlignment="Left" Height="44" Margin="4,84,0,0" Stroke="White" VerticalAlignment="Top" Width="1126" Grid.Column="1" Panel.ZIndex="-1"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="70,0,0,0" TextWrapping="Wrap" Text="Your Orders" VerticalAlignment="Top" FontFamily="{StaticResource Deftone}" FontSize="60" Foreground="#ED2625"/>

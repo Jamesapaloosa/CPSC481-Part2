@@ -82,9 +82,13 @@ namespace CPSC_481
 
         public void collapseOptions()
         {
+            if (OptionsMenu.isOrdering != null)
+            {
+                OptionsMenu.isOrdering.CancelButtonClickedWorker();
+
+            }
             OptionsExpander.IsExpanded = false;
         }
-
     }
 }
 

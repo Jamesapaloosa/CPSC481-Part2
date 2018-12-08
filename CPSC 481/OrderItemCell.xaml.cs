@@ -84,9 +84,17 @@ namespace CPSC_481
 
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
+
+            if (OptionsMenu.isOrdering != null)
+            {
+                OptionsMenu.isOrdering.CancelButtonClickedWorker();
+
+            }
+
             if (this.orderItem.isFinalized)
                 return;
             otable.Remove(this);
+            OptionsMenu.isOrdering = this.orderItem.menuItem.optionsMenu;
             this.orderItem.sourceMenu.EditOptionsMenu(this.orderItem.menuItem, this.orderItem.options, this.orderItem);
         }
     }

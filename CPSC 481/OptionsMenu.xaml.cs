@@ -198,6 +198,13 @@ namespace CPSC_481
 
         public void EditOptionsMenu(MenuObject item, int[] chosenOptions, OrderItem orderItem)
         {
+
+            MenuObject selected = (MenuObject)menu.menuItemListView.SelectedItem;
+            if (selected != null)
+            {
+                selected.collapseOptions();
+            }
+
             this.item = item;
             oldOrder = chosenOptions;
             this.NewOptionsMenu();
@@ -213,8 +220,9 @@ namespace CPSC_481
             quantityAmount.Text = orderItem.quantity.ToString();
             this.UpdateTotal(null, null);
 
-           
 
+       
+         
             menu.menuItemListView.SelectedItem = menuObject;
         }
 
@@ -317,10 +325,8 @@ namespace CPSC_481
                     System.Diagnostics.Debug.WriteLine(error);
                 }
             }
-            else
-            {
-                menu.menuItemListView.SelectedItem = null;
-            }
+
+            menu.menuItemListView.SelectedItem = null;
             menuObject.collapseOptions();
         }
 

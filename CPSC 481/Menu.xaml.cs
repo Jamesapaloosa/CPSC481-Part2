@@ -100,6 +100,8 @@ namespace CPSC_481
             items.Add(new MenuObject("Tap Water", "description", 0.00m, MenuObject.Type.Drink, @"Images\water.jpg", LoadOptionsFromFile(@"Options\scotch.txt"), this, orderTableView));
             items.Add(new MenuObject("Tea", "description", 9.99m, MenuObject.Type.Drink, @"Images\tea.jpg", LoadOptionsFromFile(@"Options\scotch.txt"), this, orderTableView));
 
+     
+
             return items;
         }
         
@@ -243,13 +245,13 @@ namespace CPSC_481
                                 offset = 0;
                                 break;
                             case MenuObject.Type.Side:
-                                offset = 1485;
+                                offset = 1642;
                                 break;
                             case MenuObject.Type.Dessert:
-                                offset = 2975;
+                                offset = 3283;
                                 break;
                             case MenuObject.Type.Drink:
-                                offset = 4465;
+                                offset = 4925;
                                 break;
                         }
 
@@ -401,6 +403,9 @@ namespace CPSC_481
                 Point relativePOint = menuItem.TransformToAncestor(menuItemScrollViewer).Transform(new Point(0, 0));*/
 
                 //menuItem.optionsMenu.NewOptionsMenu();
+
+                menuItem.optionsMenu.makeSureRadiosAreChecked();
+
                 Thread.Sleep(300);
                 menuItemScrollViewer.ScrollToVerticalOffset(verticalOffset);
      

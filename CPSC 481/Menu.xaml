@@ -172,8 +172,7 @@
 
 
         <Button x:Name="callServerButton"
-                Grid.Column="0"
-                Margin="0,0,1156,0" Height="70" RenderTransformOrigin="0.559,-0.936" VerticalAlignment="Top" Background="White" BorderBrush="White" Grid.ColumnSpan="2" 
+                Grid.Column="0" Height="70" RenderTransformOrigin="0.559,-0.936" VerticalAlignment="Top" Background="White" BorderBrush="White" 
                 Click="callServerButton_Click">
             <Image x:Name="serverButtonImage" Source="Images\menu\server.png" Stretch="Uniform" Width="70" Height="65" VerticalAlignment="Top"/>
         </Button>

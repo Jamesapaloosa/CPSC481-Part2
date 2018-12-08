@@ -96,6 +96,32 @@ namespace CPSC_481
             NewOptionsMenu();
         }
 
+        public void makeSureRadiosAreChecked()
+        {
+
+
+            for (int i = 0; i < rbs.GetLength(0); i++)
+            {
+
+                Boolean atleastOne = false;
+
+                for (int j = 0; j < rbs.GetLength(1); j++)
+                {
+                    if (rbs[i,j].IsChecked == true)
+                    {
+                        atleastOne = true;
+                        break;
+                    }
+                }
+
+                if (!atleastOne)
+                {
+                    rbs[i, 0].IsChecked = true;
+                }
+            }
+
+        }
+
         public void NewOptionsMenu()
         {
             Reset();
@@ -127,27 +153,28 @@ namespace CPSC_481
                 }
             }
 
+
             optionsCorner.Left = optionsCorner.Left + columnGap;
 
-            specReqTitle.Margin = new Thickness(specReqTitle.Margin.Left, (optionsCorner.Top + optionHeight), 0, 0);
-            specReqEntry.Margin = new Thickness(specReqEntry.Margin.Left, (optionsCorner.Top + 2 * optionHeight), 0, 0);
+            specReqTitle.Margin = new Thickness(specReqTitle.Margin.Left, (optionsCorner.Top + optionHeight - 30), 0, 0);
+            specReqEntry.Margin = new Thickness(specReqEntry.Margin.Left, (optionsCorner.Top + 2 * optionHeight - 35), 0, 0);
             //specReqEntry.Width = optionsCorner.Left - 40;
 
             optionsCorner.Top = specReqEntry.Margin.Top + specReqEntry.Height + optionHeight;
 
-            quantityLabel.Margin = new Thickness(quantityLabel.Margin.Left, optionsCorner.Top, 0, 0);
-            quantitySub.Margin = new Thickness(quantitySub.Margin.Left, optionsCorner.Top, 0, 0);
-            quantityAmount.Margin = new Thickness(quantityAmount.Margin.Left, optionsCorner.Top, 0, 0);
-            quantityAdd.Margin = new Thickness(quantityAdd.Margin.Left, optionsCorner.Top, 0, 0);
+            quantityLabel.Margin = new Thickness(quantityLabel.Margin.Left, optionsCorner.Top - 30, 0, 0);
+            quantitySub.Margin = new Thickness(quantitySub.Margin.Left, optionsCorner.Top - 30, 0, 0);
+            quantityAmount.Margin = new Thickness(quantityAmount.Margin.Left, optionsCorner.Top - 30, 0, 0);
+            quantityAdd.Margin = new Thickness(quantityAdd.Margin.Left, optionsCorner.Top - 30, 0, 0);
 
-            totalTitle.Margin = new Thickness(totalTitle.Margin.Left, (optionsCorner.Top + quantityAmount.Height + 5), 0, 0);
-            totalLabel.Margin = new Thickness(totalLabel.Margin.Left, (optionsCorner.Top + quantityAmount.Height + 5), 0, 0);
+            totalTitle.Margin = new Thickness(totalTitle.Margin.Left, (optionsCorner.Top + quantityAmount.Height - 30), 0, 0);
+            totalLabel.Margin = new Thickness(totalLabel.Margin.Left, (optionsCorner.Top + quantityAmount.Height - 30), 0, 0);
             totalLabel.Text = baseCost.ToString("0.00");
 
             optionsCorner.Top = quantityLabel.Margin.Top + (0.5) * quantitySub.Height;
 
-            addButton.Margin = new Thickness(addButton.Margin.Left, (optionsCorner.Top), 0, 0);
-            cancelButton.Margin = new Thickness(cancelButton.Margin.Left, (optionsCorner.Top), 0, 0);
+            addButton.Margin = new Thickness(addButton.Margin.Left, (optionsCorner.Top) - 10, 0, 0);
+            cancelButton.Margin = new Thickness(cancelButton.Margin.Left, (optionsCorner.Top) - 10, 0, 0);
 
             // this.Width = optionsCorner.Left;
             this.Height = cancelButton.Margin.Top + cancelButton.Height + optionHeight * 0.5;

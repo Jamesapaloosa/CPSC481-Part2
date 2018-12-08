@@ -24,7 +24,7 @@
             <Setter Property="Margin" Value="50,0,0,0"/>
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="45"/>
-            <Setter Property="Background" Value="#67913D"/>
+            <Setter Property="Background" Value="#EE3C54"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="FontFamily" Value="{StaticResource Unispace}"/>
@@ -101,7 +101,7 @@
         <TextBlock Style="{StaticResource headers}" Name="specReqTitle" HorizontalAlignment="Left" Margin="113,296,0,0" TextWrapping="Wrap" Text="Special Requests:" VerticalAlignment="Top"/>
         <TextBox Name="specReqEntry" HorizontalAlignment="Left" Height="78" Margin="30,330,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="1023" GotFocus="SpecReqEntry_GotFocus" LostFocus="SpecReqEntry_LostFocus"/>
         <Button Style="{StaticResource addButton}"  Name="addButton" Content="ADD ->" HorizontalAlignment="Left" Margin="854,454,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.238,-0.075" Click="AddButtonClicked"/>
-        <Button Style="{StaticResource cancelButton}" Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="31,454,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.238,-0.075" Click="CancelButtonClicked" Height="46" Background="Red" />
+        <Button Style="{StaticResource cancelButton}" Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="31,454,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.238,-0.075" Click="CancelButtonClicked" Height="46" Background="#FFEE3C54" />
         <TextBlock Name="totalLabel" HorizontalAlignment="Left" Margin="579,484,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" FontFamily="{StaticResource RobotoThin}" FontSize="36"/>
         <TextBlock Name="totalTitle" HorizontalAlignment="Left" Margin="466,484,0,0" TextWrapping="Wrap" Text="Total: $" VerticalAlignment="Top" Width="151" FontFamily="{StaticResource RobotoThin}" FontSize="36"/>
         <RadioButton Name="rb0" Content="RadioButton" HorizontalAlignment="Left" Margin="127,38,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
@@ -130,8 +130,8 @@
         <RadioButton Name="rb23" Content="RadioButton" HorizontalAlignment="Left" Margin="589,279,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
         <RadioButton Name="rb24" Content="RadioButton" HorizontalAlignment="Left" Margin="733,279,0,0" VerticalAlignment="Top" Height="17" Width="140" Click="UpdateTotal"/>
         <TextBlock Name="quantityAmount" HorizontalAlignment="Left" Margin="539,435,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Center" Width="45" RenderTransformOrigin="-0.7,0.146" Height="49" FontFamily="{StaticResource RobotoThin}" FontSize="32"/>
-        <Button Style="{StaticResource quantButton}" Name="quantitySub" Content="-" HorizontalAlignment="Left" Margin="601,429,0,0" VerticalAlignment="Top" Click="DecreaseQuantity" Background="#FFFF5555" />
-        <Button Style="{StaticResource quantButton}" Name="quantityAdd" Content="+" HorizontalAlignment="Left" Margin="651,429,0,0" VerticalAlignment="Top"  Click="IncreaseQuantity" Background="#FF67913D"/>
+        <Button Style="{StaticResource quantButton}" Name="quantitySub" Content="-" HorizontalAlignment="Left" Margin="601,429,0,0" VerticalAlignment="Top" Click="DecreaseQuantity" Background="#EE3C54" />
+        <Button Style="{StaticResource quantButton}" Name="quantityAdd" Content="+" HorizontalAlignment="Left" Margin="651,429,0,0" VerticalAlignment="Top"  Click="IncreaseQuantity" Background="#67913D"/>
         <TextBlock Name="quantityLabel" HorizontalAlignment="Left" Height="39" Margin="401,435,0,0" TextWrapping="Wrap" Text="Quantity:" VerticalAlignment="Top" Width="138" TextAlignment="Right" FontFamily="{StaticResource RobotoThin}" FontSize="32"/>
     </Grid>
 

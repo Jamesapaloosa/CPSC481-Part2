@@ -14,7 +14,7 @@ namespace CPSC_481
             get
             {
                 // TODO: add options prices
-                return this.menuItem.price + this.optionsCost;
+                return (this.menuItem.price + this.optionsCost) * quantity;
             }
         }
 

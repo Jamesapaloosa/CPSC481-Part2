@@ -90,6 +90,7 @@ namespace CPSC_481
                                 if (callingServer)
                                 {
                                     actionButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                                    callingServer = false;
                                 }
                             });
                         });

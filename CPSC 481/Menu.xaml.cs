@@ -39,6 +39,7 @@ namespace CPSC_481
         MenuObject currentSelection;
         public int[] oldOrder = new int[5];
         bool editingOldOrder = false;
+        bool callingServer = false;
 
         Boolean isScrolling = false;
 
@@ -670,6 +671,38 @@ namespace CPSC_481
 
 
             e.Handled = true;
+        }
+
+        private void callServerButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (!callingServer)
+            {
+                serverButtonImage.Source = new BitmapImage(
+                                    new Uri("pack://application:,,,/CPSC 481;component/Images/menu/server_o.png", UriKind.RelativeOrAbsolute));
+
+                Task.Delay(5000).ContinueWith(_ =>
+                {
+                    Dispatcher.Invoke(() =>
+                   {
+                       if (callingServer)
+                       {
+                           callServerButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                       }
+                   });
+                });
+
+                callingServer = true;
+            } else
+            {
+                serverButtonImage.Source = new BitmapImage(
+                                    new Uri("pack://application:,,,/CPSC 481;component/Images/menu/server.png", UriKind.RelativeOrAbsolute));
+
+                callingServer = false;
+            }
+
+
+
         }
     }
 

@@ -270,5 +270,9 @@
     <Resource Include="Images\menu\server.png" />
     <Resource Include="Images\menu\server_o.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu\ordered_divider.png" />
+    <Resource Include="Images\menu\pending_divider.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

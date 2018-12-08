@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 
 namespace CPSC_481
 {
@@ -18,7 +20,8 @@ namespace CPSC_481
         public OrderTableView otable { get; private set; }
 
 
-
+        private Boolean actionIsRefil = false;
+        private Boolean callingServer = false;
 
 
         public OrderItemCell(OrderItem orderItem, OrderTableView otable)
@@ -43,12 +46,14 @@ namespace CPSC_481
                 switch (this.orderItem.menuItem.type)
                 {
                     case MenuObject.Type.Drink:
+                        actionIsRefil = true;
                         actionButtonImage.Source = new BitmapImage(
                                 new Uri("pack://application:,,,/CPSC 481;component/Images/menu/refil_button.png", UriKind.RelativeOrAbsolute));
                         break;
                     default:
+                        actionIsRefil = false;
                         actionButtonImage.Source = new BitmapImage(
-                              new Uri("pack://application:,,,/CPSC 481;component/Images/menu/problem_button.png", UriKind.RelativeOrAbsolute));
+                              new Uri("pack://application:,,,/CPSC 481;component/Images/menu/server.png", UriKind.RelativeOrAbsolute));
                         break;
                 }
 
@@ -66,7 +71,37 @@ namespace CPSC_481
         {
             if (this.orderItem.isFinalized)
             {
-                this.OnAction(this, ActionType.RequestServer);
+                if (actionIsRefil)
+                {
+
+                } else
+                {
+
+                    if (!callingServer)
+                    {
+                        callingServer = true;
+                        actionButtonImage.Source = new BitmapImage(
+                                       new Uri("pack://application:,,,/CPSC 481;component/Images/menu/server_o.png", UriKind.RelativeOrAbsolute));
+
+                        Task.Delay(5000).ContinueWith(_ =>
+                        {
+                            Dispatcher.Invoke(() =>
+                            {
+                                if (callingServer)
+                                {
+                                    actionButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                                }
+                            });
+                        });
+                    } else
+                    {
+                        actionButtonImage.Source = new BitmapImage(
+                                      new Uri("pack://application:,,,/CPSC 481;component/Images/menu/server.png", UriKind.RelativeOrAbsolute));
+                    }
+
+                }
+
+               // this.OnAction(this, ActionType.RequestServer);
             }
             else
             {

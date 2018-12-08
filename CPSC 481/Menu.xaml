@@ -178,6 +178,14 @@
         </Button>
 
 
+
+
+
+        <local:PaymentAction
+        Panel.ZIndex="1000" Grid.ColumnSpan="3" Margin="0,0,-6,-29" Grid.RowSpan="3" Visibility="Hidden" x:Name="paymentAction"
+        />
+
+
         <local:OptionsMenu 
             x:Name="OptionsPopUp" 
             Margin="0,0,0,0"
@@ -188,6 +196,9 @@
             Background="LightGray"
             Grid.RowSpan="6"
             Grid.ColumnSpan="6"/>
+
+
+
 
         <!--Grid 
             Visibility="Hidden"

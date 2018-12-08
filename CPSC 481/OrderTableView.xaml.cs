@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CPSC_481
 {
@@ -121,7 +122,19 @@ namespace CPSC_481
             }
             else if (this.finalizedItemStackPanel.Children.Count > 0)
             {
-                MessageBox.Show("Server is on the way!");
+                Menu menu = (Menu) ((Grid)this.Parent).Parent;
+
+                menu.paymentAction.Visibility = Visibility.Visible;
+
+
+                Task.Delay(5000).ContinueWith(_ =>
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        menu.paymentAction.Visibility = Visibility.Hidden;
+                    });
+                });
+
                 this.Reset();
             }
         }

@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="CPSC_481.PaymentAction"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CPSC_481"
+             mc:Ignorable="d"    Height="926.594"
+        Width="1647.938">
+    <Grid Margin="189,135,175,141" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="-0.218"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Label Content="Your server will be with you shortly ..." HorizontalAlignment="Left" Margin="403,119,0,0" VerticalAlignment="Top" FontFamily="{StaticResource HamburgerHeaven}" Panel.ZIndex="2" FontSize="35"/>
+        <Label Content="Thank You" HorizontalAlignment="Left" Margin="521,505,0,0" VerticalAlignment="Top" FontFamily="{StaticResource Deftone}" FontSize="72" Foreground="Red" Panel.ZIndex="2"/>
+
+        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="940" Margin="-202,-142,-175,-147"  VerticalAlignment="Top" Width="1661" Opacity="0.5" Panel.ZIndex="-5"/>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="656" Margin="-10,-5,0,0"  VerticalAlignment="Top" Width="1284" Panel.ZIndex="1"/>
+    </Grid>
+
+
+</UserControl>

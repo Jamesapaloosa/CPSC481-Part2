@@ -222,6 +222,15 @@ namespace CPSC_481
             {
                 try
                 {
+
+                    menuItemListView.SelectedItem = null;
+                    
+                    // Collapse whatever was open.
+                    foreach (MenuObject element in menuItemListView.Items)
+                    {
+                        element.collapseOptions();
+                    }
+
                     MenuObject.Type menuItemType = (MenuObject.Type)this.tabControl.SelectedItem;
                     CollectionView collectionViewSource = (CollectionView)this.menuItemListView.ItemsSource;
                     CollectionViewGroup group = (CollectionViewGroup)collectionViewSource.Groups[this.tabControl.SelectedIndex];
@@ -332,6 +341,7 @@ namespace CPSC_481
             catch (Exception error)
             {
                 System.Diagnostics.Debug.WriteLine(error);
+                isScrolling = false;
             }
 
             

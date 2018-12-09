@@ -103,15 +103,19 @@ namespace CPSC_481
 
         private void ActionButton_Click(object sender, RoutedEventArgs e)
         {
-            this.totalPriceLabel.Content = "Art thou sure?";
+            //this.totalPriceLabel.Content = "Confirm";
             this.actionButton.Height = 0.0;
             this.actionConfirmationView.Height = Double.NaN;
+            this.confirmationNoButton.Content = "Cancel";
+            this.confirmationYesButton.Content = this.actionButton.Content;
         }
 
         private void ConfirmationNoButton_Click(object sender, RoutedEventArgs e)
         {
             this.actionButton.Height = Double.NaN;
             this.actionConfirmationView.Height = 0.0;
+
+            this.Update();
         }
 
         private void ConfirmationYesButton_Click(object sender, RoutedEventArgs e)

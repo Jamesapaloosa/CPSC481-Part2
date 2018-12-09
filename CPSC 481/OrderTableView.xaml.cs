@@ -15,7 +15,7 @@ namespace CPSC_481
             this.Reset();
         }
 
-        private void Reset()
+        public void Reset()
         {
             this.finalizedItemStackPanel.Children.Clear();
             this.pendingItemStackPanel.Children.Clear();
@@ -127,19 +127,18 @@ namespace CPSC_481
             else if (this.finalizedItemStackPanel.Children.Count > 0)
             {
                 Menu menu = (Menu) ((Grid)this.Parent).Parent;
+                menu.paymentAction.startPayment();
 
-                menu.paymentAction.Visibility = Visibility.Visible;
 
-
-                Task.Delay(5000).ContinueWith(_ =>
+               /* Task.Delay(5000).ContinueWith(_ =>
                 {
                     Dispatcher.Invoke(() =>
                     {
                         menu.paymentAction.Visibility = Visibility.Hidden;
                     });
-                });
+                });*/
 
-                this.Reset();
+               //this.Reset();
             }
         }
 

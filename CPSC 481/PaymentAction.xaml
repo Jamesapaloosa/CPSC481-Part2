@@ -6,7 +6,57 @@
              xmlns:local="clr-namespace:CPSC_481"
              mc:Ignorable="d"    Height="926.594"
         Width="1647.938">
-    <Grid Margin="189,135,175,141" RenderTransformOrigin="0.5,0.5">
+
+
+    <UserControl.Resources>
+
+        <Style TargetType="{x:Type Button}" x:Key="paymentTypeButton">
+            <Setter Property="Background" Value="#67913D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="{StaticResource Unispace}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="payButton">
+            <Setter Property="Background" Value="#67913D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="{StaticResource Unispace}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Margin="189,135,175,97" RenderTransformOrigin="0.5,0.5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="515*"/>
+            <ColumnDefinition Width="769*"/>
+        </Grid.ColumnDefinitions>
+
+
+
+
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
@@ -15,11 +65,71 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <Label Content="Your server will be with you shortly ..." HorizontalAlignment="Left" Margin="403,119,0,0" VerticalAlignment="Top" FontFamily="{StaticResource HamburgerHeaven}" Panel.ZIndex="2" FontSize="35"/>
-        <Label Content="Thank You" HorizontalAlignment="Left" Margin="521,505,0,0" VerticalAlignment="Top" FontFamily="{StaticResource Deftone}" FontSize="72" Foreground="Red" Panel.ZIndex="2"/>
 
-        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="940" Margin="-202,-142,-175,-147"  VerticalAlignment="Top" Width="1661" Opacity="0.5" Panel.ZIndex="-5"/>
-        <Rectangle Fill="White" HorizontalAlignment="Left" Height="656" Margin="-10,-5,0,0"  VerticalAlignment="Top" Width="1284" Panel.ZIndex="1"/>
+        <Button x:Name="callServerButton" Panel.ZIndex="25" HorizontalContentAlignment="Left"
+                Grid.Column="0" Height="70" RenderTransformOrigin="0.559,-0.936" VerticalAlignment="Top" Background="White" BorderBrush="White" 
+                Click="callServerButton_Click" Margin="-50,-40,494,0">
+            <Image x:Name="serverButtonImage" Source="Images\menu\server.png" Stretch="Uniform" Width="70" Height="65" VerticalAlignment="Top"/>
+        </Button>
+
+        <StackPanel x:Name="splitItemSelector" Orientation="Vertical" Panel.ZIndex="10" Margin="0,-66,0,0" Visibility="Hidden" Grid.ColumnSpan="2">
+
+            <Label Content="Please select items to pay for" FontFamily="{StaticResource Deftone}" FontSize="72" HorizontalAlignment="Center" Margin="0,0,0,30" Foreground="#ED2625"/>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                    <Label Content="Total for Payment" FontFamily="{StaticResource RobotoThin}" FontSize="50"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Label Content="$" FontFamily="{StaticResource RobotoThin}" FontSize="50" />
+                        <Label x:Name="paymentTotal" Content="0.00" FontFamily="{StaticResource RobotoThin}" FontSize="50" />
+
+                    </StackPanel>
+
+                    <Button x:Name="makeIndividualPaymentButton" Content="Pay" Style="{StaticResource payButton}" Height="60" Margin="0,300,0,0" Click="makeIndividualPaymentButton_Click"/>
+
+                </StackPanel>
+
+                <ScrollViewer x:Name="itemList" Margin="300,0,0,0" VerticalScrollBarVisibility="Hidden">
+                    <StackPanel x:Name="paymentItems" Height="606" Width="500">
+
+                    </StackPanel>
+                </ScrollViewer>
+
+            </StackPanel>
+
+        </StackPanel>
+
+
+        <StackPanel Panel.ZIndex="4" VerticalAlignment="Center" x:Name="paymentTypeSelector" Visibility="Visible" Grid.ColumnSpan="2" Margin="0,109,0,107" Height="479">
+
+            <Label Content="Select Payment Type" FontFamily="{StaticResource Deftone}" FontSize="72" HorizontalAlignment="Center" Margin="0,0,0,30" Foreground="#ED2625"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,30">
+                <Label  FontFamily="{StaticResource RobotoThin}" FontSize="40" Content="Total - $" />
+                <Label  x:Name="totalCostMain" FontFamily="{StaticResource RobotoThin}" FontSize="40" Content="0.00" />
+            </StackPanel>
+
+
+            <StackPanel  Panel.ZIndex="4" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Pay All" Panel.ZIndex="10" Width="200" Height="200" Background="#67913D" Margin="0,0,40,0" Style="{StaticResource paymentTypeButton}" Click="Pay_All_Button_Click"/>
+                <Button Content="Split" Panel.ZIndex="11" Width="200" Height="200" Background="#DE532F"  Style="{StaticResource paymentTypeButton}" Click="Split_Button_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel x:Name="payPrompt" Panel.ZIndex="10" VerticalAlignment="Center" Visibility="Hidden" Grid.ColumnSpan="2" Margin="0,228,0,229">
+            <Label Content="Please continue payment on card reader ..." FontFamily="{StaticResource Deftone}" FontSize="72" HorizontalAlignment="Center" Margin="0,0,0,30" Foreground="#ED2625"/>
+            <Label x:Name="payThankYou"  Content="Thank you!" FontFamily="{StaticResource Deftone}" FontSize="72" HorizontalAlignment="Center" Margin="0,0,0,30" Foreground="#ED2625" Visibility="Hidden"/>
+        </StackPanel>
+
+
+
+
+
+
+        <Rectangle Fill="Black" HorizontalAlignment="Left" Height="940" Margin="-202,-142,-175,-103"  VerticalAlignment="Top" Width="1661" Opacity="0.5" Panel.ZIndex="-5" Grid.ColumnSpan="2"/>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="782" Margin="-86,-71,-54,-16"  VerticalAlignment="Top" Width="1424" Panel.ZIndex="1" Grid.ColumnSpan="2"/>
     </Grid>
 
 

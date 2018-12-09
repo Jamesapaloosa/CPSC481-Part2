@@ -26,6 +26,9 @@ namespace CPSC_481
         public Boolean isSelected = false;
 
         public decimal totalCost;
+        public int totalQuant;
+        public decimal individualCost;
+        public int selectedQuant;
 
         private PaymentAction paymentAction;
 
@@ -37,15 +40,21 @@ namespace CPSC_481
             this.paymentAction = paymentAction;
             this.orderItem = orderItem;
             this.totalCost = (orderItem.optionsCost + orderItem.menuItem.price) * orderItem.quantity;
+            this.individualCost = (orderItem.optionsCost + orderItem.menuItem.price);
+            this.selectedQuant = 0;
+            this.totalQuant = orderItem.quantity;
 
+
+            quantitySub.Visibility = Visibility.Hidden;
 
 
             image.Source = new BitmapImage(
                                     new Uri(this.orderItem.menuItem.imageName, UriKind.RelativeOrAbsolute));
 
             titleLabel.Content = orderItem.menuItem.name;
-            priceLabel.Content = "$" + totalCost;
-         
+            priceLabel.Content = selectedQuant.ToString() + "x $" + individualCost;
+            totalLeft.Content = totalQuant - selectedQuant;
+
         }
 
         private void toggleStatus(Boolean selected)
@@ -55,17 +64,37 @@ namespace CPSC_481
             {
                 this.isSelected = true;
                 this.Background = new SolidColorBrush(Color.FromArgb(0xFF, 216, 216, 216));
-                checkbox.IsChecked = true;
+               // checkbox.IsChecked = true;
 
                 this.paymentAction.addItem(totalCost);
             } else
             {
                 this.isSelected = false;
                 this.Background = new SolidColorBrush(Color.FromArgb(0xFF, 255, 255, 255));
-                checkbox.IsChecked = false;
+               // checkbox.IsChecked = false;
 
                 this.paymentAction.removeItem(totalCost);
             }
+        }
+
+        private void updateTotals()
+        {
+            priceLabel.Content = selectedQuant.ToString() + "x $" + individualCost;
+            totalLeft.Content = totalQuant - selectedQuant;
+        }
+
+        public void updateAfterPayment()
+        {
+
+            totalQuant -= selectedQuant;
+            selectedQuant = 0;
+
+            quantityAdd.Visibility = Visibility.Visible;
+            quantitySub.Visibility = Visibility.Hidden;
+
+            this.Background = new SolidColorBrush(Color.FromArgb(0xFF, 255, 255, 255));
+
+            updateTotals();
         }
 
 
@@ -87,6 +116,46 @@ namespace CPSC_481
         private void Grid_TouchDown(object sender, TouchEventArgs e)
         {
             toggleStatus(!isSelected);
+        }
+
+
+
+
+        private void quantityAdd_Click(object sender, RoutedEventArgs e)
+        {
+            this.selectedQuant++;
+            this.paymentAction.addItem(individualCost);
+
+            this.isSelected = true;
+            this.Background = new SolidColorBrush(Color.FromArgb(0xFF, 216, 216, 216));
+
+
+            quantitySub.Visibility = Visibility.Visible;
+
+            updateTotals();
+
+            if (selectedQuant == totalQuant)
+            {
+                quantityAdd.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void quantitySub_Click(object sender, RoutedEventArgs e)
+        {
+            this.selectedQuant--;
+            this.paymentAction.removeItem(individualCost);
+
+            quantityAdd.Visibility = Visibility.Visible;
+
+            updateTotals();
+
+            if (this.selectedQuant == 0)
+            {
+                this.isSelected = false;
+                this.Background = new SolidColorBrush(Color.FromArgb(0xFF, 255, 255, 255));
+
+                quantitySub.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

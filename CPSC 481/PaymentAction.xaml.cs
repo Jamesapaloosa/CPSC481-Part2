@@ -136,7 +136,10 @@ namespace CPSC_481
 
             foreach (paymentItem item in paymentItems.Children)
             {
-                if (item.isSelected)
+
+                item.updateAfterPayment();
+
+                if (item.totalQuant == 0)
                 {
                     toRemove.Add(item);
                 }

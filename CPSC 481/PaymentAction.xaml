@@ -91,11 +91,17 @@
 
                 </StackPanel>
 
-                <ScrollViewer x:Name="itemList" Margin="300,0,0,0" VerticalScrollBarVisibility="Hidden">
-                    <StackPanel x:Name="paymentItems" Height="606" Width="500">
+                <StackPanel>
+                    <Label Margin="300,0,0,0"
+                   Content="# Left"
+                   FontSize="15"
+                   FontFamily="{StaticResource RobotoThin}"/>
+                    <ScrollViewer x:Name="itemList" Margin="300,0,0,0" VerticalScrollBarVisibility="Hidden">
+                        <StackPanel x:Name="paymentItems" Height="606" Width="500">
 
-                    </StackPanel>
-                </ScrollViewer>
+                        </StackPanel>
+                    </ScrollViewer>
+                </StackPanel>
 
             </StackPanel>
 

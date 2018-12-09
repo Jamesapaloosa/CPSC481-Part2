@@ -15,9 +15,28 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
+        <Style TargetType="{x:Type Button}" x:Key="quantButton">
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="{StaticResource Unispace}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </UserControl.Resources>
-    <Grid  MouseDown="Grid_MouseDown" TouchDown="Grid_TouchDown" >
-        <Image x:Name="image" Source="Images\pizza.jpg" Margin="63,0,369,7"/>
+    <Grid  >
+        <Image x:Name="image" Source="Images\pizza.jpg" Margin="80,0,352,7"/>
 
 
         <Grid Grid.Column="1">
@@ -32,7 +51,7 @@
                    Grid.Row="0"
                    Content="Title"
                    HorizontalAlignment="Left"
-                   Margin="138,2,0,33"
+                   Margin="155,2,0,33"
                    VerticalAlignment="Center"
                    FontFamily="{StaticResource HamburgerHeaven}"
                    Foreground="#ED2625"
@@ -41,13 +60,31 @@
             <Label x:Name="priceLabel"
                    Content="Title"
                    HorizontalAlignment="Left"
-                   Margin="150,35,0,6"
+                   Margin="167,35,0,6"
                    VerticalAlignment="Center"
                    FontSize="20"
                    FontFamily="{StaticResource RobotoThin}"/>
 
-            <CheckBox x:Name="checkbox" Margin="16,30,10,6" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Height="39"/>
+
+
+
+
+           
+            <Label x:Name="totalLeft"
+                   Content="0"
+                   FontSize="20"
+                   FontFamily="{StaticResource RobotoThin}" Margin="14,20,442,27"/>
+
+
+
+
         </Grid>
+
+        <StackPanel Orientation="Horizontal" Margin="332,0,46,0">
+            <Button Style="{StaticResource quantButton}" x:Name="quantitySub" Content="-"  Background="#EE3C54" Margin="0,0,0,0" Click="quantitySub_Click" />
+            <Button Style="{StaticResource quantButton}" x:Name="quantityAdd" Content="+"  Background="#67913D" Margin="30,0,0,0" Click="quantityAdd_Click"/>
+        </StackPanel>
+
 
     </Grid>
 </UserControl>

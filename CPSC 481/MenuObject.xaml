@@ -9,7 +9,7 @@
 
 
 
-    <StackPanel>
+    <StackPanel Width="1200" >
 
             <StackPanel.Triggers>
                 <EventTrigger RoutedEvent="Expander.Expanded" SourceName="OptionsExpander">
@@ -23,7 +23,7 @@
                 </EventTrigger>
             </StackPanel.Triggers>
 
-            <StackPanel Orientation="Horizontal">
+            <DockPanel >
                 <Image Source="{Binding imageName}" Height="150" Width="150" Margin="15,0,0,0"/>
 
                 <StackPanel VerticalAlignment="Top">
@@ -35,9 +35,9 @@
                 </StackPanel>
 
                 <TextBlock Text="{Binding Path=priceAsString}" Margin="100,80,0,0" FontFamily="{StaticResource RobotoThin}" FontSize="28" Foreground="Black"/>
-                <Image Source="Images/menu/order_button.png" Width="140" Height="46" Margin="100,0,0,0"/>
+                <Image Source="Images/menu/order_button.png" Width="140" Height="46" Margin="0,0,160,0" HorizontalAlignment="Right"/>
 
-            </StackPanel>
+            </DockPanel>
             <Expander x:Name="OptionsExpander" HorizontalAlignment="Left">
                 <StackPanel x:Name="orderOptions" Width="1200" Margin="-10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
 

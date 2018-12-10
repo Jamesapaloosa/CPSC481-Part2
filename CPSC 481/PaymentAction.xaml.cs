@@ -197,6 +197,9 @@ namespace CPSC_481
 
             if (!callingServer)
             {
+
+                Menu.toastMessager.displayMessage("Your server is on their way!");
+
                 serverButtonImage.Source = new BitmapImage(
                                     new Uri("pack://application:,,,/CPSC 481;component/Images/menu/server_o.png", UriKind.RelativeOrAbsolute));
 

@@ -104,6 +104,8 @@
         </Grid.RowDefinitions>
 
 
+        <local:Toast x:Name="toastMessage" Grid.Column="1" Margin="526,94,190,45" Grid.Row="2" Panel.ZIndex="1100" RenderTransformOrigin="0.474,1.375" Visibility="Hidden"/>
+
 
         <Image Source="Images\menu\logo.png" 
                Grid.Row="0"

@@ -45,6 +45,10 @@ namespace CPSC_481
 
         double prevTouchPoint = 0;
 
+        public static Toast toastMessager;
+
+
+
         public Menu()
         {
             InitializeComponent();
@@ -54,6 +58,8 @@ namespace CPSC_481
             CollectionView collectionViewSource = (CollectionView)CollectionViewSource.GetDefaultView(this.LoadMenuItems());
             collectionViewSource.GroupDescriptions.Add(new PropertyGroupDescription("type"));
             this.menuItemListView.ItemsSource = collectionViewSource;
+
+            toastMessager = toastMessage;
 
            // OptionsPopUp.SetupOptionsMenu(this, (this.LoadMenuItems()).ElementAt(0), orderTableView);
         }
@@ -693,6 +699,9 @@ namespace CPSC_481
 
             if (!callingServer)
             {
+
+                toastMessage.displayMessage("Your server is on the way!");
+
                 serverButtonImage.Source = new BitmapImage(
                                     new Uri("pack://application:,,,/CPSC 481;component/Images/menu/server_o.png", UriKind.RelativeOrAbsolute));
 

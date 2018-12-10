@@ -23,6 +23,8 @@ namespace CPSC_481
         private Boolean actionIsRefil = false;
         private Boolean callingServer = false;
 
+        private Menu menu;
+
 
         public OrderItemCell(OrderItem orderItem, OrderTableView otable)
         {
@@ -32,6 +34,7 @@ namespace CPSC_481
             this.orderItem = orderItem;
             this.imageView.Source = new BitmapImage(new Uri(this.orderItem.menuItem.imageName, UriKind.Relative));
             this.titleLabel.Content = this.orderItem.menuItem.name;
+
 
             this.update();
         }
@@ -73,12 +76,16 @@ namespace CPSC_481
             {
                 if (actionIsRefil)
                 {
+                    Menu.toastMessager.displayMessage("Your server is on the way \nwith your drink!");
 
                 } else
                 {
 
                     if (!callingServer)
                     {
+
+                        Menu.toastMessager.displayMessage("Your server is on their way!");
+
                         callingServer = true;
                         actionButtonImage.Source = new BitmapImage(
                                        new Uri("pack://application:,,,/CPSC 481;component/Images/menu/server_o.png", UriKind.RelativeOrAbsolute));

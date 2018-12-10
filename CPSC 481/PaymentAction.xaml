@@ -66,6 +66,10 @@
             </TransformGroup>
         </Grid.RenderTransform>
 
+
+        <Button x:Name="cancelButton" Content="Cancel" Style="{StaticResource payButton}" Height="60" Margin="0,610,315,25" Click="cancelButton_Click" Panel.ZIndex="20" Width="200" Background="#FFEE3C54" RenderTransformOrigin="0.142,0.521"/>
+
+
         <Button x:Name="callServerButton" Panel.ZIndex="25" HorizontalContentAlignment="Left"
                 Grid.Column="0" Height="70" RenderTransformOrigin="0.559,-0.936" VerticalAlignment="Top" Background="White" BorderBrush="White" 
                 Click="callServerButton_Click" Margin="-50,-40,494,0">

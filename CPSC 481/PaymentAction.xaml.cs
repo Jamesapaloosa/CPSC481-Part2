@@ -24,6 +24,7 @@ namespace CPSC_481
 
         private decimal totalForPayment = 0;
         private Boolean callingServer = false;
+        private Boolean cancelLocked = false;
 
 
         public PaymentAction()
@@ -127,6 +128,7 @@ namespace CPSC_481
             this.totalForPayment = 0;
             this.paymentTotal.Content = "0";
             paymentItems.Children.Clear();
+            cancelButton.Visibility = Visibility.Visible;
         }
 
         private void removeSelectedItems()
@@ -160,6 +162,8 @@ namespace CPSC_481
             splitItemSelector.Visibility = Visibility.Hidden;
             payPrompt.Visibility = Visibility.Visible;
             var parent = ((Menu)((Grid)Parent).Parent).orderTableView;
+
+            cancelButton.Visibility = Visibility.Hidden;
 
             Task.Delay(4000).ContinueWith(_ =>
             {
@@ -228,5 +232,9 @@ namespace CPSC_481
 
         }
 
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            reset();
+        }
     }
 }

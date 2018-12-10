@@ -37,7 +37,7 @@ namespace CPSC_481
 
             paymentTypeSelector.Visibility = Visibility.Hidden;
             payPrompt.Visibility = Visibility.Visible;
-
+            cancelButton.Visibility = Visibility.Hidden;
 
             Task.Delay(4000).ContinueWith(_ =>
             {
